@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CRRE Labs — Build, Test, Scale</title>
+  <meta name="description" content="CRRE Labs helps teams turn ideas into measurable outcomes—through research, rapid prototyping, and production-ready builds." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="CRRE Labs — Build, Test, Scale" />
+  <meta property="og:description" content="Research-led builds that ship. Fast." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/og.png" />
+
+  <!-- Tailwind via CDN (swap for your build pipeline later) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: "#071a2b",
+            navy: "#0a2a4a",
+            ocean: "#0b4b82",
+            sky: "#3aa0ff",
+            mist: "#f5f7fb",
+          },
+          boxShadow: {
+            soft: "0 10px 30px rgba(7, 26, 43, 0.12)",
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Small enhancements that Tailwind CDN doesn’t cover */
+    .grid-fade {
+      background-image:
+        radial-gradient(transparent 1px, rgba(245,247,251,0.95) 1px),
+        radial-gradient(transparent 1px, rgba(245,247,251,0.95) 1px);
+      background-size: 28px 28px;
+      background-position: 0 0, 14px 14px;
+      mask-image: radial-gradient(circle at 50% 20%, black 40%, transparent 72%);
+      -webkit-mask-image: radial-gradient(circle at 50% 20%, black 40%, transparent 72%);
+    }
+    .focus-ring:focus {
+      outline: none;
+      box-shadow: 0 0 0 4px rgba(58,160,255,0.25);
+    }
+  </style>
+</head>
+
+<body class="bg-white text-ink antialiased">
+  <!-- Top bar -->
+  <header class="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur">
+    <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
+      <a href="#" class="flex items-center gap-3">
+        <!-- Replace with your actual logo path (e.g., /logo.jpeg). -->
+        <img src="/logo.jpeg" alt="CRRE Labs" class="h-9 w-9 rounded-lg object-contain" onerror="this.style.display='none'" />
+        <div class="leading-tight">
+          <div class="text-base font-semibold tracking-tight">CRRE <span class="text-ocean">Labs</span></div>
+          <div class="text-xs text-slate-500">Build • Test • Scale</div>
+        </div>
+      </a>
+
+      <nav class="hidden items-center gap-7 text-sm text-slate-600 md:flex">
+        <a class="hover:text-ink" href="#what">What we do</a>
+        <a class="hover:text-ink" href="#how">How it works</a>
+        <a class="hover:text-ink" href="#work">Use cases</a>
+        <a class="hover:text-ink" href="#faq">FAQ</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <a href="#contact" class="hidden rounded-xl px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100 md:inline-flex">Contact</a>
+        <a href="#cta" class="inline-flex items-center justify-center rounded-xl bg-ocean px-4 py-2 text-sm font-semibold text-white shadow-soft hover:bg-navy focus-ring">Book a call</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 bg-mist"></div>
+    <div class="absolute inset-0 grid-fade"></div>
+
+    <div class="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
+      <div class="grid items-center gap-10 lg:grid-cols-2">
+        <div>
+          <div class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-600">
+            <span class="h-2 w-2 rounded-full bg-sky"></span>
+            Research-led builds that ship
+          </div>
+
+          <h1 class="mt-5 text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
+            Turn ideas into measurable outcomes—fast.
+          </h1>
+          <p class="mt-4 max-w-xl text-lg leading-relaxed text-slate-600">
+            CRRE Labs partners with ambitious teams to validate what matters, prototype quickly, and deliver production-ready solutions—without the bloat.
+          </p>
+
+          <div class="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <a href="#cta" class="inline-flex items-center justify-center rounded-xl bg-ocean px-5 py-3 text-sm font-semibold text-white shadow-soft hover:bg-navy focus-ring">
+              Get a free strategy call
+            </a>
+            <a href="#what" class="inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50 focus-ring">
+              See what we do
+            </a>
+          </div>
+
+          <div class="mt-8 grid max-w-xl grid-cols-2 gap-4 sm:grid-cols-3">
+            <div class="rounded-2xl border border-slate-200 bg-white p-4">
+              <div class="text-2xl font-semibold text-ink">2–6w</div>
+              <div class="mt-1 text-sm text-slate-600">Typical sprint</div>
+            </div>
+            <div class="rounded-2xl border border-slate-200 bg-white p-4">
+              <div class="text-2xl font-semibold text-ink">1:1</div>
+              <div class="mt-1 text-sm text-slate-600">Hands-on delivery</div>
+            </div>
+            <div class="rounded-2xl border border-slate-200 bg-white p-4">
+              <div class="text-2xl font-semibold text-ink">ROI</div>
+              <div class="mt-1 text-sm text-slate-600">Metrics-first</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="relative">
+          <div class="rounded-3xl bg-white p-6 shadow-soft ring-1 ring-slate-200">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <div class="text-sm font-semibold text-slate-900">What you get</div>
+                <div class="mt-1 text-sm text-slate-600">A clear plan + a build you can ship.</div>
+              </div>
+              <div class="rounded-2xl bg-mist px-3 py-1 text-xs font-semibold text-slate-700">Sprint-ready</div>
+            </div>
+
+            <div class="mt-6 space-y-3">
+              <div class="flex items-start gap-3 rounded-2xl border border-slate-200 p-4">
+                <div class="mt-1 h-2.5 w-2.5 flex-none rounded-full bg-sky"></div>
+                <div>
+                  <div class="text-sm font-semibold text-slate-900">Discovery & research</div>
+                  <div class="mt-1 text-sm text-slate-600">Align on goals, constraints, and the shortest path to impact.</div>
+                </div>
+              </div>
+              <div class="flex items-start gap-3 rounded-2xl border border-slate-200 p-4">
+                <div class="mt-1 h-2.5 w-2.5 flex-none rounded-full bg-sky"></div>
+                <div>
+                  <div class="text-sm font-semibold text-slate-900">Prototype & validate</div>
+                  <div class="mt-1 text-sm text-slate-600">Rapid iteration with real users, data, and feedback loops.</div>
+                </div>
+              </div>
+              <div class="flex items-start gap-3 rounded-2xl border border-slate-200 p-4">
+                <div class="mt-1 h-2.5 w-2.5 flex-none rounded-full bg-sky"></div>
+                <div>
+                  <div class="text-sm font-semibold text-slate-900">Build & handoff</div>
+                  <div class="mt-1 text-sm text-slate-600">Production-quality implementation plus documentation and ownership transfer.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-6 rounded-2xl bg-mist p-4">
+              <div class="text-xs font-semibold uppercase tracking-wide text-slate-500">Best for</div>
+              <div class="mt-2 flex flex-wrap gap-2">
+                <span class="rounded-full bg-white px-3 py-1 text-xs font-medium text-slate-700 ring-1 ring-slate-200">New product launches</span>
+                <span class="rounded-full bg-white px-3 py-1 text-xs font-medium text-slate-700 ring-1 ring-slate-200">Data + dashboards</span>
+                <span class="rounded-full bg-white px-3 py-1 text-xs font-medium text-slate-700 ring-1 ring-slate-200">Automation</span>
+                <span class="rounded-full bg-white px-3 py-1 text-xs font-medium text-slate-700 ring-1 ring-slate-200">Web experiences</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="absolute -bottom-7 -left-7 hidden h-28 w-28 rounded-3xl bg-sky/15 blur-2xl lg:block"></div>
+          <div class="absolute -top-8 -right-8 hidden h-36 w-36 rounded-3xl bg-ocean/15 blur-2xl lg:block"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What we do -->
+  <section id="what" class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+    <div class="max-w-2xl">
+      <h2 class="text-3xl font-semibold tracking-tight text-ink">What we do</h2>
+      <p class="mt-3 text-lg text-slate-600">Pick the engagement that matches your timeline. Keep it lean. Ship something real.</p>
+    </div>
+
+    <div class="mt-10 grid gap-6 md:grid-cols-3">
+      <div class="rounded-3xl border border-slate-200 p-6 shadow-sm">
+        <div class="text-sm font-semibold text-slate-900">Research & strategy</div>
+        <p class="mt-2 text-sm leading-relaxed text-slate-600">Clarify the problem, map constraints, and define success metrics. Deliverable: roadmap + experiment plan.</p>
+        <ul class="mt-4 space-y-2 text-sm text-slate-700">
+          <li class="flex gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-sky"></span>Stakeholder alignment</li>
+          <li class="flex gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-sky"></span>User + market insights</li>
+          <li class="flex gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-sky"></span>North-star metrics</li>
+        </ul>
+      </div>
+
+      <div class="rounded-3xl border border-slate-200 p-6 shadow-sm">
+        <div class="text-sm font-semibold text-slate-900">Rapid prototyping</div>
+        <p class="mt-2 text-sm leading-relaxed text-slate-600">From concept to clickable prototype (or working MVP) with tight feedback cycles.</p>
+        <ul class="mt-4 space-y-2 text-sm text-slate-700">
+          <li class="flex gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-sky"></span>UX flows + wireframes</li>
+          <li class="flex gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-sky"></span>Validation tests</li>
+          <li class="flex gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-sky"></span>Iteration in days</li>
+        </ul>
+      </div>
+
+      <div class="rounded-3xl border border-slate-200 p-6 shadow-sm">
+        <div class="text-sm font-semibold text-slate-900">Build & delivery</div>
+        <p class="mt-2 text-sm leading-relaxed text-slate-600">Production-grade implementation with clean handoff. You keep the keys.</p>
+        <ul class="mt-4 space-y-2 text-sm text-slate-700">
+          <li class="flex gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-sky"></span>Web apps + sites</li>
+          <li class="flex gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-sky"></span>Automations + integrations</li>
+          <li class="flex gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-sky"></span>Dashboards + analytics</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section id="how" class="bg-mist">
+    <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+      <div class="grid gap-10 lg:grid-cols-2">
+        <div>
+          <h2 class="text-3xl font-semibold tracking-tight text-ink">How it works</h2>
+          <p class="mt-3 text-lg text-slate-600">A simple, repeatable process designed to reduce risk and speed up decision-making.</p>
+
+          <div class="mt-8 space-y-4">
+            <div class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+              <div class="flex items-center gap-3">
+                <div class="flex h-9 w-9 items-center justify-center rounded-2xl bg-ocean text-sm font-semibold text-white">1</div>
+                <div class="text-sm font-semibold text-slate-900">Define the outcome</div>
+              </div>
+              <p class="mt-3 text-sm text-slate-600">We align on goals, stakeholders, success metrics, and the “why now.”</p>
+            </div>
+            <div class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+              <div class="flex items-center gap-3">
+                <div class="flex h-9 w-9 items-center justify-center rounded-2xl bg-ocean text-sm font-semibold text-white">2</div>
+                <div class="text-sm font-semibold text-slate-900">Run focused experiments</div>
+              </div>
+              <p class="mt-3 text-sm text-slate-600">Prototype quickly, test assumptions, and measure what moves the needle.</p>
+            </div>
+            <div class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+              <div class="flex items-center gap-3">
+                <div class="flex h-9 w-9 items-center justify-center rounded-2xl bg-ocean text-sm font-semibold text-white">3</div>
+                <div class="text-sm font-semibold text-slate-900">Ship + hand off</div>
+              </div>
+              <p class="mt-3 text-sm text-slate-600">Deliver a build that’s maintainable, documented, and ready to scale.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-3xl bg-white p-8 shadow-soft ring-1 ring-slate-200">
+          <div class="text-sm font-semibold text-slate-900">Engagement options</div>
+          <p class="mt-2 text-sm text-slate-600">Choose a model that fits your needs. Upgrade or extend anytime.</p>
+
+          <div class="mt-6 grid gap-4">
+            <div class="rounded-2xl border border-slate-200 p-5">
+              <div class="flex items-center justify-between">
+                <div class="text-sm font-semibold text-slate-900">Sprint</div>
+                <div class="text-xs font-semibold text-slate-600">2–6 weeks</div>
+              </div>
+              <p class="mt-2 text-sm text-slate-600">Best for validating ideas and producing a shippable prototype/MVP.</p>
+            </div>
+            <div class="rounded-2xl border border-slate-200 p-5">
+              <div class="flex items-center justify-between">
+                <div class="text-sm font-semibold text-slate-900">Project</div>
+                <div class="text-xs font-semibold text-slate-600">Scoped delivery</div>
+              </div>
+              <p class="mt-2 text-sm text-slate-600">Best for well-defined builds with clear deliverables and timeline.</p>
+            </div>
+            <div class="rounded-2xl border border-slate-200 p-5">
+              <div class="flex items-center justify-between">
+                <div class="text-sm font-semibold text-slate-900">Retainer</div>
+                <div class="text-xs font-semibold text-slate-600">Ongoing</div>
+              </div>
+              <p class="mt-2 text-sm text-slate-600">Best for teams that want continuous iteration, support, and optimization.</p>
+            </div>
+          </div>
+
+          <a href="#cta" class="mt-7 inline-flex w-full items-center justify-center rounded-xl bg-ocean px-5 py-3 text-sm font-semibold text-white shadow-soft hover:bg-navy focus-ring">Talk to CRRE Labs</a>
+          <div class="mt-3 text-center text-xs text-slate-500">No pressure. If we’re not the right fit, we’ll point you to someone who is.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Use cases -->
+  <section id="work" class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+    <h2 class="text-3xl font-semibold tracking-tight text-ink">Use cases</h2>
+    <p class="mt-3 max-w-2xl text-lg text-slate-600">Examples of outcomes teams hire us for. (Swap these with your real portfolio when ready.)</p>
+
+    <div class="mt-10 grid gap-6 lg:grid-cols-3">
+      <div class="rounded-3xl border border-slate-200 p-6">
+        <div class="text-sm font-semibold text-slate-900">Operational dashboards</div>
+        <p class="mt-2 text-sm text-slate-600">Unify scattered data into clear reporting so teams can act with confidence.</p>
+        <div class="mt-4 text-xs font-semibold text-slate-500">Deliverables</div>
+        <div class="mt-2 flex flex-wrap gap-2">
+          <span class="rounded-full bg-mist px-3 py-1 text-xs text-slate-700">Data model</span>
+          <span class="rounded-full bg-mist px-3 py-1 text-xs text-slate-700">KPIs</span>
+          <span class="rounded-full bg-mist px-3 py-1 text-xs text-slate-700">Dashboard</span>
+        </div>
+      </div>
+
+      <div class="rounded-3xl border border-slate-200 p-6">
+        <div class="text-sm font-semibold text-slate-900">Workflow automation</div>
+        <p class="mt-2 text-sm text-slate-600">Reduce manual work with smart automations and integrations across your tools.</p>
+        <div class="mt-4 text-xs font-semibold text-slate-500">Deliverables</div>
+        <div class="mt-2 flex flex-wrap gap-2">
+          <span class="rounded-full bg-mist px-3 py-1 text-xs text-slate-700">Zapier/Make</span>
+          <span class="rounded-full bg-mist px-3 py-1 text-xs text-slate-700">Custom scripts</span>
+          <span class="rounded-full bg-mist px-3 py-1 text-xs text-slate-700">QA</span>
+        </div>
+      </div>
+
+      <div class="rounded-3xl border border-slate-200 p-6">
+        <div class="text-sm font-semibold text-slate-900">High-converting web experiences</div>
+        <p class="mt-2 text-sm text-slate-600">Landing pages and sites designed to convert—with analytics baked in.</p>
+        <div class="mt-4 text-xs font-semibold text-slate-500">Deliverables</div>
+        <div class="mt-2 flex flex-wrap gap-2">
+          <span class="rounded-full bg-mist px-3 py-1 text-xs text-slate-700">Design system</span>
+          <span class="rounded-full bg-mist px-3 py-1 text-xs text-slate-700">Copy + layout</span>
+          <span class="rounded-full bg-mist px-3 py-1 text-xs text-slate-700">Tracking</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-10 rounded-3xl bg-mist p-8 ring-1 ring-slate-200">
+      <div class="grid gap-6 lg:grid-cols-3 lg:items-center">
+        <div class="lg:col-span-2">
+          <div class="text-sm font-semibold text-slate-900">Want this section to be real?</div>
+          <p class="mt-2 text-sm text-slate-600">Drop in a case study, screenshots, or short metrics blurbs. Even 2–3 bullets per project is enough.</p>
+        </div>
+        <a href="#contact" class="inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50 focus-ring">Send portfolio details</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="cta" class="bg-ink text-white">
+    <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+      <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
+        <div>
+          <h2 class="text-3xl font-semibold tracking-tight">Let’s build something useful.</h2>
+          <p class="mt-3 text-white/80">Tell us what you’re trying to accomplish. We’ll recommend a sprint plan—or tell you honestly if it’s not a fit.</p>
+          <ul class="mt-6 space-y-2 text-sm text-white/85">
+            <li class="flex gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-sky"></span>Clear scope + timeline</li>
+            <li class="flex gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-sky"></span>Fast feedback loops</li>
+            <li class="flex gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-sky"></span>Production-ready delivery</li>
+          </ul>
+        </div>
+
+        <div id="contact" class="rounded-3xl bg-white p-8 text-ink shadow-soft">
+          <div class="text-sm font-semibold">Request a call</div>
+          <p class="mt-2 text-sm text-slate-600">We usually respond within 1–2 business days.</p>
+
+          <form class="mt-6 space-y-4" id="leadForm">
+            <div>
+              <label class="text-xs font-semibold text-slate-700" for="name">Name</label>
+              <input id="name" name="name" required class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 text-sm focus-ring" placeholder="Your name" />
+            </div>
+            <div>
+              <label class="text-xs font-semibold text-slate-700" for="email">Email</label>
+              <input id="email" name="email" type="email" required class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 text-sm focus-ring" placeholder="you@company.com" />
+            </div>
+            <div>
+              <label class="text-xs font-semibold text-slate-700" for="message">What are you building?</label>
+              <textarea id="message" name="message" rows="4" required class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 text-sm focus-ring" placeholder="A quick description + timeline"></textarea>
+            </div>
+
+            <button type="submit" class="w-full rounded-xl bg-ocean px-5 py-3 text-sm font-semibold text-white shadow-soft hover:bg-navy focus-ring">Submit</button>
+
+            <div class="text-center text-xs text-slate-500">
+              Prefer email? <a class="font-semibold text-ocean hover:underline" href="mailto:hello@crrelabs.com">hello@crrelabs.com</a>
+            </div>
+
+            <p id="formNote" class="hidden text-center text-sm font-semibold"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+    <h2 class="text-3xl font-semibold tracking-tight text-ink">FAQ</h2>
+
+    <div class="mt-10 grid gap-6 md:grid-cols-2">
+      <details class="group rounded-3xl border border-slate-200 p-6">
+        <summary class="cursor-pointer list-none text-sm font-semibold text-slate-900">How quickly can we start?</summary>
+        <p class="mt-3 text-sm text-slate-600">Typically within 1–2 weeks depending on scope and availability. If your timeline is urgent, we can sometimes accommodate a fast start.</p>
+      </details>
+      <details class="group rounded-3xl border border-slate-200 p-6">
+        <summary class="cursor-pointer list-none text-sm font-semibold text-slate-900">Do you do fixed pricing?</summary>
+        <p class="mt-3 text-sm text-slate-600">Yes. Sprints and scoped projects are usually fixed. Retainers are monthly. We’ll recommend the simplest structure for your goal.</p>
+      </details>
+      <details class="group rounded-3xl border border-slate-200 p-6">
+        <summary class="cursor-pointer list-none text-sm font-semibold text-slate-900">What do you need from us?</summary>
+        <p class="mt-3 text-sm text-slate-600">One decision-maker, access to the relevant context/tools, and fast feedback. We keep meetings minimal and focused.</p>
+      </details>
+      <details class="group rounded-3xl border border-slate-200 p-6">
+        <summary class="cursor-pointer list-none text-sm font-semibold text-slate-900">Can you work with our existing team?</summary>
+        <p class="mt-3 text-sm text-slate-600">Absolutely. We can plug into your team as a delivery partner and leave behind maintainable systems and documentation.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-200">
+    <div class="mx-auto max-w-6xl px-4 py-10 sm:px-6">
+      <div class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+        <div class="flex items-center gap-3">
+          <div class="h-9 w-9 rounded-lg bg-mist ring-1 ring-slate-200"></div>
+          <div>
+            <div class="text-sm font-semibold">CRRE Labs</div>
+            <div class="text-xs text-slate-500">© <span id="year"></span> All rights reserved.</div>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-slate-600">
+          <a class="hover:text-ink" href="#what">What we do</a>
+          <a class="hover:text-ink" href="#how">How it works</a>
+          <a class="hover:text-ink" href="#work">Use cases</a>
+          <a class="hover:text-ink" href="#cta">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Simple form handler (client-side demo). Replace with your backend endpoint.
+    const form = document.getElementById('leadForm');
+    const note = document.getElementById('formNote');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      note.classList.remove('hidden');
+      note.classList.remove('text-red-600', 'text-green-700');
+      note.textContent = 'Submitting…';
+
+      // TODO: replace with your endpoint, e.g. /api/lead (Next.js) or a form service.
+      // For now we just simulate success.
+      await new Promise(r => setTimeout(r, 600));
+
+      note.classList.add('text-green-700');
+      note.textContent = 'Thanks! We’ll be in touch shortly.';
+      form.reset();
+    });
+  </script>
+</body>
+</html>
