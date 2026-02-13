@@ -8,9 +8,16 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f1117; color: #e0e0e0; padding: 24px; }
-        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
         .header h1 { font-size: 24px; color: #fff; }
         .header .updated { color: #888; font-size: 13px; }
+        .filter-bar { background: #1a1d27; border-radius: 12px; padding: 16px 20px; border: 1px solid #2a2d37; margin-bottom: 24px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+        .filter-bar label { color: #888; font-size: 13px; font-weight: 500; }
+        .filter-bar input[type="date"] { background: #0f1117; border: 1px solid #2a2d37; color: #e0e0e0; padding: 6px 10px; border-radius: 6px; font-size: 13px; font-family: inherit; }
+        .filter-bar input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(0.7); }
+        .filter-btn { background: #2a2d37; color: #aaa; border: 1px solid #363a47; padding: 6px 14px; border-radius: 6px; font-size: 12px; cursor: pointer; font-family: inherit; transition: all 0.15s; }
+        .filter-btn:hover { background: #363a47; color: #fff; }
+        .filter-btn.active { background: #3498db; color: #fff; border-color: #3498db; }
         .stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 24px; }
         .stat-box { background: #1a1d27; border-radius: 12px; padding: 20px; border: 1px solid #2a2d37; }
         .stat-value { font-size: 28px; font-weight: 700; color: #fff; }
@@ -21,266 +28,255 @@
         td { padding: 14px 16px; border-bottom: 1px solid #1f222d; font-size: 14px; }
         tr:hover { background: #1f222d; }
         .chart-container { height: 300px; margin-top: 24px; }
-        .legend { display: flex; gap: 16px; margin-top: 12px; flex-wrap: wrap; }
-        .legend-item { display: flex; align-items: center; gap: 6px; font-size: 13px; color: #aaa; }
-        .legend-dot { width: 10px; height: 10px; border-radius: 3px; }
+        .pct-bar { background:#ecf0f1;border-radius:4px;overflow:hidden;height:20px;width:120px;display:inline-block;vertical-align:middle; }
+        .pct-fill { height:100%; }
     </style>
 </head>
 <body>
     <div class="header">
         <h1>🦞 OpenClaw Usage Dashboard</h1>
-        <div class="updated">Last updated: February 13, 2026 at 03:14 PM ET</div>
+        <div class="updated">Last updated: February 13, 2026 at 03:16 PM ET</div>
     </div>
-    
-    <div class="stat-row">
-        <div class="stat-box">
-            <div class="stat-value">$151.41</div>
-            <div class="stat-label">Month to Date (February)</div>
-        </div>
-        <div class="stat-box">
-            <div class="stat-value">$110.7094</div>
-            <div class="stat-label">Today's Cost</div>
-        </div>
-        <div class="stat-box">
-            <div class="stat-value">1,583</div>
-            <div class="stat-label">API Requests (Month)</div>
-        </div>
-        <div class="stat-box">
-            <div class="stat-value">128,403,350</div>
-            <div class="stat-label">Total Tokens (Month)</div>
+
+    <div class="filter-bar">
+        <label>From</label>
+        <input type="date" id="dateFrom">
+        <label>To</label>
+        <input type="date" id="dateTo">
+        <div style="display:flex;gap:6px;margin-left:8px;">
+            <button class="filter-btn" onclick="setPreset('today')">Today</button>
+            <button class="filter-btn" onclick="setPreset('7d')">Last 7 Days</button>
+            <button class="filter-btn" onclick="setPreset('30d')">Last 30 Days</button>
+            <button class="filter-btn" onclick="setPreset('month')">This Month</button>
+            <button class="filter-btn" onclick="setPreset('all')">All Time</button>
         </div>
     </div>
 
-    <div class="card">
-        <h3 style="margin-bottom:16px;">Cost by Client — February 2026</h3>
+    <div class="stat-row" id="summaryStats"></div>
+
+    <div class="card" id="clientCard">
+        <h3 style="margin-bottom:16px;" id="clientTitle"></h3>
         <table>
-            <thead>
-                <tr>
-                    <th>Client</th>
-                    <th style="text-align:right;">Cost</th>
-                    <th style="text-align:right;">Requests</th>
-                    <th style="text-align:right;">Tokens</th>
-                    <th style="text-align:right;">Share</th>
-                </tr>
-            </thead>
-            <tbody>
-                
-        <tr>
-            <td><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#2c3e50;margin-right:8px;vertical-align:middle;"></span>Rovira PM</td>
-            <td style="text-align:right;font-weight:600;">$117.4552</td>
-            <td style="text-align:right;">1,284</td>
-            <td style="text-align:right;">98,122,029</td>
-            <td style="text-align:right;">
-                <div style="background:#ecf0f1;border-radius:4px;overflow:hidden;height:20px;width:120px;display:inline-block;">
-                    <div style="background:#2c3e50;height:100%;width:77.6%;"></div>
-                </div>
-                77.6%
-            </td>
-        </tr>
-        <tr>
-            <td><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#8e44ad;margin-right:8px;vertical-align:middle;"></span>CRRE Labs (Internal)</td>
-            <td style="text-align:right;font-weight:600;">$29.4143</td>
-            <td style="text-align:right;">234</td>
-            <td style="text-align:right;">25,951,334</td>
-            <td style="text-align:right;">
-                <div style="background:#ecf0f1;border-radius:4px;overflow:hidden;height:20px;width:120px;display:inline-block;">
-                    <div style="background:#8e44ad;height:100%;width:19.4%;"></div>
-                </div>
-                19.4%
-            </td>
-        </tr>
-        <tr>
-            <td><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#27ae60;margin-right:8px;vertical-align:middle;"></span>Personal (Travel)</td>
-            <td style="text-align:right;font-weight:600;">$4.5424</td>
-            <td style="text-align:right;">65</td>
-            <td style="text-align:right;">4,329,987</td>
-            <td style="text-align:right;">
-                <div style="background:#ecf0f1;border-radius:4px;overflow:hidden;height:20px;width:120px;display:inline-block;">
-                    <div style="background:#27ae60;height:100%;width:3.0%;"></div>
-                </div>
-                3.0%
-            </td>
-        </tr>
-        <tr>
-            <td><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#e67e22;margin-right:8px;vertical-align:middle;"></span>Melo Group</td>
-            <td style="text-align:right;font-weight:600;">$0.0000</td>
-            <td style="text-align:right;">0</td>
-            <td style="text-align:right;">0</td>
-            <td style="text-align:right;">
-                <div style="background:#ecf0f1;border-radius:4px;overflow:hidden;height:20px;width:120px;display:inline-block;">
-                    <div style="background:#e67e22;height:100%;width:0.0%;"></div>
-                </div>
-                0.0%
-            </td>
-        </tr>
-            </tbody>
+            <thead><tr>
+                <th>Client</th><th style="text-align:right;">Cost</th><th style="text-align:right;">Requests</th>
+                <th style="text-align:right;">Tokens</th><th style="text-align:right;">Share</th>
+            </tr></thead>
+            <tbody id="clientBody"></tbody>
         </table>
     </div>
 
-    
-    <div class="card" style="margin-top:24px;">
-        <h3 style="margin-bottom:16px;">⚡ API & Model Breakdown — February 2026</h3>
+    <div class="card" style="margin-top:24px;" id="apiCard">
+        <h3 style="margin-bottom:16px;" id="apiTitle"></h3>
         <table>
-            <thead>
-                <tr>
-                    <th>Service</th>
-                    <th>Model</th>
-                    <th style="text-align:right;">Input Tokens</th>
-                    <th style="text-align:right;">Output Tokens</th>
-                    <th style="text-align:right;">Requests</th>
-                    <th style="text-align:right;">Cost</th>
-                </tr>
-            </thead>
-            <tbody>
-                
-        <tr>
-            <td>Anthropic</td>
-            <td>Claude Opus 4</td>
-            <td style="text-align:right;">2,222</td>
-            <td style="text-align:right;">396,558</td>
-            <td style="text-align:right;">1,573</td>
-            <td style="text-align:right;font-weight:600;">$141.4685</td>
-        </tr>
-        <tr>
-            <td>Anthropic</td>
-            <td>delivery-mirror</td>
-            <td style="text-align:right;">0</td>
-            <td style="text-align:right;">0</td>
-            <td style="text-align:right;">10</td>
-            <td style="text-align:right;font-weight:600;">$0.0000</td>
-        </tr>
-        <tr>
-            <td>Twilio</td>
-            <td>SMS</td>
-            <td style="text-align:right;">—</td>
-            <td style="text-align:right;">—</td>
-            <td style="text-align:right;">446</td>
-            <td style="text-align:right;font-weight:600;">$9.9434</td>
-        </tr>
-                <tr style="border-top:2px solid #2a2d37;font-weight:700;">
-                    <td colspan="5">Total</td>
-                    <td style="text-align:right;">$151.4119</td>
-                </tr>
-            </tbody>
+            <thead><tr>
+                <th>Service</th><th>Model</th><th style="text-align:right;">Input Tokens</th>
+                <th style="text-align:right;">Output Tokens</th><th style="text-align:right;">Requests</th>
+                <th style="text-align:right;">Cost</th>
+            </tr></thead>
+            <tbody id="apiBody"></tbody>
         </table>
     </div>
 
-    
-    <div class="card" style="margin-top:24px;">
-        <h3 style="margin-bottom:16px;">🤖 Agent Allocation — February 2026</h3>
+    <div class="card" style="margin-top:24px;" id="agentCard">
+        <h3 style="margin-bottom:16px;" id="agentTitle"></h3>
         <table>
-            <thead>
-                <tr>
-                    <th>Agent</th>
-                    <th style="text-align:right;">Cost</th>
-                    <th style="text-align:right;">Share</th>
-                </tr>
-            </thead>
-            <tbody>
-                
-        <tr>
-            <td><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#3498db;margin-right:8px;vertical-align:middle;"></span>Iris</td>
-            <td style="text-align:right;font-weight:600;">$107.5118</td>
-            <td style="text-align:right;">
-                <div style="background:#ecf0f1;border-radius:4px;overflow:hidden;height:20px;width:120px;display:inline-block;">
-                    <div style="background:#3498db;height:100%;width:71.0%;"></div>
-                </div>
-                71.0%
-            </td>
-        </tr>
-        <tr>
-            <td><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#8e44ad;margin-right:8px;vertical-align:middle;"></span>Lex</td>
-            <td style="text-align:right;font-weight:600;">$29.4143</td>
-            <td style="text-align:right;">
-                <div style="background:#ecf0f1;border-radius:4px;overflow:hidden;height:20px;width:120px;display:inline-block;">
-                    <div style="background:#8e44ad;height:100%;width:19.4%;"></div>
-                </div>
-                19.4%
-            </td>
-        </tr>
-        <tr>
-            <td><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#e74c3c;margin-right:8px;vertical-align:middle;"></span>Ellie</td>
-            <td style="text-align:right;font-weight:600;">$4.5424</td>
-            <td style="text-align:right;">
-                <div style="background:#ecf0f1;border-radius:4px;overflow:hidden;height:20px;width:120px;display:inline-block;">
-                    <div style="background:#e74c3c;height:100%;width:3.0%;"></div>
-                </div>
-                3.0%
-            </td>
-        </tr>
-            </tbody>
+            <thead><tr>
+                <th>Agent</th><th style="text-align:right;">Cost</th><th style="text-align:right;">Share</th>
+            </tr></thead>
+            <tbody id="agentBody"></tbody>
         </table>
     </div>
 
-    
-        <div class="card" style="margin-top:24px;">
-            <h3>📱 Twilio SMS — February 2026</h3>
-            <div class="stat-row">
-                <div class="stat-box">
-                    <div class="stat-value">$9.94</div>
-                    <div class="stat-label">SMS Cost</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-value">444</div>
-                    <div class="stat-label">Outbound</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-value">2</div>
-                    <div class="stat-label">Inbound</div>
-                </div>
-            </div>
-            <p style="color:#999;font-size:12px;">Billed to: Rovira Property Management</p>
-        </div>
+    <div class="card" style="margin-top:24px;" id="twilioCard" style="display:none;">
+        <h3 id="twilioTitle"></h3>
+        <div class="stat-row" id="twilioStats"></div>
+        <p style="color:#999;font-size:12px;">Billed to: Rovira Property Management</p>
+    </div>
 
     <div class="card" style="margin-top:24px;">
-        <h3>Daily Cost Trend (Last 14 Days)</h3>
+        <h3 id="chartTitle">Daily Cost Trend</h3>
         <div class="chart-container">
             <canvas id="dailyChart"></canvas>
         </div>
     </div>
 
-    <script>
-    const chartData = {
-  labels: ["01-31", "02-01", "02-02", "02-03", "02-04", "02-05", "02-06", "02-07", "02-08", "02-09", "02-10", "02-11", "02-12", "02-13"],
-  datasets: [
-    {label: 'CRRE Labs (Internal)', data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 29.4143], backgroundColor: '#8e44ad'},
-    {label: 'Personal (Travel)', data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4.5424], backgroundColor: '#27ae60'},
-    {label: 'Rovira PM', data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 30.7591, 76.7527], backgroundColor: '#2c3e50'},
-    {label: 'Melo Group', data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], backgroundColor: '#e67e22'},
-  ]
-};
-    
-    const ctx = document.getElementById('dailyChart').getContext('2d');
-    new Chart(ctx, {
-        type: 'bar',
-        data: chartData,
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: { labels: { color: '#aaa', font: { size: 12 } } }
-            },
-            scales: {
-                x: { 
-                    stacked: true,
-                    ticks: { color: '#666' },
-                    grid: { color: '#1f222d' }
-                },
-                y: { 
-                    stacked: true,
-                    ticks: { 
-                        color: '#666',
-                        callback: function(v) { return '$' + v.toFixed(2); }
-                    },
-                    grid: { color: '#1f222d' }
-                }
-            }
-        }
-    });
-    </script>
-
     <p style="text-align:center;color:#555;font-size:12px;margin-top:32px;">
         Generated by Iris Brown 🌸 · Data from OpenClaw session logs + Twilio API
     </p>
+
+    <script>
+    const RAW = [{"d":"2026-02-13","c":"CRRE Labs (Internal)","a":"lex","m":"claude-opus-4-6","cost":29.414268,"it":372,"ot":58466,"cr":23283016,"cw":2609480,"tt":25951334,"r":230},{"d":"2026-02-13","c":"CRRE Labs (Internal)","a":"lex","m":"delivery-mirror","cost":0,"it":0,"ot":0,"cr":0,"cw":0,"tt":0,"r":4},{"d":"2026-02-13","c":"Personal (Travel)","a":"ellie","m":"claude-opus-4-6","cost":4.542445,"it":97,"ot":23387,"cr":3992758,"cw":313745,"tt":4329987,"r":65},{"d":"2026-02-13","c":"Rovira PM","a":"main","m":"claude-opus-4-6","cost":77.642539,"it":1233,"ot":248584,"cr":63904661,"cw":6315111,"tt":70469589,"r":917},{"d":"2026-02-12","c":"Rovira PM","a":"main","m":"claude-opus-4-6","cost":30.759058,"it":547,"ot":81152,"cr":25479958,"cw":2558007,"tt":28119664,"r":376},{"d":"2026-02-13","c":"Rovira PM","a":"main","m":"delivery-mirror","cost":0,"it":0,"ot":0,"cr":0,"cw":0,"tt":0,"r":6}];
+    const TWILIO = {"cost":9.943400000000015,"outbound":444,"inbound":2,"messages":446};
+    const MODEL_DISPLAY = {"claude-opus-4-6":"Claude Opus 4","claude-sonnet-4-20250514":"Claude Sonnet 4","claude-sonnet-4-20250514-fast":"Claude Sonnet 4 (Fast)","claude-haiku-3-5":"Claude Haiku 3.5"};
+    const CLIENT_COLORS = {"Rovira PM":"#2c3e50","CRRE Labs (Internal)":"#8e44ad","Melo Group":"#e67e22","Personal (Travel)":"#27ae60"};
+    const AGENT_NAMES = {"main":"Iris","lex":"Lex","ellie":"Ellie"};
+    const AGENT_COLORS = {"main":"#3498db","lex":"#8e44ad","ellie":"#e74c3c"};
+    const ALL_CLIENTS = ["Rovira PM","CRRE Labs (Internal)","Melo Group","Personal (Travel)"];
+    const ALL_AGENTS = ["main","lex","ellie"];
+    const TODAY = '2026-02-13';
+
+    let chart = null;
+    const $from = document.getElementById('dateFrom');
+    const $to = document.getElementById('dateTo');
+
+    function fmt(n, d=4) { return n.toLocaleString('en-US', {minimumFractionDigits:d,maximumFractionDigits:d}); }
+    function fmtInt(n) { return n.toLocaleString('en-US'); }
+
+    function setPreset(p) {
+        const t = new Date(TODAY);
+        let from, to = TODAY;
+        if (p === 'today') { from = TODAY; }
+        else if (p === '7d') { const d = new Date(t); d.setDate(d.getDate()-6); from = d.toISOString().slice(0,10); }
+        else if (p === '30d') { const d = new Date(t); d.setDate(d.getDate()-29); from = d.toISOString().slice(0,10); }
+        else if (p === 'month') { from = TODAY.slice(0,7) + '-01'; }
+        else { from = ''; to = ''; }
+        $from.value = from;
+        $to.value = to;
+        updateAll();
+        // highlight active button
+        document.querySelectorAll('.filter-btn').forEach((b,i) => {
+            b.classList.toggle('active', b.textContent.trim() === (
+                p === 'today' ? 'Today' : p === '7d' ? 'Last 7 Days' : p === '30d' ? 'Last 30 Days' : p === 'month' ? 'This Month' : 'All Time'));
+        });
+    }
+
+    function getFiltered() {
+        const f = $from.value, t = $to.value;
+        return RAW.filter(r => (!f || r.d >= f) && (!t || r.d <= t));
+    }
+
+    function rangeLabel() {
+        const f = $from.value, t = $to.value;
+        if (!f && !t) return 'All Time';
+        if (f === t && f === TODAY) return 'Today';
+        if (f && t) return f + ' → ' + t;
+        if (f) return 'From ' + f;
+        return 'Up to ' + t;
+    }
+
+    function updateAll() {
+        const data = getFiltered();
+        const label = rangeLabel();
+
+        // Summary
+        let totalCost = 0, totalReq = 0, totalTok = 0;
+        data.forEach(r => { totalCost += r.cost; totalReq += r.r; totalTok += r.tt; });
+        document.getElementById('summaryStats').innerHTML = `
+            <div class="stat-box"><div class="stat-value">$$${fmt(totalCost,2)}</div><div class="stat-label">Total Cost (${label})</div></div>
+            <div class="stat-box"><div class="stat-value">$$${fmt(data.filter(r=>r.d===TODAY).reduce((s,r)=>s+r.cost,0),4)}</div><div class="stat-label">Today's Cost</div></div>
+            <div class="stat-box"><div class="stat-value">${fmtInt(totalReq)}</div><div class="stat-label">API Requests</div></div>
+            <div class="stat-box"><div class="stat-value">${fmtInt(totalTok)}</div><div class="stat-label">Total Tokens</div></div>
+        `;
+
+        // Client breakdown
+        const clients = {};
+        ALL_CLIENTS.forEach(c => clients[c] = {cost:0,r:0,tt:0});
+        data.forEach(r => {
+            if (!clients[r.c]) clients[r.c] = {cost:0,r:0,tt:0};
+            clients[r.c].cost += r.cost; clients[r.c].r += r.r; clients[r.c].tt += r.tt;
+        });
+        const grand = Object.values(clients).reduce((s,c)=>s+c.cost,0) || 1;
+        document.getElementById('clientTitle').textContent = 'Cost by Client — ' + label;
+        let cRows = '';
+        Object.entries(clients).sort((a,b)=>b[1].cost-a[1].cost).forEach(([name,d]) => {
+            const color = CLIENT_COLORS[name] || '#7f8c8d';
+            const pct = d.cost/grand*100;
+            cRows += `<tr><td><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:${color};margin-right:8px;vertical-align:middle;"></span>${name}</td>
+                <td style="text-align:right;font-weight:600;">$$${fmt(d.cost)}</td>
+                <td style="text-align:right;">${fmtInt(d.r)}</td>
+                <td style="text-align:right;">${fmtInt(d.tt)}</td>
+                <td style="text-align:right;"><div class="pct-bar"><div class="pct-fill" style="background:${color};width:${pct.toFixed(1)}%"></div></div> ${pct.toFixed(1)}%</td></tr>`;
+        });
+        document.getElementById('clientBody').innerHTML = cRows;
+
+        // API/Model breakdown
+        const models = {};
+        data.forEach(r => {
+            if (!models[r.m]) models[r.m] = {cost:0,it:0,ot:0,r:0};
+            models[r.m].cost += r.cost; models[r.m].it += r.it; models[r.m].ot += r.ot; models[r.m].r += r.r;
+        });
+        document.getElementById('apiTitle').textContent = '⚡ API & Model Breakdown — ' + label;
+        let mRows = '';
+        let apiTotal = 0;
+        Object.entries(models).sort((a,b)=>b[1].cost-a[1].cost).forEach(([mid,d]) => {
+            apiTotal += d.cost;
+            mRows += `<tr><td>Anthropic</td><td>${MODEL_DISPLAY[mid]||mid}</td>
+                <td style="text-align:right;">${fmtInt(d.it)}</td><td style="text-align:right;">${fmtInt(d.ot)}</td>
+                <td style="text-align:right;">${fmtInt(d.r)}</td><td style="text-align:right;font-weight:600;">$$${fmt(d.cost)}</td></tr>`;
+        });
+        // Twilio row (only if in range that includes current month data)
+        if (TWILIO.messages > 0) {
+            mRows += `<tr><td>Twilio</td><td>SMS</td><td style="text-align:right;">—</td><td style="text-align:right;">—</td>
+                <td style="text-align:right;">${fmtInt(TWILIO.messages)}</td><td style="text-align:right;font-weight:600;">$$${fmt(TWILIO.cost)}</td></tr>`;
+            apiTotal += TWILIO.cost;
+        }
+        mRows += `<tr style="border-top:2px solid #2a2d37;font-weight:700;"><td colspan="5">Total</td><td style="text-align:right;">$$${fmt(apiTotal)}</td></tr>`;
+        document.getElementById('apiBody').innerHTML = mRows;
+
+        // Agent allocation
+        const agents = {};
+        ALL_AGENTS.forEach(a => agents[a] = {cost:0,r:0,tt:0});
+        data.forEach(r => {
+            if (!agents[r.a]) agents[r.a] = {cost:0,r:0,tt:0};
+            agents[r.a].cost += r.cost; agents[r.a].r += r.r; agents[r.a].tt += r.tt;
+        });
+        const agentGrand = Object.values(agents).reduce((s,a)=>s+a.cost,0) || 1;
+        document.getElementById('agentTitle').textContent = '🤖 Agent Allocation — ' + label;
+        let aRows = '';
+        ALL_AGENTS.forEach(aid => {
+            const d = agents[aid] || {cost:0};
+            const color = AGENT_COLORS[aid]; const name = AGENT_NAMES[aid];
+            const pct = d.cost/agentGrand*100;
+            aRows += `<tr><td><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:${color};margin-right:8px;vertical-align:middle;"></span>${name}</td>
+                <td style="text-align:right;font-weight:600;">$$${fmt(d.cost)}</td>
+                <td style="text-align:right;"><div class="pct-bar"><div class="pct-fill" style="background:${color};width:${pct.toFixed(1)}%"></div></div> ${pct.toFixed(1)}%</td></tr>`;
+        });
+        document.getElementById('agentBody').innerHTML = aRows;
+
+        // Twilio card
+        const tCard = document.getElementById('twilioCard');
+        if (TWILIO.messages > 0) {
+            tCard.style.display = '';
+            document.getElementById('twilioTitle').textContent = '📱 Twilio SMS — ' + label;
+            document.getElementById('twilioStats').innerHTML = `
+                <div class="stat-box"><div class="stat-value">$$${TWILIO.cost.toFixed(2)}</div><div class="stat-label">SMS Cost</div></div>
+                <div class="stat-box"><div class="stat-value">${TWILIO.outbound}</div><div class="stat-label">Outbound</div></div>
+                <div class="stat-box"><div class="stat-value">${TWILIO.inbound}</div><div class="stat-label">Inbound</div></div>`;
+        } else { tCard.style.display = 'none'; }
+
+        // Daily chart
+        const dailyMap = {};
+        data.forEach(r => {
+            if (!dailyMap[r.d]) dailyMap[r.d] = {};
+            dailyMap[r.d][r.c] = (dailyMap[r.d][r.c]||0) + r.cost;
+        });
+        const dates = Object.keys(dailyMap).sort();
+        const datasets = ALL_CLIENTS.map(c => ({
+            label: c,
+            data: dates.map(d => Math.round((dailyMap[d]?.[c]||0)*10000)/10000),
+            backgroundColor: CLIENT_COLORS[c] || '#7f8c8d',
+        }));
+        document.getElementById('chartTitle').textContent = 'Daily Cost Trend — ' + label;
+        if (chart) chart.destroy();
+        chart = new Chart(document.getElementById('dailyChart').getContext('2d'), {
+            type: 'bar',
+            data: { labels: dates.map(d => d.slice(5)), datasets },
+            options: {
+                responsive: true, maintainAspectRatio: false,
+                plugins: { legend: { labels: { color: '#aaa', font: { size: 12 } } } },
+                scales: {
+                    x: { stacked: true, ticks: { color: '#666' }, grid: { color: '#1f222d' } },
+                    y: { stacked: true, ticks: { color: '#666', callback: v => '$'+v.toFixed(2) }, grid: { color: '#1f222d' } }
+                }
+            }
+        });
+    }
+
+    $from.addEventListener('change', () => { document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active')); updateAll(); });
+    $to.addEventListener('change', () => { document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active')); updateAll(); });
+
+    // Default to "This Month"
+    setPreset('month');
+    </script>
 </body>
 </html>
