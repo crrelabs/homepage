@@ -1,451 +1,373 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CRRE Labs — Build, Test, Scale</title>
-  <meta name="description" content="CRRE Labs helps teams turn ideas into measurable outcomes—through research, rapid prototyping, and production-ready builds." />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="CRRE Labs — Build, Test, Scale" />
-  <meta property="og:description" content="Research-led builds that ship. Fast." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="/og.png" />
-
-  <!-- Tailwind via CDN (swap for your build pipeline later) -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            ink: "#071a2b",
-            navy: "#0a2a4a",
-            ocean: "#0b4b82",
-            sky: "#3aa0ff",
-            mist: "#f5f7fb",
-          },
-          boxShadow: {
-            soft: "0 10px 30px rgba(7, 26, 43, 0.12)",
-          },
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CRRE Labs — Where Real Estate Meets AI</title>
+<meta name="description" content="CRRE Labs is Miami's AI innovation lab for real estate. We build AI-powered websites and intelligent agents that transform how properties are managed and marketed.">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        accent: '#3aa0ff',
+        'accent-cyan': '#00e5ff',
+        dark: '#0a0e1a',
+        'dark-card': '#111827',
+      },
+      fontFamily: {
+        display: ['Space Grotesk', 'sans-serif'],
+        body: ['Inter', 'sans-serif'],
       }
     }
-  </script>
-  <style>
-    /* Small enhancements that Tailwind CDN doesn’t cover */
-    .grid-fade {
-      background-image:
-        radial-gradient(transparent 1px, rgba(245,247,251,0.95) 1px),
-        radial-gradient(transparent 1px, rgba(245,247,251,0.95) 1px);
-      background-size: 28px 28px;
-      background-position: 0 0, 14px 14px;
-      mask-image: radial-gradient(circle at 50% 20%, black 40%, transparent 72%);
-      -webkit-mask-image: radial-gradient(circle at 50% 20%, black 40%, transparent 72%);
-    }
-    .focus-ring:focus {
-      outline: none;
-      box-shadow: 0 0 0 4px rgba(58,160,255,0.25);
-    }
-  </style>
+  }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+/* Base */
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#0a0e1a;color:#e2e8f0;overflow-x:hidden}
+
+/* Animated gradient hero bg */
+.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0a0e1a 0%,#0f1b3d 25%,#0a0e1a 50%,#0d1f3c 75%,#0a0e1a 100%);background-size:400% 400%;animation:gradientShift 12s ease infinite}
+@keyframes gradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+
+/* Grid overlay */
+.grid-overlay{position:absolute;inset:0;background-image:linear-gradient(rgba(58,160,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(58,160,255,.04) 1px,transparent 1px);background-size:60px 60px}
+
+/* Glow orbs */
+.orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:.15;animation:orbFloat 8s ease-in-out infinite}
+.orb-1{width:500px;height:500px;background:#3aa0ff;top:-100px;right:-100px;animation-delay:0s}
+.orb-2{width:400px;height:400px;background:#00e5ff;bottom:-50px;left:-100px;animation-delay:4s}
+@keyframes orbFloat{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,-30px)}}
+
+/* Glow text */
+.glow-text{text-shadow:0 0 40px rgba(58,160,255,.3)}
+
+/* Glass card */
+.glass{background:rgba(17,24,39,.6);backdrop-filter:blur(16px);border:1px solid rgba(58,160,255,.1)}
+.glass:hover{border-color:rgba(58,160,255,.3);box-shadow:0 0 30px rgba(58,160,255,.08)}
+
+/* Scroll reveal */
+.reveal{opacity:0;transform:translateY(30px);transition:all .7s cubic-bezier(.22,1,.36,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* Accent line */
+.accent-line{height:3px;width:60px;background:linear-gradient(90deg,#3aa0ff,#00e5ff);border-radius:2px}
+
+/* Stat glow */
+.stat-num{background:linear-gradient(135deg,#3aa0ff,#00e5ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* Pulse dot */
+.pulse-dot{width:8px;height:8px;background:#00e5ff;border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(0,229,255,.5)}70%{box-shadow:0 0 0 10px rgba(0,229,255,0)}100%{box-shadow:0 0 0 0 rgba(0,229,255,0)}}
+
+/* Before/After cards */
+.before-card{border-left:3px solid #ef4444}
+.after-card{border-left:3px solid #22c55e}
+
+/* Button glow */
+.btn-glow{position:relative;overflow:hidden}
+.btn-glow::after{content:'';position:absolute;inset:-2px;background:linear-gradient(135deg,#3aa0ff,#00e5ff);border-radius:inherit;z-index:-1;opacity:0;transition:opacity .3s}
+.btn-glow:hover::after{opacity:1}
+
+/* Nav active */
+.nav-link{position:relative}
+.nav-link::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:2px;background:#3aa0ff;transition:width .3s}
+.nav-link:hover::after{width:100%}
+
+/* Mobile menu */
+#mobile-menu{transition:transform .3s ease,opacity .3s ease}
+#mobile-menu.hidden{transform:translateY(-10px);opacity:0;pointer-events:none}
+
+/* Form focus */
+input:focus,textarea:focus{outline:none;border-color:#3aa0ff;box-shadow:0 0 0 3px rgba(58,160,255,.15)}
+</style>
 </head>
+<body class="font-body">
 
-<body class="bg-white text-ink antialiased">
-  <!-- Top bar -->
-  <header class="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur">
-    <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
-      <a href="#" class="flex items-center gap-3">
-        <!-- Replace with your actual logo path (e.g., /logo.jpeg). -->
-        <img src="/logo.jpeg" alt="CRRE Labs" class="h-9 w-9 rounded-lg object-contain" onerror="this.style.display='none'" />
-        <div class="leading-tight">
-          <div class="text-base font-semibold tracking-tight">CRRE <span class="text-ocean">Labs</span></div>
-          <div class="text-xs text-slate-500">Build • Test • Scale</div>
-        </div>
-      </a>
+<!-- Header -->
+<header id="header" class="fixed top-0 w-full z-50 transition-all duration-300">
+<div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+  <a href="#" class="flex items-center gap-3">
+    <img src="logo.jpg" alt="CRRE Labs" class="h-10 w-10 rounded-lg object-cover">
+    <span class="font-display font-bold text-xl text-white">CRRE Labs</span>
+  </a>
+  <nav class="hidden md:flex items-center gap-8">
+    <a href="#about" class="nav-link text-sm text-gray-300 hover:text-white transition">About</a>
+    <a href="#services" class="nav-link text-sm text-gray-300 hover:text-white transition">Services</a>
+    <a href="#innovation" class="nav-link text-sm text-gray-300 hover:text-white transition">Innovation</a>
+    <a href="#work" class="nav-link text-sm text-gray-300 hover:text-white transition">Work</a>
+    <a href="#contact" class="px-5 py-2 bg-accent/10 text-accent border border-accent/30 rounded-full text-sm font-medium hover:bg-accent/20 transition">Contact</a>
+  </nav>
+  <button id="menu-btn" class="md:hidden text-white text-xl"><i class="fa-solid fa-bars"></i></button>
+</div>
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="hidden md:hidden bg-dark-card/95 backdrop-blur-xl border-t border-white/5 px-6 py-6 space-y-4">
+  <a href="#about" class="block text-gray-300 hover:text-white">About</a>
+  <a href="#services" class="block text-gray-300 hover:text-white">Services</a>
+  <a href="#innovation" class="block text-gray-300 hover:text-white">Innovation</a>
+  <a href="#work" class="block text-gray-300 hover:text-white">Work</a>
+  <a href="#contact" class="block text-accent">Contact</a>
+</div>
+</header>
 
-      <nav class="hidden items-center gap-7 text-sm text-slate-600 md:flex">
-        <a class="hover:text-ink" href="#what">What we do</a>
-        <a class="hover:text-ink" href="#how">How it works</a>
-        <a class="hover:text-ink" href="#work">Use cases</a>
-        <a class="hover:text-ink" href="#faq">FAQ</a>
-      </nav>
+<!-- Hero -->
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+<div class="hero-bg"></div>
+<div class="grid-overlay"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="relative z-10 max-w-5xl mx-auto px-6 text-center">
+  <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent/20 bg-accent/5 mb-8">
+    <span class="pulse-dot"></span>
+    <span class="text-sm text-accent font-medium">The Imagineering Lab for Real Estate</span>
+  </div>
+  <h1 class="font-display text-5xl sm:text-6xl lg:text-8xl font-bold text-white leading-tight glow-text mb-6">
+    Where Real Estate<br>Meets <span class="bg-gradient-to-r from-accent to-accent-cyan bg-clip-text text-transparent">AI</span>
+  </h1>
+  <p class="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+    Miami's innovation lab reimagining how real estate companies build, operate, and grow — powered by artificial intelligence.
+  </p>
+  <div class="flex flex-col sm:flex-row gap-4 justify-center">
+    <a href="#work" class="px-8 py-4 bg-accent text-white font-semibold rounded-full hover:bg-blue-500 transition shadow-lg shadow-accent/20">See Our Work</a>
+    <a href="#contact" class="px-8 py-4 border border-white/20 text-white font-semibold rounded-full hover:border-white/40 hover:bg-white/5 transition">Get in Touch</a>
+  </div>
+</div>
+<div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+  <i class="fa-solid fa-chevron-down text-gray-600"></i>
+</div>
+</section>
 
-      <div class="flex items-center gap-3">
-        <a href="#contact" class="hidden rounded-xl px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100 md:inline-flex">Contact</a>
-        <a href="#cta" class="inline-flex items-center justify-center rounded-xl bg-ocean px-4 py-2 text-sm font-semibold text-white shadow-soft hover:bg-navy focus-ring">Book a call</a>
-      </div>
+<!-- About -->
+<section id="about" class="py-24 lg:py-32">
+<div class="max-w-7xl mx-auto px-6">
+<div class="reveal max-w-3xl mx-auto text-center mb-16">
+  <div class="accent-line mx-auto mb-6"></div>
+  <h2 class="font-display text-3xl sm:text-5xl font-bold text-white mb-6">Built to Reimagine<br>Real Estate</h2>
+  <p class="text-gray-400 text-lg leading-relaxed">CRRE Labs is an AI-first innovation lab solving problems the real estate industry hasn't thought to solve yet. We combine deep industry knowledge with cutting-edge AI to build tools, websites, and agents that transform how properties are managed and marketed.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 reveal">
+  <div class="glass rounded-2xl p-8 text-center transition-all duration-300">
+    <div class="stat-num font-display text-5xl font-bold mb-2">14</div>
+    <p class="text-gray-400">Property Sites Rebuilt</p>
+  </div>
+  <div class="glass rounded-2xl p-8 text-center transition-all duration-300">
+    <div class="stat-num font-display text-5xl font-bold mb-2">24/7</div>
+    <p class="text-gray-400">AI Agents Deployed</p>
+  </div>
+  <div class="glass rounded-2xl p-8 text-center transition-all duration-300">
+    <div class="stat-num font-display text-5xl font-bold mb-2">MIA</div>
+    <p class="text-gray-400">Miami-Based</p>
+  </div>
+</div>
+</div>
+</section>
+
+<!-- Services -->
+<section id="services" class="py-24 lg:py-32 relative">
+<div class="absolute inset-0 bg-gradient-to-b from-transparent via-accent/[.02] to-transparent"></div>
+<div class="max-w-7xl mx-auto px-6 relative z-10">
+<div class="reveal text-center mb-16">
+  <div class="accent-line mx-auto mb-6"></div>
+  <h2 class="font-display text-3xl sm:text-5xl font-bold text-white mb-4">What We Build</h2>
+  <p class="text-gray-400 text-lg max-w-2xl mx-auto">Two core pillars powering the future of real estate technology.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+  <!-- Pillar 1 -->
+  <div class="reveal glass rounded-2xl p-8 lg:p-10 transition-all duration-300">
+    <div class="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center mb-6">
+      <i class="fa-solid fa-code text-accent text-2xl"></i>
     </div>
-  </header>
-
-  <!-- Hero -->
-  <section class="relative overflow-hidden">
-    <div class="absolute inset-0 bg-mist"></div>
-    <div class="absolute inset-0 grid-fade"></div>
-
-    <div class="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
-      <div class="grid items-center gap-10 lg:grid-cols-2">
-        <div>
-          <div class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-600">
-            <span class="h-2 w-2 rounded-full bg-sky"></span>
-            Research-led builds that ship
-          </div>
-
-          <h1 class="mt-5 text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
-            Turn ideas into measurable outcomes—fast.
-          </h1>
-          <p class="mt-4 max-w-xl text-lg leading-relaxed text-slate-600">
-            CRRE Labs partners with ambitious teams to validate what matters, prototype quickly, and deliver production-ready solutions—without the bloat.
-          </p>
-
-          <div class="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <a href="#cta" class="inline-flex items-center justify-center rounded-xl bg-ocean px-5 py-3 text-sm font-semibold text-white shadow-soft hover:bg-navy focus-ring">
-              Get a free strategy call
-            </a>
-            <a href="#what" class="inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50 focus-ring">
-              See what we do
-            </a>
-          </div>
-
-          <div class="mt-8 grid max-w-xl grid-cols-2 gap-4 sm:grid-cols-3">
-            <div class="rounded-2xl border border-slate-200 bg-white p-4">
-              <div class="text-2xl font-semibold text-ink">2–6w</div>
-              <div class="mt-1 text-sm text-slate-600">Typical sprint</div>
-            </div>
-            <div class="rounded-2xl border border-slate-200 bg-white p-4">
-              <div class="text-2xl font-semibold text-ink">1:1</div>
-              <div class="mt-1 text-sm text-slate-600">Hands-on delivery</div>
-            </div>
-            <div class="rounded-2xl border border-slate-200 bg-white p-4">
-              <div class="text-2xl font-semibold text-ink">ROI</div>
-              <div class="mt-1 text-sm text-slate-600">Metrics-first</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="relative">
-          <div class="rounded-3xl bg-white p-6 shadow-soft ring-1 ring-slate-200">
-            <div class="flex items-start justify-between gap-4">
-              <div>
-                <div class="text-sm font-semibold text-slate-900">What you get</div>
-                <div class="mt-1 text-sm text-slate-600">A clear plan + a build you can ship.</div>
-              </div>
-              <div class="rounded-2xl bg-mist px-3 py-1 text-xs font-semibold text-slate-700">Sprint-ready</div>
-            </div>
-
-            <div class="mt-6 space-y-3">
-              <div class="flex items-start gap-3 rounded-2xl border border-slate-200 p-4">
-                <div class="mt-1 h-2.5 w-2.5 flex-none rounded-full bg-sky"></div>
-                <div>
-                  <div class="text-sm font-semibold text-slate-900">Discovery & research</div>
-                  <div class="mt-1 text-sm text-slate-600">Align on goals, constraints, and the shortest path to impact.</div>
-                </div>
-              </div>
-              <div class="flex items-start gap-3 rounded-2xl border border-slate-200 p-4">
-                <div class="mt-1 h-2.5 w-2.5 flex-none rounded-full bg-sky"></div>
-                <div>
-                  <div class="text-sm font-semibold text-slate-900">Prototype & validate</div>
-                  <div class="mt-1 text-sm text-slate-600">Rapid iteration with real users, data, and feedback loops.</div>
-                </div>
-              </div>
-              <div class="flex items-start gap-3 rounded-2xl border border-slate-200 p-4">
-                <div class="mt-1 h-2.5 w-2.5 flex-none rounded-full bg-sky"></div>
-                <div>
-                  <div class="text-sm font-semibold text-slate-900">Build & handoff</div>
-                  <div class="mt-1 text-sm text-slate-600">Production-quality implementation plus documentation and ownership transfer.</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="mt-6 rounded-2xl bg-mist p-4">
-              <div class="text-xs font-semibold uppercase tracking-wide text-slate-500">Best for</div>
-              <div class="mt-2 flex flex-wrap gap-2">
-                <span class="rounded-full bg-white px-3 py-1 text-xs font-medium text-slate-700 ring-1 ring-slate-200">New product launches</span>
-                <span class="rounded-full bg-white px-3 py-1 text-xs font-medium text-slate-700 ring-1 ring-slate-200">Data + dashboards</span>
-                <span class="rounded-full bg-white px-3 py-1 text-xs font-medium text-slate-700 ring-1 ring-slate-200">Automation</span>
-                <span class="rounded-full bg-white px-3 py-1 text-xs font-medium text-slate-700 ring-1 ring-slate-200">Web experiences</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="absolute -bottom-7 -left-7 hidden h-28 w-28 rounded-3xl bg-sky/15 blur-2xl lg:block"></div>
-          <div class="absolute -top-8 -right-8 hidden h-36 w-36 rounded-3xl bg-ocean/15 blur-2xl lg:block"></div>
-        </div>
-      </div>
+    <h3 class="font-display text-2xl font-bold text-white mb-4">AI-Powered Web Development</h3>
+    <p class="text-gray-400 leading-relaxed mb-6">We rebuild property websites from the ground up — replacing vulnerable WordPress sites with static, secure, lightning-fast pages built and monitored by AI.</p>
+    <ul class="space-y-3">
+      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Secure static sites with SSL &amp; GitHub Pages hosting</span></li>
+      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">AI monitoring for 24/7 uptime and security</span></li>
+      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Zero vulnerabilities, zero maintenance overhead</span></li>
+      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">14 Melo Group properties currently in redesign</span></li>
+    </ul>
+  </div>
+  <!-- Pillar 2 -->
+  <div class="reveal glass rounded-2xl p-8 lg:p-10 transition-all duration-300">
+    <div class="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center mb-6">
+      <i class="fa-solid fa-robot text-accent text-2xl"></i>
     </div>
-  </section>
+    <h3 class="font-display text-2xl font-bold text-white mb-4">AI Agents for Real Estate</h3>
+    <p class="text-gray-400 leading-relaxed mb-6">Custom AI agents that handle repetitive property management tasks — think of them as digital team members that work around the clock and never miss a detail.</p>
+    <ul class="space-y-3">
+      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Leasing assistance &amp; prospect qualification</span></li>
+      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Maintenance coordination &amp; ticket routing</span></li>
+      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Tenant communication &amp; response automation</span></li>
+      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Seamless integration with existing systems</span></li>
+    </ul>
+  </div>
+</div>
+</div>
+</section>
 
-  <!-- What we do -->
-  <section id="what" class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-    <div class="max-w-2xl">
-      <h2 class="text-3xl font-semibold tracking-tight text-ink">What we do</h2>
-      <p class="mt-3 text-lg text-slate-600">Pick the engagement that matches your timeline. Keep it lean. Ship something real.</p>
+<!-- Innovation Lab -->
+<section id="innovation" class="py-24 lg:py-32">
+<div class="max-w-7xl mx-auto px-6">
+<div class="reveal text-center mb-16">
+  <div class="accent-line mx-auto mb-6"></div>
+  <h2 class="font-display text-3xl sm:text-5xl font-bold text-white mb-4">The Innovation Lab</h2>
+  <p class="text-gray-400 text-lg max-w-2xl mx-auto">We don't just build websites — we reimagine how real estate companies operate. Always exploring what's next.</p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+  <div class="reveal glass rounded-2xl p-6 text-center transition-all duration-300 group">
+    <div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-accent/20 transition">
+      <i class="fa-solid fa-microchip text-accent text-xl"></i>
     </div>
-
-    <div class="mt-10 grid gap-6 md:grid-cols-3">
-      <div class="rounded-3xl border border-slate-200 p-6 shadow-sm">
-        <div class="text-sm font-semibold text-slate-900">Research & strategy</div>
-        <p class="mt-2 text-sm leading-relaxed text-slate-600">Clarify the problem, map constraints, and define success metrics. Deliverable: roadmap + experiment plan.</p>
-        <ul class="mt-4 space-y-2 text-sm text-slate-700">
-          <li class="flex gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-sky"></span>Stakeholder alignment</li>
-          <li class="flex gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-sky"></span>User + market insights</li>
-          <li class="flex gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-sky"></span>North-star metrics</li>
-        </ul>
-      </div>
-
-      <div class="rounded-3xl border border-slate-200 p-6 shadow-sm">
-        <div class="text-sm font-semibold text-slate-900">Rapid prototyping</div>
-        <p class="mt-2 text-sm leading-relaxed text-slate-600">From concept to clickable prototype (or working MVP) with tight feedback cycles.</p>
-        <ul class="mt-4 space-y-2 text-sm text-slate-700">
-          <li class="flex gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-sky"></span>UX flows + wireframes</li>
-          <li class="flex gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-sky"></span>Validation tests</li>
-          <li class="flex gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-sky"></span>Iteration in days</li>
-        </ul>
-      </div>
-
-      <div class="rounded-3xl border border-slate-200 p-6 shadow-sm">
-        <div class="text-sm font-semibold text-slate-900">Build & delivery</div>
-        <p class="mt-2 text-sm leading-relaxed text-slate-600">Production-grade implementation with clean handoff. You keep the keys.</p>
-        <ul class="mt-4 space-y-2 text-sm text-slate-700">
-          <li class="flex gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-sky"></span>Web apps + sites</li>
-          <li class="flex gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-sky"></span>Automations + integrations</li>
-          <li class="flex gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-sky"></span>Dashboards + analytics</li>
-        </ul>
-      </div>
+    <h4 class="font-display font-semibold text-white mb-2">AI Agents</h4>
+    <p class="text-gray-500 text-sm">Autonomous digital workers for every property task</p>
+  </div>
+  <div class="reveal glass rounded-2xl p-6 text-center transition-all duration-300 group">
+    <div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-accent/20 transition">
+      <i class="fa-solid fa-chart-line text-accent text-xl"></i>
     </div>
-  </section>
-
-  <!-- How it works -->
-  <section id="how" class="bg-mist">
-    <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-      <div class="grid gap-10 lg:grid-cols-2">
-        <div>
-          <h2 class="text-3xl font-semibold tracking-tight text-ink">How it works</h2>
-          <p class="mt-3 text-lg text-slate-600">A simple, repeatable process designed to reduce risk and speed up decision-making.</p>
-
-          <div class="mt-8 space-y-4">
-            <div class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
-              <div class="flex items-center gap-3">
-                <div class="flex h-9 w-9 items-center justify-center rounded-2xl bg-ocean text-sm font-semibold text-white">1</div>
-                <div class="text-sm font-semibold text-slate-900">Define the outcome</div>
-              </div>
-              <p class="mt-3 text-sm text-slate-600">We align on goals, stakeholders, success metrics, and the “why now.”</p>
-            </div>
-            <div class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
-              <div class="flex items-center gap-3">
-                <div class="flex h-9 w-9 items-center justify-center rounded-2xl bg-ocean text-sm font-semibold text-white">2</div>
-                <div class="text-sm font-semibold text-slate-900">Run focused experiments</div>
-              </div>
-              <p class="mt-3 text-sm text-slate-600">Prototype quickly, test assumptions, and measure what moves the needle.</p>
-            </div>
-            <div class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
-              <div class="flex items-center gap-3">
-                <div class="flex h-9 w-9 items-center justify-center rounded-2xl bg-ocean text-sm font-semibold text-white">3</div>
-                <div class="text-sm font-semibold text-slate-900">Ship + hand off</div>
-              </div>
-              <p class="mt-3 text-sm text-slate-600">Deliver a build that’s maintainable, documented, and ready to scale.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="rounded-3xl bg-white p-8 shadow-soft ring-1 ring-slate-200">
-          <div class="text-sm font-semibold text-slate-900">Engagement options</div>
-          <p class="mt-2 text-sm text-slate-600">Choose a model that fits your needs. Upgrade or extend anytime.</p>
-
-          <div class="mt-6 grid gap-4">
-            <div class="rounded-2xl border border-slate-200 p-5">
-              <div class="flex items-center justify-between">
-                <div class="text-sm font-semibold text-slate-900">Sprint</div>
-                <div class="text-xs font-semibold text-slate-600">2–6 weeks</div>
-              </div>
-              <p class="mt-2 text-sm text-slate-600">Best for validating ideas and producing a shippable prototype/MVP.</p>
-            </div>
-            <div class="rounded-2xl border border-slate-200 p-5">
-              <div class="flex items-center justify-between">
-                <div class="text-sm font-semibold text-slate-900">Project</div>
-                <div class="text-xs font-semibold text-slate-600">Scoped delivery</div>
-              </div>
-              <p class="mt-2 text-sm text-slate-600">Best for well-defined builds with clear deliverables and timeline.</p>
-            </div>
-            <div class="rounded-2xl border border-slate-200 p-5">
-              <div class="flex items-center justify-between">
-                <div class="text-sm font-semibold text-slate-900">Retainer</div>
-                <div class="text-xs font-semibold text-slate-600">Ongoing</div>
-              </div>
-              <p class="mt-2 text-sm text-slate-600">Best for teams that want continuous iteration, support, and optimization.</p>
-            </div>
-          </div>
-
-          <a href="#cta" class="mt-7 inline-flex w-full items-center justify-center rounded-xl bg-ocean px-5 py-3 text-sm font-semibold text-white shadow-soft hover:bg-navy focus-ring">Talk to CRRE Labs</a>
-          <div class="mt-3 text-center text-xs text-slate-500">No pressure. If we’re not the right fit, we’ll point you to someone who is.</div>
-        </div>
-      </div>
+    <h4 class="font-display font-semibold text-white mb-2">Predictive Analytics</h4>
+    <p class="text-gray-500 text-sm">Data-driven insights for smarter property decisions</p>
+  </div>
+  <div class="reveal glass rounded-2xl p-6 text-center transition-all duration-300 group">
+    <div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-accent/20 transition">
+      <i class="fa-solid fa-building text-accent text-xl"></i>
     </div>
-  </section>
-
-  <!-- Use cases -->
-  <section id="work" class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-    <h2 class="text-3xl font-semibold tracking-tight text-ink">Use cases</h2>
-    <p class="mt-3 max-w-2xl text-lg text-slate-600">Examples of outcomes teams hire us for. (Swap these with your real portfolio when ready.)</p>
-
-    <div class="mt-10 grid gap-6 lg:grid-cols-3">
-      <div class="rounded-3xl border border-slate-200 p-6">
-        <div class="text-sm font-semibold text-slate-900">Operational dashboards</div>
-        <p class="mt-2 text-sm text-slate-600">Unify scattered data into clear reporting so teams can act with confidence.</p>
-        <div class="mt-4 text-xs font-semibold text-slate-500">Deliverables</div>
-        <div class="mt-2 flex flex-wrap gap-2">
-          <span class="rounded-full bg-mist px-3 py-1 text-xs text-slate-700">Data model</span>
-          <span class="rounded-full bg-mist px-3 py-1 text-xs text-slate-700">KPIs</span>
-          <span class="rounded-full bg-mist px-3 py-1 text-xs text-slate-700">Dashboard</span>
-        </div>
-      </div>
-
-      <div class="rounded-3xl border border-slate-200 p-6">
-        <div class="text-sm font-semibold text-slate-900">Workflow automation</div>
-        <p class="mt-2 text-sm text-slate-600">Reduce manual work with smart automations and integrations across your tools.</p>
-        <div class="mt-4 text-xs font-semibold text-slate-500">Deliverables</div>
-        <div class="mt-2 flex flex-wrap gap-2">
-          <span class="rounded-full bg-mist px-3 py-1 text-xs text-slate-700">Zapier/Make</span>
-          <span class="rounded-full bg-mist px-3 py-1 text-xs text-slate-700">Custom scripts</span>
-          <span class="rounded-full bg-mist px-3 py-1 text-xs text-slate-700">QA</span>
-        </div>
-      </div>
-
-      <div class="rounded-3xl border border-slate-200 p-6">
-        <div class="text-sm font-semibold text-slate-900">High-converting web experiences</div>
-        <p class="mt-2 text-sm text-slate-600">Landing pages and sites designed to convert—with analytics baked in.</p>
-        <div class="mt-4 text-xs font-semibold text-slate-500">Deliverables</div>
-        <div class="mt-2 flex flex-wrap gap-2">
-          <span class="rounded-full bg-mist px-3 py-1 text-xs text-slate-700">Design system</span>
-          <span class="rounded-full bg-mist px-3 py-1 text-xs text-slate-700">Copy + layout</span>
-          <span class="rounded-full bg-mist px-3 py-1 text-xs text-slate-700">Tracking</span>
-        </div>
-      </div>
+    <h4 class="font-display font-semibold text-white mb-2">Smart Property Mgmt</h4>
+    <p class="text-gray-500 text-sm">AI-orchestrated operations from leasing to maintenance</p>
+  </div>
+  <div class="reveal glass rounded-2xl p-6 text-center transition-all duration-300 group">
+    <div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-accent/20 transition">
+      <i class="fa-solid fa-cubes text-accent text-xl"></i>
     </div>
+    <h4 class="font-display font-semibold text-white mb-2">PropTech R&amp;D</h4>
+    <p class="text-gray-500 text-sm">Exploring the bleeding edge of real estate technology</p>
+  </div>
+</div>
+</div>
+</section>
 
-    <div class="mt-10 rounded-3xl bg-mist p-8 ring-1 ring-slate-200">
-      <div class="grid gap-6 lg:grid-cols-3 lg:items-center">
-        <div class="lg:col-span-2">
-          <div class="text-sm font-semibold text-slate-900">Want this section to be real?</div>
-          <p class="mt-2 text-sm text-slate-600">Drop in a case study, screenshots, or short metrics blurbs. Even 2–3 bullets per project is enough.</p>
-        </div>
-        <a href="#contact" class="inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50 focus-ring">Send portfolio details</a>
-      </div>
+<!-- Case Study -->
+<section id="work" class="py-24 lg:py-32 relative">
+<div class="absolute inset-0 bg-gradient-to-b from-transparent via-accent/[.02] to-transparent"></div>
+<div class="max-w-7xl mx-auto px-6 relative z-10">
+<div class="reveal text-center mb-16">
+  <div class="accent-line mx-auto mb-6"></div>
+  <h2 class="font-display text-3xl sm:text-5xl font-bold text-white mb-4">Featured Work</h2>
+</div>
+<div class="reveal glass rounded-2xl p-8 lg:p-12 max-w-4xl mx-auto">
+  <div class="flex items-center gap-3 mb-6">
+    <span class="px-3 py-1 bg-accent/10 text-accent text-xs font-semibold rounded-full uppercase tracking-wider">Case Study</span>
+    <span class="text-gray-500 text-sm">In Progress</span>
+  </div>
+  <h3 class="font-display text-2xl sm:text-3xl font-bold text-white mb-3">Melo Group</h3>
+  <p class="text-gray-400 text-lg mb-8">Rebuilding 14 luxury property websites for Miami's premier developer.</p>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+    <div class="before-card bg-red-500/5 rounded-xl p-6">
+      <h4 class="text-red-400 font-semibold mb-3 text-sm uppercase tracking-wider">Before</h4>
+      <ul class="space-y-2 text-gray-400 text-sm">
+        <li>• Outdated WordPress installations</li>
+        <li>• Active security vulnerabilities</li>
+        <li>• High hosting &amp; maintenance costs</li>
+        <li>• Slow load times, poor mobile UX</li>
+      </ul>
     </div>
-  </section>
-
-  <!-- CTA -->
-  <section id="cta" class="bg-ink text-white">
-    <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-      <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
-        <div>
-          <h2 class="text-3xl font-semibold tracking-tight">Let’s build something useful.</h2>
-          <p class="mt-3 text-white/80">Tell us what you’re trying to accomplish. We’ll recommend a sprint plan—or tell you honestly if it’s not a fit.</p>
-          <ul class="mt-6 space-y-2 text-sm text-white/85">
-            <li class="flex gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-sky"></span>Clear scope + timeline</li>
-            <li class="flex gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-sky"></span>Fast feedback loops</li>
-            <li class="flex gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-sky"></span>Production-ready delivery</li>
-          </ul>
-        </div>
-
-        <div id="contact" class="rounded-3xl bg-white p-8 text-ink shadow-soft">
-          <div class="text-sm font-semibold">Request a call</div>
-          <p class="mt-2 text-sm text-slate-600">We usually respond within 1–2 business days.</p>
-
-          <form class="mt-6 space-y-4" id="leadForm">
-            <div>
-              <label class="text-xs font-semibold text-slate-700" for="name">Name</label>
-              <input id="name" name="name" required class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 text-sm focus-ring" placeholder="Your name" />
-            </div>
-            <div>
-              <label class="text-xs font-semibold text-slate-700" for="email">Email</label>
-              <input id="email" name="email" type="email" required class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 text-sm focus-ring" placeholder="you@company.com" />
-            </div>
-            <div>
-              <label class="text-xs font-semibold text-slate-700" for="message">What are you building?</label>
-              <textarea id="message" name="message" rows="4" required class="mt-1 w-full rounded-xl border border-slate-300 px-4 py-3 text-sm focus-ring" placeholder="A quick description + timeline"></textarea>
-            </div>
-
-            <button type="submit" class="w-full rounded-xl bg-ocean px-5 py-3 text-sm font-semibold text-white shadow-soft hover:bg-navy focus-ring">Submit</button>
-
-            <div class="text-center text-xs text-slate-500">
-              Prefer email? <a class="font-semibold text-ocean hover:underline" href="mailto:hello@crrelabs.com">hello@crrelabs.com</a>
-            </div>
-
-            <p id="formNote" class="hidden text-center text-sm font-semibold"></p>
-          </form>
-        </div>
-      </div>
+    <div class="after-card bg-green-500/5 rounded-xl p-6">
+      <h4 class="text-green-400 font-semibold mb-3 text-sm uppercase tracking-wider">After</h4>
+      <ul class="space-y-2 text-gray-400 text-sm">
+        <li>• Secure static sites on GitHub Pages</li>
+        <li>• Zero vulnerabilities</li>
+        <li>• AI-monitored 24/7 uptime</li>
+        <li>• Lightning-fast, mobile-first design</li>
+      </ul>
     </div>
-  </section>
+  </div>
+  <div class="flex flex-wrap gap-2">
+    <span class="px-3 py-1 bg-white/5 text-gray-400 text-xs rounded-full">Aria Reserve</span>
+    <span class="px-3 py-1 bg-white/5 text-gray-400 text-xs rounded-full">Downtown 5th</span>
+    <span class="px-3 py-1 bg-white/5 text-gray-400 text-xs rounded-full">Melody Tower</span>
+    <span class="px-3 py-1 bg-white/5 text-gray-400 text-xs rounded-full">Square Station</span>
+    <span class="px-3 py-1 bg-white/5 text-gray-400 text-xs rounded-full">+10 more</span>
+  </div>
+</div>
+</div>
+</section>
 
-  <!-- FAQ -->
-  <section id="faq" class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-    <h2 class="text-3xl font-semibold tracking-tight text-ink">FAQ</h2>
-
-    <div class="mt-10 grid gap-6 md:grid-cols-2">
-      <details class="group rounded-3xl border border-slate-200 p-6">
-        <summary class="cursor-pointer list-none text-sm font-semibold text-slate-900">How quickly can we start?</summary>
-        <p class="mt-3 text-sm text-slate-600">Typically within 1–2 weeks depending on scope and availability. If your timeline is urgent, we can sometimes accommodate a fast start.</p>
-      </details>
-      <details class="group rounded-3xl border border-slate-200 p-6">
-        <summary class="cursor-pointer list-none text-sm font-semibold text-slate-900">Do you do fixed pricing?</summary>
-        <p class="mt-3 text-sm text-slate-600">Yes. Sprints and scoped projects are usually fixed. Retainers are monthly. We’ll recommend the simplest structure for your goal.</p>
-      </details>
-      <details class="group rounded-3xl border border-slate-200 p-6">
-        <summary class="cursor-pointer list-none text-sm font-semibold text-slate-900">What do you need from us?</summary>
-        <p class="mt-3 text-sm text-slate-600">One decision-maker, access to the relevant context/tools, and fast feedback. We keep meetings minimal and focused.</p>
-      </details>
-      <details class="group rounded-3xl border border-slate-200 p-6">
-        <summary class="cursor-pointer list-none text-sm font-semibold text-slate-900">Can you work with our existing team?</summary>
-        <p class="mt-3 text-sm text-slate-600">Absolutely. We can plug into your team as a delivery partner and leave behind maintainable systems and documentation.</p>
-      </details>
+<!-- Contact -->
+<section id="contact" class="py-24 lg:py-32">
+<div class="max-w-7xl mx-auto px-6">
+<div class="reveal max-w-2xl mx-auto">
+  <div class="text-center mb-12">
+    <div class="accent-line mx-auto mb-6"></div>
+    <h2 class="font-display text-3xl sm:text-5xl font-bold text-white mb-4">Let's Build Something</h2>
+    <p class="text-gray-400 text-lg">Have a real estate challenge that needs an AI-first solution? Let's talk.</p>
+  </div>
+  <form id="contact-form" class="space-y-5" onsubmit="return false;">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+      <input type="text" placeholder="Name" required class="w-full px-5 py-4 bg-dark-card border border-white/10 rounded-xl text-white placeholder-gray-500 transition">
+      <input type="email" placeholder="Email" required class="w-full px-5 py-4 bg-dark-card border border-white/10 rounded-xl text-white placeholder-gray-500 transition">
     </div>
-  </section>
+    <textarea placeholder="Tell us about your project..." rows="5" required class="w-full px-5 py-4 bg-dark-card border border-white/10 rounded-xl text-white placeholder-gray-500 transition resize-none"></textarea>
+    <button type="submit" class="w-full py-4 bg-accent text-white font-semibold rounded-xl hover:bg-blue-500 transition shadow-lg shadow-accent/20">Send Message</button>
+  </form>
+  <div class="mt-12 flex flex-col sm:flex-row items-center justify-center gap-8 text-gray-500 text-sm">
+    <a href="mailto:carlos@crrelabs.com" class="flex items-center gap-2 hover:text-accent transition"><i class="fa-solid fa-envelope"></i> carlos@crrelabs.com</a>
+    <span class="flex items-center gap-2"><i class="fa-solid fa-location-dot"></i> Pinecrest, Miami FL</span>
+  </div>
+</div>
+</div>
+</section>
 
-  <!-- Footer -->
-  <footer class="border-t border-slate-200">
-    <div class="mx-auto max-w-6xl px-4 py-10 sm:px-6">
-      <div class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-        <div class="flex items-center gap-3">
-          <div class="h-9 w-9 rounded-lg bg-mist ring-1 ring-slate-200"></div>
-          <div>
-            <div class="text-sm font-semibold">CRRE Labs</div>
-            <div class="text-xs text-slate-500">© <span id="year"></span> All rights reserved.</div>
-          </div>
-        </div>
+<!-- Footer -->
+<footer class="border-t border-white/5 py-12">
+<div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+  <div class="flex items-center gap-3">
+    <img src="logo.jpg" alt="CRRE Labs" class="h-8 w-8 rounded-lg object-cover">
+    <span class="font-display font-semibold text-white">CRRE Labs</span>
+  </div>
+  <p class="text-gray-600 text-sm">© 2026 CRRE Labs. 12394 SW 82 Ave, Pinecrest FL 33156</p>
+  <div class="flex gap-4">
+    <a href="#" class="text-gray-600 hover:text-accent transition"><i class="fa-brands fa-linkedin-in"></i></a>
+    <a href="#" class="text-gray-600 hover:text-accent transition"><i class="fa-brands fa-x-twitter"></i></a>
+    <a href="#" class="text-gray-600 hover:text-accent transition"><i class="fa-brands fa-github"></i></a>
+  </div>
+</div>
+</footer>
 
-        <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-slate-600">
-          <a class="hover:text-ink" href="#what">What we do</a>
-          <a class="hover:text-ink" href="#how">How it works</a>
-          <a class="hover:text-ink" href="#work">Use cases</a>
-          <a class="hover:text-ink" href="#cta">Contact</a>
-        </div>
-      </div>
-    </div>
-  </footer>
+<script>
+// Header scroll effect
+const header = document.getElementById('header');
+window.addEventListener('scroll', () => {
+  header.classList.toggle('bg-dark/90', window.scrollY > 50);
+  header.classList.toggle('backdrop-blur-xl', window.scrollY > 50);
+  header.classList.toggle('border-b', window.scrollY > 50);
+  header.classList.toggle('border-white/5', window.scrollY > 50);
+  header.classList.toggle('py-2', window.scrollY > 50);
+});
 
-  <script>
-    // Footer year
-    document.getElementById('year').textContent = new Date().getFullYear();
+// Mobile menu
+const menuBtn = document.getElementById('menu-btn');
+const mobileMenu = document.getElementById('mobile-menu');
+menuBtn.addEventListener('click', () => {
+  mobileMenu.classList.toggle('hidden');
+});
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.add('hidden')));
 
-    // Simple form handler (client-side demo). Replace with your backend endpoint.
-    const form = document.getElementById('leadForm');
-    const note = document.getElementById('formNote');
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }});
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      note.classList.remove('hidden');
-      note.classList.remove('text-red-600', 'text-green-700');
-      note.textContent = 'Submitting…';
-
-      // TODO: replace with your endpoint, e.g. /api/lead (Next.js) or a form service.
-      // For now we just simulate success.
-      await new Promise(r => setTimeout(r, 600));
-
-      note.classList.add('text-green-700');
-      note.textContent = 'Thanks! We’ll be in touch shortly.';
-      form.reset();
-    });
-  </script>
+// Form
+document.getElementById('contact-form').addEventListener('submit', function() {
+  this.querySelector('button').textContent = 'Message Sent ✓';
+  this.querySelector('button').disabled = true;
+});
+</script>
 </body>
 </html>
