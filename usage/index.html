@@ -119,7 +119,7 @@
     const $from = document.getElementById('dateFrom');
     const $to = document.getElementById('dateTo');
 
-    function fmt(n, d=4) { return n.toLocaleString('en-US', {minimumFractionDigits:d,maximumFractionDigits:d}); }
+    function fmt(n, d=4) { return '$' + n.toLocaleString('en-US', {minimumFractionDigits:d,maximumFractionDigits:d}); }
     function fmtInt(n) { return n.toLocaleString('en-US'); }
 
     function setPreset(p) {
@@ -162,8 +162,8 @@
         let totalCost = 0, totalReq = 0, totalTok = 0;
         data.forEach(r => { totalCost += r.cost; totalReq += r.r; totalTok += r.tt; });
         document.getElementById('summaryStats').innerHTML = `
-            <div class="stat-box"><div class="stat-value">$$${fmt(totalCost,2)}</div><div class="stat-label">Total Cost (${label})</div></div>
-            <div class="stat-box"><div class="stat-value">$$${fmt(data.filter(r=>r.d===TODAY).reduce((s,r)=>s+r.cost,0),4)}</div><div class="stat-label">Today's Cost</div></div>
+            <div class="stat-box"><div class="stat-value">${fmt(totalCost,2)}</div><div class="stat-label">Total Cost (${label})</div></div>
+            <div class="stat-box"><div class="stat-value">${fmt(data.filter(r=>r.d===TODAY).reduce((s,r)=>s+r.cost,0),4)}</div><div class="stat-label">Today's Cost</div></div>
             <div class="stat-box"><div class="stat-value">${fmtInt(totalReq)}</div><div class="stat-label">API Requests</div></div>
             <div class="stat-box"><div class="stat-value">${fmtInt(totalTok)}</div><div class="stat-label">Total Tokens</div></div>
         `;
@@ -182,7 +182,7 @@
             const color = CLIENT_COLORS[name] || '#7f8c8d';
             const pct = d.cost/grand*100;
             cRows += `<tr><td><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:${color};margin-right:8px;vertical-align:middle;"></span>${name}</td>
-                <td style="text-align:right;font-weight:600;">$$${fmt(d.cost)}</td>
+                <td style="text-align:right;font-weight:600;">${fmt(d.cost)}</td>
                 <td style="text-align:right;">${fmtInt(d.r)}</td>
                 <td style="text-align:right;">${fmtInt(d.tt)}</td>
                 <td style="text-align:right;"><div class="pct-bar"><div class="pct-fill" style="background:${color};width:${pct.toFixed(1)}%"></div></div> ${pct.toFixed(1)}%</td></tr>`;
@@ -202,15 +202,15 @@
             apiTotal += d.cost;
             mRows += `<tr><td>Anthropic</td><td>${MODEL_DISPLAY[mid]||mid}</td>
                 <td style="text-align:right;">${fmtInt(d.it)}</td><td style="text-align:right;">${fmtInt(d.ot)}</td>
-                <td style="text-align:right;">${fmtInt(d.r)}</td><td style="text-align:right;font-weight:600;">$$${fmt(d.cost)}</td></tr>`;
+                <td style="text-align:right;">${fmtInt(d.r)}</td><td style="text-align:right;font-weight:600;">${fmt(d.cost)}</td></tr>`;
         });
         // Twilio row (only if in range that includes current month data)
         if (TWILIO.messages > 0) {
             mRows += `<tr><td>Twilio</td><td>SMS</td><td style="text-align:right;">—</td><td style="text-align:right;">—</td>
-                <td style="text-align:right;">${fmtInt(TWILIO.messages)}</td><td style="text-align:right;font-weight:600;">$$${fmt(TWILIO.cost)}</td></tr>`;
+                <td style="text-align:right;">${fmtInt(TWILIO.messages)}</td><td style="text-align:right;font-weight:600;">${fmt(TWILIO.cost)}</td></tr>`;
             apiTotal += TWILIO.cost;
         }
-        mRows += `<tr style="border-top:2px solid #2a2d37;font-weight:700;"><td colspan="5">Total</td><td style="text-align:right;">$$${fmt(apiTotal)}</td></tr>`;
+        mRows += `<tr style="border-top:2px solid #2a2d37;font-weight:700;"><td colspan="5">Total</td><td style="text-align:right;">${fmt(apiTotal)}</td></tr>`;
         document.getElementById('apiBody').innerHTML = mRows;
 
         // Agent allocation
@@ -228,7 +228,7 @@
             const color = AGENT_COLORS[aid]; const name = AGENT_NAMES[aid];
             const pct = d.cost/agentGrand*100;
             aRows += `<tr><td><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:${color};margin-right:8px;vertical-align:middle;"></span>${name}</td>
-                <td style="text-align:right;font-weight:600;">$$${fmt(d.cost)}</td>
+                <td style="text-align:right;font-weight:600;">${fmt(d.cost)}</td>
                 <td style="text-align:right;"><div class="pct-bar"><div class="pct-fill" style="background:${color};width:${pct.toFixed(1)}%"></div></div> ${pct.toFixed(1)}%</td></tr>`;
         });
         document.getElementById('agentBody').innerHTML = aRows;
@@ -239,7 +239,7 @@
             tCard.style.display = '';
             document.getElementById('twilioTitle').textContent = '📱 Twilio SMS — ' + label;
             document.getElementById('twilioStats').innerHTML = `
-                <div class="stat-box"><div class="stat-value">$$${TWILIO.cost.toFixed(2)}</div><div class="stat-label">SMS Cost</div></div>
+                <div class="stat-box"><div class="stat-value">${fmt(TWILIO.cost,2)}</div><div class="stat-label">SMS Cost</div></div>
                 <div class="stat-box"><div class="stat-value">${TWILIO.outbound}</div><div class="stat-label">Outbound</div></div>
                 <div class="stat-box"><div class="stat-value">${TWILIO.inbound}</div><div class="stat-label">Inbound</div></div>`;
         } else { tCard.style.display = 'none'; }
