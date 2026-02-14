@@ -30,12 +30,15 @@
         .chart-container { height: 300px; margin-top: 24px; }
         .pct-bar { background:#ecf0f1;border-radius:4px;overflow:hidden;height:20px;width:120px;display:inline-block;vertical-align:middle; }
         .pct-fill { height:100%; }
+        .anomaly-row { background: #2d1b1b !important; border-left: 3px solid #e74c3c; }
+        .cron-issue { color: #e74c3c; }
+        .cron-normal { color: #888; }
     </style>
 </head>
 <body>
     <div class="header">
         <h1>🦞 OpenClaw Usage Dashboard</h1>
-        <div class="updated">Last updated: February 13, 2026 at 03:16 PM ET</div>
+        <div class="updated">Last updated: February 14, 2026 at 09:11 AM ET</div>
     </div>
 
     <div class="filter-bar">
@@ -87,6 +90,18 @@
         </table>
     </div>
 
+    <div class="card" style="margin-top:24px;" id="cronCard">
+        <h3 style="margin-bottom:16px;" id="cronTitle"></h3>
+        <table>
+            <thead><tr>
+                <th>Cron Job</th><th>Model</th><th style="text-align:right;">Runs</th>
+                <th style="text-align:right;">Avg Duration</th><th style="text-align:right;">Issues</th>
+                <th style="text-align:right;">Cost</th><th style="text-align:right;">Trend</th>
+            </tr></thead>
+            <tbody id="cronBody"></tbody>
+        </table>
+    </div>
+
     <div class="card" style="margin-top:24px;" id="twilioCard" style="display:none;">
         <h3 id="twilioTitle"></h3>
         <div class="stat-row" id="twilioStats"></div>
@@ -105,15 +120,19 @@
     </p>
 
     <script>
-    const RAW = [{"d":"2026-02-13","c":"CRRE Labs (Internal)","a":"lex","m":"claude-opus-4-6","cost":29.414268,"it":372,"ot":58466,"cr":23283016,"cw":2609480,"tt":25951334,"r":230},{"d":"2026-02-13","c":"CRRE Labs (Internal)","a":"lex","m":"delivery-mirror","cost":0,"it":0,"ot":0,"cr":0,"cw":0,"tt":0,"r":4},{"d":"2026-02-13","c":"Personal (Travel)","a":"ellie","m":"claude-opus-4-6","cost":4.542445,"it":97,"ot":23387,"cr":3992758,"cw":313745,"tt":4329987,"r":65},{"d":"2026-02-13","c":"Rovira PM","a":"main","m":"claude-opus-4-6","cost":77.642539,"it":1233,"ot":248584,"cr":63904661,"cw":6315111,"tt":70469589,"r":917},{"d":"2026-02-12","c":"Rovira PM","a":"main","m":"claude-opus-4-6","cost":30.759058,"it":547,"ot":81152,"cr":25479958,"cw":2558007,"tt":28119664,"r":376},{"d":"2026-02-13","c":"Rovira PM","a":"main","m":"delivery-mirror","cost":0,"it":0,"ot":0,"cr":0,"cw":0,"tt":0,"r":6}];
+    const RAW = [{"d":"2026-02-13","c":"CRRE Labs (Internal)","a":"lex","m":"claude-opus-4-6","cost":30.524677,"it":375,"ot":58608,"cr":23283016,"cw":2786575,"tt":26128574,"r":231},{"d":"2026-02-13","c":"CRRE Labs (Internal)","a":"lex","m":"delivery-mirror","cost":0,"it":0,"ot":0,"cr":0,"cw":0,"tt":0,"r":4},{"d":"2026-02-14","c":"CRRE Labs (Internal)","a":"lex","m":"claude-opus-4-6","cost":3.453225,"it":45,"ot":6720,"cr":1319275,"cw":420058,"tt":1746098,"r":23},{"d":"2026-02-14","c":"moneypenny","a":"moneypenny","m":"claude-opus-4-6","cost":0.250263,"it":25,"ot":1047,"cr":96514,"cw":28113,"tt":125699,"r":9},{"d":"2026-02-14","c":"Etsy Store","a":"elara","m":"claude-opus-4-6","cost":1.479304,"it":57,"ot":10236,"cr":528237,"cw":153440,"tt":691970,"r":35},{"d":"2026-02-14","c":"Etsy Store","a":"elara","m":"delivery-mirror","cost":0,"it":0,"ot":0,"cr":0,"cw":0,"tt":0,"r":1},{"d":"2026-02-13","c":"Personal (Travel)","a":"ellie","m":"claude-opus-4-6","cost":4.542445,"it":97,"ot":23387,"cr":3992758,"cw":313745,"tt":4329987,"r":65},{"d":"2026-02-14","c":"Personal (Travel)","a":"ellie","m":"claude-opus-4-6","cost":0.757884,"it":16,"ot":1315,"cr":143770,"cw":104487,"tt":249588,"r":12},{"d":"2026-02-13","c":"Rovira PM","a":"main","m":"claude-opus-4-6","cost":80.750773,"it":1232,"ot":213968,"cr":64507951,"cw":6902630,"tt":71625781,"r":894},{"d":"2026-02-14","c":"Rovira PM","a":"main","m":"claude-opus-4-6","cost":18.121332,"it":242,"ot":28312,"cr":4004831,"cw":2465585,"tt":6498970,"r":138},{"d":"2026-02-14","c":"Rovira PM","a":"main","m":"claude-sonnet-4-20250514","cost":0.368434,"it":101,"ot":9972,"cr":357116,"cw":29711,"tt":396900,"r":16},{"d":"2026-02-12","c":"Rovira PM","a":"main","m":"claude-opus-4-6","cost":30.759058,"it":547,"ot":81152,"cr":25479958,"cw":2558007,"tt":28119664,"r":376},{"d":"2026-02-13","c":"Rovira PM","a":"main","m":"delivery-mirror","cost":0,"it":0,"ot":0,"cr":0,"cw":0,"tt":0,"r":6}];
     const TWILIO = {"cost":9.943400000000015,"outbound":444,"inbound":2,"messages":446};
+    const CRON = [];
     const MODEL_DISPLAY = {"claude-opus-4-6":"Claude Opus 4","claude-sonnet-4-20250514":"Claude Sonnet 4","claude-sonnet-4-20250514-fast":"Claude Sonnet 4 (Fast)","claude-haiku-3-5":"Claude Haiku 3.5"};
-    const CLIENT_COLORS = {"Rovira PM":"#2c3e50","CRRE Labs (Internal)":"#8e44ad","Melo Group":"#e67e22","Personal (Travel)":"#27ae60"};
-    const AGENT_NAMES = {"main":"Iris","lex":"Lex","ellie":"Ellie"};
-    const AGENT_COLORS = {"main":"#3498db","lex":"#8e44ad","ellie":"#e74c3c"};
-    const ALL_CLIENTS = ["Rovira PM","CRRE Labs (Internal)","Melo Group","Personal (Travel)"];
-    const ALL_AGENTS = ["main","lex","ellie"];
-    const TODAY = '2026-02-13';
+    const CLIENT_COLORS = {"Rovira PM":"#2c3e50","CRRE Labs (Internal)":"#8e44ad","Melo Group":"#e67e22","Personal (Travel)":"#27ae60","Etsy Store":"#f39c12"};
+    const AGENT_NAMES = {"main":"Iris","lex":"Lex","ellie":"Ellie","elara":"Elara"};
+    const AGENT_COLORS = {"main":"#3498db","lex":"#8e44ad","ellie":"#e74c3c","elara":"#f39c12"};
+    const ALL_CLIENTS = ["Rovira PM","CRRE Labs (Internal)","Melo Group","Personal (Travel)","Etsy Store"];
+    const ALL_AGENTS = ["main","lex","ellie","elara"];
+    const TODAY = '2026-02-14';
+    const TOTAL_CRON_COST = 0.000000;
+    const OPUS_COST = 0.000000;
+    const SONNET_COST = 0.000000;
 
     let chart = null;
     const $from = document.getElementById('dateFrom');
@@ -161,11 +180,22 @@
         // Summary
         let totalCost = 0, totalReq = 0, totalTok = 0;
         data.forEach(r => { totalCost += r.cost; totalReq += r.r; totalTok += r.tt; });
+        
+        // Calculate efficiency metrics
+        const daysInPeriod = $from.value && $to.value ? Math.max(1, Math.floor((new Date($to.value) - new Date($from.value)) / (1000*60*60*24)) + 1) : 30;
+        const costPerDay = totalCost / daysInPeriod;
+        const monthlyProjection = costPerDay * 30;
+        const totalModelCost = OPUS_COST + SONNET_COST;
+        const opusPercent = totalModelCost > 0 ? (OPUS_COST / totalModelCost * 100) : 0;
+        const sonnetPercent = totalModelCost > 0 ? (SONNET_COST / totalModelCost * 100) : 0;
+        
         document.getElementById('summaryStats').innerHTML = `
-            <div class="stat-box"><div class="stat-value">${fmt(totalCost,2)}</div><div class="stat-label">Total Cost (${label})</div></div>
-            <div class="stat-box"><div class="stat-value">${fmt(data.filter(r=>r.d===TODAY).reduce((s,r)=>s+r.cost,0),4)}</div><div class="stat-label">Today's Cost</div></div>
+            <div class="stat-box"><div class="stat-value">$$${fmt(totalCost,2)}</div><div class="stat-label">Total Cost (${label})</div></div>
+            <div class="stat-box"><div class="stat-value">$$${fmt(data.filter(r=>r.d===TODAY).reduce((s,r)=>s+r.cost,0),4)}</div><div class="stat-label">Today's Cost</div></div>
+            <div class="stat-box"><div class="stat-value">$$${fmt(costPerDay,2)}</div><div class="stat-label">Cost/Day (Avg)</div></div>
+            <div class="stat-box"><div class="stat-value">$$${fmt(monthlyProjection,0)}</div><div class="stat-label">Monthly Projection</div></div>
+            <div class="stat-box"><div class="stat-value">${opusPercent.toFixed(0)}%</div><div class="stat-label">Opus Split</div></div>
             <div class="stat-box"><div class="stat-value">${fmtInt(totalReq)}</div><div class="stat-label">API Requests</div></div>
-            <div class="stat-box"><div class="stat-value">${fmtInt(totalTok)}</div><div class="stat-label">Total Tokens</div></div>
         `;
 
         // Client breakdown
@@ -182,7 +212,7 @@
             const color = CLIENT_COLORS[name] || '#7f8c8d';
             const pct = d.cost/grand*100;
             cRows += `<tr><td><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:${color};margin-right:8px;vertical-align:middle;"></span>${name}</td>
-                <td style="text-align:right;font-weight:600;">${fmt(d.cost)}</td>
+                <td style="text-align:right;font-weight:600;">$$${fmt(d.cost)}</td>
                 <td style="text-align:right;">${fmtInt(d.r)}</td>
                 <td style="text-align:right;">${fmtInt(d.tt)}</td>
                 <td style="text-align:right;"><div class="pct-bar"><div class="pct-fill" style="background:${color};width:${pct.toFixed(1)}%"></div></div> ${pct.toFixed(1)}%</td></tr>`;
@@ -202,15 +232,15 @@
             apiTotal += d.cost;
             mRows += `<tr><td>Anthropic</td><td>${MODEL_DISPLAY[mid]||mid}</td>
                 <td style="text-align:right;">${fmtInt(d.it)}</td><td style="text-align:right;">${fmtInt(d.ot)}</td>
-                <td style="text-align:right;">${fmtInt(d.r)}</td><td style="text-align:right;font-weight:600;">${fmt(d.cost)}</td></tr>`;
+                <td style="text-align:right;">${fmtInt(d.r)}</td><td style="text-align:right;font-weight:600;">$$${fmt(d.cost)}</td></tr>`;
         });
         // Twilio row (only if in range that includes current month data)
         if (TWILIO.messages > 0) {
             mRows += `<tr><td>Twilio</td><td>SMS</td><td style="text-align:right;">—</td><td style="text-align:right;">—</td>
-                <td style="text-align:right;">${fmtInt(TWILIO.messages)}</td><td style="text-align:right;font-weight:600;">${fmt(TWILIO.cost)}</td></tr>`;
+                <td style="text-align:right;">${fmtInt(TWILIO.messages)}</td><td style="text-align:right;font-weight:600;">$$${fmt(TWILIO.cost)}</td></tr>`;
             apiTotal += TWILIO.cost;
         }
-        mRows += `<tr style="border-top:2px solid #2a2d37;font-weight:700;"><td colspan="5">Total</td><td style="text-align:right;">${fmt(apiTotal)}</td></tr>`;
+        mRows += `<tr style="border-top:2px solid #2a2d37;font-weight:700;"><td colspan="5">Total</td><td style="text-align:right;">$$${fmt(apiTotal)}</td></tr>`;
         document.getElementById('apiBody').innerHTML = mRows;
 
         // Agent allocation
@@ -228,10 +258,39 @@
             const color = AGENT_COLORS[aid]; const name = AGENT_NAMES[aid];
             const pct = d.cost/agentGrand*100;
             aRows += `<tr><td><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:${color};margin-right:8px;vertical-align:middle;"></span>${name}</td>
-                <td style="text-align:right;font-weight:600;">${fmt(d.cost)}</td>
+                <td style="text-align:right;font-weight:600;">$$${fmt(d.cost)}</td>
                 <td style="text-align:right;"><div class="pct-bar"><div class="pct-fill" style="background:${color};width:${pct.toFixed(1)}%"></div></div> ${pct.toFixed(1)}%</td></tr>`;
         });
         document.getElementById('agentBody').innerHTML = aRows;
+
+        // Cron Job Performance
+        document.getElementById('cronTitle').textContent = '⏰ Cron Job Performance — ' + label;
+        let cronRows = '';
+        if (CRON.length > 0) {
+            CRON.forEach(job => {
+                const modelDisplay = MODEL_DISPLAY[job.model] || job.model;
+                const trendIcon = job.cost_trend === 'up' ? '📈' : job.cost_trend === 'down' ? '📉' : '➡️';
+                const anomalyFlag = job.has_anomalies ? '⚠️ ' : '';
+                const issueDetails = [];
+                if (job.timeouts > 0) issueDetails.push(`${job.timeouts} timeout${job.timeouts > 1 ? 's' : ''}`);
+                if (job.errors > 0) issueDetails.push(`${job.errors} error${job.errors > 1 ? 's' : ''}`);
+                if (job.long_runs > 0) issueDetails.push(`${job.long_runs} slow run${job.long_runs > 1 ? 's' : ''}`);
+                const issuesText = issueDetails.length > 0 ? issueDetails.join(', ') : '—';
+                
+                cronRows += `<tr ${job.has_anomalies ? 'class="anomaly-row"' : ''}>
+                    <td>${anomalyFlag}${job.name}</td>
+                    <td>${modelDisplay}</td>
+                    <td style="text-align:right;">${job.runs}</td>
+                    <td style="text-align:right;">${job.avg_duration.toFixed(1)}m</td>
+                    <td style="text-align:right;" class="${job.has_anomalies ? 'cron-issue' : 'cron-normal'}">${issuesText}</td>
+                    <td style="text-align:right;font-weight:600;">$$${fmt(job.cost)}</td>
+                    <td style="text-align:right;">${trendIcon}</td>
+                </tr>`;
+            });
+        } else {
+            cronRows = '<tr><td colspan="7" style="text-align:center;color:#888;font-style:italic;">No cron job data available</td></tr>';
+        }
+        document.getElementById('cronBody').innerHTML = cronRows;
 
         // Twilio card
         const tCard = document.getElementById('twilioCard');
@@ -239,7 +298,7 @@
             tCard.style.display = '';
             document.getElementById('twilioTitle').textContent = '📱 Twilio SMS — ' + label;
             document.getElementById('twilioStats').innerHTML = `
-                <div class="stat-box"><div class="stat-value">${fmt(TWILIO.cost,2)}</div><div class="stat-label">SMS Cost</div></div>
+                <div class="stat-box"><div class="stat-value">$$${TWILIO.cost.toFixed(2)}</div><div class="stat-label">SMS Cost</div></div>
                 <div class="stat-box"><div class="stat-value">${TWILIO.outbound}</div><div class="stat-label">Outbound</div></div>
                 <div class="stat-box"><div class="stat-value">${TWILIO.inbound}</div><div class="stat-label">Inbound</div></div>`;
         } else { tCard.style.display = 'none'; }
