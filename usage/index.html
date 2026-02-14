@@ -38,7 +38,7 @@
 <body>
     <div class="header">
         <h1>🦞 OpenClaw Usage Dashboard</h1>
-        <div class="updated">Last updated: February 14, 2026 at 09:12 AM ET</div>
+        <div class="updated">Last updated: February 14, 2026 at 09:15 AM ET</div>
     </div>
 
     <div class="filter-bar">
@@ -120,7 +120,7 @@
     </p>
 
     <script>
-    const RAW = [{"d":"2026-02-13","c":"CRRE Labs (Internal)","a":"lex","m":"claude-opus-4-6","cost":30.524677,"it":375,"ot":58608,"cr":23283016,"cw":2786575,"tt":26128574,"r":231},{"d":"2026-02-13","c":"CRRE Labs (Internal)","a":"lex","m":"delivery-mirror","cost":0,"it":0,"ot":0,"cr":0,"cw":0,"tt":0,"r":4},{"d":"2026-02-14","c":"CRRE Labs (Internal)","a":"lex","m":"claude-opus-4-6","cost":3.453225,"it":45,"ot":6720,"cr":1319275,"cw":420058,"tt":1746098,"r":23},{"d":"2026-02-14","c":"Rovira PM","a":"moneypenny","m":"claude-opus-4-6","cost":0.250263,"it":25,"ot":1047,"cr":96514,"cw":28113,"tt":125699,"r":9},{"d":"2026-02-14","c":"Etsy Store","a":"elara","m":"claude-opus-4-6","cost":1.479304,"it":57,"ot":10236,"cr":528237,"cw":153440,"tt":691970,"r":35},{"d":"2026-02-14","c":"Etsy Store","a":"elara","m":"delivery-mirror","cost":0,"it":0,"ot":0,"cr":0,"cw":0,"tt":0,"r":1},{"d":"2026-02-13","c":"Personal (Travel)","a":"ellie","m":"claude-opus-4-6","cost":4.542445,"it":97,"ot":23387,"cr":3992758,"cw":313745,"tt":4329987,"r":65},{"d":"2026-02-14","c":"Personal (Travel)","a":"ellie","m":"claude-opus-4-6","cost":0.757884,"it":16,"ot":1315,"cr":143770,"cw":104487,"tt":249588,"r":12},{"d":"2026-02-13","c":"Rovira PM","a":"main","m":"claude-opus-4-6","cost":80.750773,"it":1232,"ot":213968,"cr":64507951,"cw":6902630,"tt":71625781,"r":894},{"d":"2026-02-14","c":"Rovira PM","a":"main","m":"claude-opus-4-6","cost":18.121332,"it":242,"ot":28312,"cr":4004831,"cw":2465585,"tt":6498970,"r":138},{"d":"2026-02-14","c":"Rovira PM","a":"main","m":"claude-sonnet-4-20250514","cost":0.517904,"it":101,"ot":13007,"cr":642173,"cw":34625,"tt":689906,"r":25},{"d":"2026-02-12","c":"Rovira PM","a":"main","m":"claude-opus-4-6","cost":30.759058,"it":547,"ot":81152,"cr":25479958,"cw":2558007,"tt":28119664,"r":376},{"d":"2026-02-13","c":"Rovira PM","a":"main","m":"delivery-mirror","cost":0,"it":0,"ot":0,"cr":0,"cw":0,"tt":0,"r":6}];
+    const RAW = [{"d":"2026-02-13","c":"CRRE Labs (Internal)","a":"lex","m":"claude-opus-4-6","cost":30.524677,"it":375,"ot":58608,"cr":23283016,"cw":2786575,"tt":26128574,"r":231},{"d":"2026-02-13","c":"CRRE Labs (Internal)","a":"lex","m":"delivery-mirror","cost":0,"it":0,"ot":0,"cr":0,"cw":0,"tt":0,"r":4},{"d":"2026-02-14","c":"CRRE Labs (Internal)","a":"lex","m":"claude-opus-4-6","cost":3.453225,"it":45,"ot":6720,"cr":1319275,"cw":420058,"tt":1746098,"r":23},{"d":"2026-02-14","c":"Rovira PM","a":"moneypenny","m":"claude-opus-4-6","cost":0.250263,"it":25,"ot":1047,"cr":96514,"cw":28113,"tt":125699,"r":9},{"d":"2026-02-14","c":"Etsy Store","a":"elara","m":"claude-opus-4-6","cost":1.479304,"it":57,"ot":10236,"cr":528237,"cw":153440,"tt":691970,"r":35},{"d":"2026-02-14","c":"Etsy Store","a":"elara","m":"delivery-mirror","cost":0,"it":0,"ot":0,"cr":0,"cw":0,"tt":0,"r":1},{"d":"2026-02-13","c":"Personal (Travel)","a":"ellie","m":"claude-opus-4-6","cost":4.542445,"it":97,"ot":23387,"cr":3992758,"cw":313745,"tt":4329987,"r":65},{"d":"2026-02-14","c":"Personal (Travel)","a":"ellie","m":"claude-opus-4-6","cost":0.757884,"it":16,"ot":1315,"cr":143770,"cw":104487,"tt":249588,"r":12},{"d":"2026-02-13","c":"Rovira PM","a":"main","m":"claude-opus-4-6","cost":80.750773,"it":1232,"ot":213968,"cr":64507951,"cw":6902630,"tt":71625781,"r":894},{"d":"2026-02-14","c":"Rovira PM","a":"main","m":"claude-opus-4-6","cost":19.15387,"it":251,"ot":29025,"cr":4222329,"cw":2610532,"tt":6862137,"r":143},{"d":"2026-02-14","c":"Rovira PM","a":"main","m":"claude-sonnet-4-20250514","cost":0.577611,"it":101,"ot":14154,"cr":747399,"cw":37541,"tt":799195,"r":28},{"d":"2026-02-12","c":"Rovira PM","a":"main","m":"claude-opus-4-6","cost":30.759058,"it":547,"ot":81152,"cr":25479958,"cw":2558007,"tt":28119664,"r":376},{"d":"2026-02-13","c":"Rovira PM","a":"main","m":"delivery-mirror","cost":0,"it":0,"ot":0,"cr":0,"cw":0,"tt":0,"r":6}];
     const TWILIO = {"cost":9.943400000000015,"outbound":444,"inbound":2,"messages":446};
     const CRON = [{"name":"Award Flight Monitor - CAG hubs to MIA Business","model":"claude-opus-4-6","runs":1,"avg_duration":0.7945,"timeouts":1,"errors":0,"cost":0.18738825000000003,"cost_trend":"up","long_runs":0,"has_anomalies":true},{"name":"Delinquency Update - 9AM","model":"claude-opus-4-6","runs":3,"avg_duration":4.042305555555556,"timeouts":3,"errors":1,"cost":2.8676915,"cost_trend":"up","long_runs":0,"has_anomalies":true},{"name":"Collections - Monitor Responses","model":"claude-opus-4-6","runs":12,"avg_duration":0.2416805555555556,"timeouts":12,"errors":0,"cost":1.1752937500000002,"cost_trend":"up","long_runs":1,"has_anomalies":true},{"name":"Collections - Daily Outreach","model":"claude-opus-4-6","runs":1,"avg_duration":5.998683333333333,"timeouts":1,"errors":0,"cost":0.9119144999999999,"cost_trend":"up","long_runs":0,"has_anomalies":true},{"name":"Delinquency Update - 3PM","model":"claude-opus-4-6","runs":1,"avg_duration":5.000266666666667,"timeouts":1,"errors":0,"cost":1.01556575,"cost_trend":"up","long_runs":0,"has_anomalies":true},{"name":"Nightly GitHub Backup","model":"claude-opus-4-6","runs":2,"avg_duration":0.22063333333333335,"timeouts":2,"errors":0,"cost":0.23331375000000004,"cost_trend":"up","long_runs":0,"has_anomalies":true},{"name":"Delinquency Update - 12PM","model":"claude-opus-4-6","runs":1,"avg_duration":3.8094166666666665,"timeouts":1,"errors":1,"cost":0.73586025,"cost_trend":"up","long_runs":0,"has_anomalies":true}];
     const MODEL_DISPLAY = {"claude-opus-4-6":"Claude Opus 4","claude-sonnet-4-20250514":"Claude Sonnet 4","claude-sonnet-4-20250514-fast":"Claude Sonnet 4 (Fast)","claude-haiku-3-5":"Claude Haiku 3.5"};
@@ -190,10 +190,10 @@
         const sonnetPercent = totalModelCost > 0 ? (SONNET_COST / totalModelCost * 100) : 0;
         
         document.getElementById('summaryStats').innerHTML = `
-            <div class="stat-box"><div class="stat-value">$$${fmt(totalCost,2)}</div><div class="stat-label">Total Cost (${label})</div></div>
-            <div class="stat-box"><div class="stat-value">$$${fmt(data.filter(r=>r.d===TODAY).reduce((s,r)=>s+r.cost,0),4)}</div><div class="stat-label">Today's Cost</div></div>
-            <div class="stat-box"><div class="stat-value">$$${fmt(costPerDay,2)}</div><div class="stat-label">Cost/Day (Avg)</div></div>
-            <div class="stat-box"><div class="stat-value">$$${fmt(monthlyProjection,0)}</div><div class="stat-label">Monthly Projection</div></div>
+            <div class="stat-box"><div class="stat-value">${fmt(totalCost,2)}</div><div class="stat-label">Total Cost (${label})</div></div>
+            <div class="stat-box"><div class="stat-value">${fmt(data.filter(r=>r.d===TODAY).reduce((s,r)=>s+r.cost,0),4)}</div><div class="stat-label">Today's Cost</div></div>
+            <div class="stat-box"><div class="stat-value">${fmt(costPerDay,2)}</div><div class="stat-label">Cost/Day (Avg)</div></div>
+            <div class="stat-box"><div class="stat-value">${fmt(monthlyProjection,0)}</div><div class="stat-label">Monthly Projection</div></div>
             <div class="stat-box"><div class="stat-value">${opusPercent.toFixed(0)}%</div><div class="stat-label">Opus Split</div></div>
             <div class="stat-box"><div class="stat-value">${fmtInt(totalReq)}</div><div class="stat-label">API Requests</div></div>
         `;
@@ -212,7 +212,7 @@
             const color = CLIENT_COLORS[name] || '#7f8c8d';
             const pct = d.cost/grand*100;
             cRows += `<tr><td><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:${color};margin-right:8px;vertical-align:middle;"></span>${name}</td>
-                <td style="text-align:right;font-weight:600;">$$${fmt(d.cost)}</td>
+                <td style="text-align:right;font-weight:600;">${fmt(d.cost)}</td>
                 <td style="text-align:right;">${fmtInt(d.r)}</td>
                 <td style="text-align:right;">${fmtInt(d.tt)}</td>
                 <td style="text-align:right;"><div class="pct-bar"><div class="pct-fill" style="background:${color};width:${pct.toFixed(1)}%"></div></div> ${pct.toFixed(1)}%</td></tr>`;
@@ -232,15 +232,15 @@
             apiTotal += d.cost;
             mRows += `<tr><td>Anthropic</td><td>${MODEL_DISPLAY[mid]||mid}</td>
                 <td style="text-align:right;">${fmtInt(d.it)}</td><td style="text-align:right;">${fmtInt(d.ot)}</td>
-                <td style="text-align:right;">${fmtInt(d.r)}</td><td style="text-align:right;font-weight:600;">$$${fmt(d.cost)}</td></tr>`;
+                <td style="text-align:right;">${fmtInt(d.r)}</td><td style="text-align:right;font-weight:600;">${fmt(d.cost)}</td></tr>`;
         });
         // Twilio row (only if in range that includes current month data)
         if (TWILIO.messages > 0) {
             mRows += `<tr><td>Twilio</td><td>SMS</td><td style="text-align:right;">—</td><td style="text-align:right;">—</td>
-                <td style="text-align:right;">${fmtInt(TWILIO.messages)}</td><td style="text-align:right;font-weight:600;">$$${fmt(TWILIO.cost)}</td></tr>`;
+                <td style="text-align:right;">${fmtInt(TWILIO.messages)}</td><td style="text-align:right;font-weight:600;">${fmt(TWILIO.cost)}</td></tr>`;
             apiTotal += TWILIO.cost;
         }
-        mRows += `<tr style="border-top:2px solid #2a2d37;font-weight:700;"><td colspan="5">Total</td><td style="text-align:right;">$$${fmt(apiTotal)}</td></tr>`;
+        mRows += `<tr style="border-top:2px solid #2a2d37;font-weight:700;"><td colspan="5">Total</td><td style="text-align:right;">${fmt(apiTotal)}</td></tr>`;
         document.getElementById('apiBody').innerHTML = mRows;
 
         // Agent allocation
@@ -258,7 +258,7 @@
             const color = AGENT_COLORS[aid]; const name = AGENT_NAMES[aid];
             const pct = d.cost/agentGrand*100;
             aRows += `<tr><td><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:${color};margin-right:8px;vertical-align:middle;"></span>${name}</td>
-                <td style="text-align:right;font-weight:600;">$$${fmt(d.cost)}</td>
+                <td style="text-align:right;font-weight:600;">${fmt(d.cost)}</td>
                 <td style="text-align:right;"><div class="pct-bar"><div class="pct-fill" style="background:${color};width:${pct.toFixed(1)}%"></div></div> ${pct.toFixed(1)}%</td></tr>`;
         });
         document.getElementById('agentBody').innerHTML = aRows;
@@ -283,7 +283,7 @@
                     <td style="text-align:right;">${job.runs}</td>
                     <td style="text-align:right;">${job.avg_duration.toFixed(1)}m</td>
                     <td style="text-align:right;" class="${job.has_anomalies ? 'cron-issue' : 'cron-normal'}">${issuesText}</td>
-                    <td style="text-align:right;font-weight:600;">$$${fmt(job.cost)}</td>
+                    <td style="text-align:right;font-weight:600;">${fmt(job.cost)}</td>
                     <td style="text-align:right;">${trendIcon}</td>
                 </tr>`;
             });
@@ -298,7 +298,7 @@
             tCard.style.display = '';
             document.getElementById('twilioTitle').textContent = '📱 Twilio SMS — ' + label;
             document.getElementById('twilioStats').innerHTML = `
-                <div class="stat-box"><div class="stat-value">$$${TWILIO.cost.toFixed(2)}</div><div class="stat-label">SMS Cost</div></div>
+                <div class="stat-box"><div class="stat-value">${TWILIO.cost.toFixed(2)}</div><div class="stat-label">SMS Cost</div></div>
                 <div class="stat-box"><div class="stat-value">${TWILIO.outbound}</div><div class="stat-label">Outbound</div></div>
                 <div class="stat-box"><div class="stat-value">${TWILIO.inbound}</div><div class="stat-label">Inbound</div></div>`;
         } else { tCard.style.display = 'none'; }
