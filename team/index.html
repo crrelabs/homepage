@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRRE Labs — The Team</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #0f1117;
+            color: #e1e5e9;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .header h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            color: #9ca3af;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .agent-card {
+            background-color: #1a1d27;
+            border: 1px solid #2a2d37;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .agent-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            border-color: #3a3d47;
+        }
+
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .avatar.iris {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+        }
+
+        .avatar.lex {
+            background: linear-gradient(135deg, #8e44ad, #7d3c98);
+        }
+
+        .avatar.ellie {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+        }
+
+        .avatar.moneypenny {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+        }
+
+        .avatar.elara {
+            background: linear-gradient(135deg, #27ae60, #229954);
+        }
+
+        .agent-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        .agent-title {
+            font-size: 1.1rem;
+            color: #667eea;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .agent-role {
+            font-size: 0.95rem;
+            color: #9ca3af;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .agent-vibe {
+            font-size: 0.9rem;
+            color: #6b7280;
+            font-style: italic;
+            line-height: 1.4;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid #2a2d37;
+            margin-top: 2rem;
+        }
+
+        .footer p {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: #8b9cf7;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .team-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .agent-card {
+                padding: 1.5rem;
+            }
+            
+            .avatar {
+                width: 100px;
+                height: 100px;
+                font-size: 50px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .avatar {
+                width: 80px;
+                height: 80px;
+                font-size: 40px;
+            }
+            
+            .agent-name {
+                font-size: 1.3rem;
+            }
+            
+            .agent-title {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🦞 CRRE Labs — The Team</h1>
+            <p>AI agents powering real estate, travel, finance, and creative operations</p>
+        </header>
+
+        <div class="team-grid">
+            <div class="agent-card">
+                <div class="avatar iris">🌸</div>
+                <h2 class="agent-name">Iris Brown</h2>
+                <h3 class="agent-title">Operations Specialist</h3>
+                <p class="agent-role">Property management operations for Rovira PM — delinquency tracking, tenant collections, email management, Monday.com task automation</p>
+                <p class="agent-vibe">Professional, sharp, detail-oriented. Gets things done without fuss.</p>
+            </div>
+
+            <div class="agent-card">
+                <div class="avatar lex">⚡</div>
+                <h2 class="agent-name">Lex Grant</h2>
+                <h3 class="agent-title">Software Engineer & Web Developer</h3>
+                <p class="agent-role">Full-stack web development for CRRE Labs clients — real estate websites, web apps, APIs</p>
+                <p class="agent-vibe">Technical, direct, builder mentality. Ships clean, production-ready code.</p>
+            </div>
+
+            <div class="agent-card">
+                <div class="avatar ellie">🎈</div>
+                <h2 class="agent-name">Ellie Frederickson</h2>
+                <h3 class="agent-title">Travel Hacking Specialist</h3>
+                <p class="agent-role">Points, miles, and award travel optimization for Carlos and Isa. Monitors award availability, finds sweet spots.</p>
+                <p class="agent-vibe">Enthusiastic, resourceful, adventure-loving. Makes complex award travel feel easy and exciting.</p>
+            </div>
+
+            <div class="agent-card">
+                <div class="avatar moneypenny">💰</div>
+                <h2 class="agent-name">Miss Moneypenny</h2>
+                <h3 class="agent-title">Accountant & Billing Agent</h3>
+                <p class="agent-role">Financial operations for CRRE Labs — invoicing, billing, bookkeeping, cost tracking</p>
+                <p class="agent-vibe">Precise, no-nonsense, financially sharp. Treats every dollar like it matters.</p>
+            </div>
+
+            <div class="agent-card">
+                <div class="avatar elara">🎨</div>
+                <h2 class="agent-name">Elara Kamen</h2>
+                <h3 class="agent-title">E-Commerce Specialist & Digital Art Director</h3>
+                <p class="agent-role">Runs the Etsy shop — AI-generated digital art, product listings, pricing, SEO optimization</p>
+                <p class="agent-vibe">Creative, strategic, proactive. Knows what sells and designs accordingly.</p>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>Powered by OpenClaw · <a href="https://crrelabs.com">crrelabs.com</a></p>
+        </footer>
+    </div>
+</body>
+</html>
