@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mission Control — CRRE Labs</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        bg: { DEFAULT: '#0f172a', card: '#1e293b', hover: '#334155' },
+        accent: { DEFAULT: '#3b82f6', hover: '#2563eb', dim: 'rgba(59,130,246,0.1)' },
+        ok: '#22c55e', warn: '#f59e0b', bad: '#ef4444', muted: '#64748b', edge: '#334155'
+      }
+    }
+  }
+}
+</script>
+<style>
+  body { background: #0f172a; color: #e2e8f0; font-family: system-ui, -apple-system, sans-serif; }
+  .tab-active { color: #3b82f6; border-color: #3b82f6; }
+  .tab-inactive { color: #64748b; border-color: transparent; }
+  .tab-inactive:hover { color: #e2e8f0; }
+  .status-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+  .pulse { animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
+  #sidebar { transition: transform 0.3s ease; }
+  @media (max-width: 768px) {
+    #sidebar { transform: translateX(-100%); position: fixed; z-index: 100; }
+    #sidebar.open { transform: translateX(0); }
+    #main { margin-left: 0 !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Mobile header -->
+<div class="md:hidden fixed top-0 left-0 right-0 z-50 bg-[#0c1222] border-b border-edge px-4 py-3 flex items-center justify-between">
+  <button onclick="document.getElementById('sidebar').classList.toggle('open')" class="text-muted hover:text-white">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+  </button>
+  <span class="text-accent font-bold">CRRE Labs</span>
+  <span class="text-xs text-muted">MC</span>
+</div>
+
+<!-- Sidebar -->
+<aside id="sidebar" class="fixed left-0 top-0 h-screen w-64 bg-[#0c1222] border-r border-edge flex flex-col">
+  <div class="p-6 border-b border-edge">
+    <div class="flex items-center gap-3 mb-2">
+      <img src="/logo.jpg" alt="CRRE Labs" class="w-10 h-10 rounded-lg object-cover">
+      <div>
+        <h1 class="text-lg font-bold text-accent">CRRE Labs</h1>
+        <p class="text-xs text-muted">Mission Control</p>
+      </div>
+    </div>
+  </div>
+  <nav class="flex-1 p-4 space-y-1">
+    <a href="#" onclick="showTab('dashboard')" id="nav-dashboard" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-accent bg-accent/10">
+      <span>⚡</span> Dashboard
+    </a>
+    <a href="#" onclick="showTab('monitor')" id="nav-monitor" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-muted hover:text-white hover:bg-bg-card">
+      <span>🔍</span> Site Monitor
+    </a>
+    <a href="#" onclick="showTab('projects')" id="nav-projects" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-muted hover:text-white hover:bg-bg-card">
+      <span>📋</span> Projects
+    </a>
+    <a href="#" onclick="showTab('dns')" id="nav-dns" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-muted hover:text-white hover:bg-bg-card">
+      <span>🌐</span> DNS Manager
+    </a>
+  </nav>
+  <div class="p-4 border-t border-edge">
+    <a href="/" class="text-xs text-muted hover:text-accent">← crrelabs.com</a>
+  </div>
+</aside>
+
+<!-- Overlay for mobile sidebar -->
+<div id="overlay" class="hidden fixed inset-0 bg-black/50 z-50 md:hidden" onclick="document.getElementById('sidebar').classList.remove('open');this.classList.add('hidden')"></div>
+
+<!-- Main Content -->
+<div id="main" class="md:ml-64 min-h-screen p-4 md:p-8 pt-16 md:pt-8">
+
+  <!-- DASHBOARD TAB -->
+  <div id="tab-dashboard">
+    <h1 class="text-2xl md:text-3xl font-bold mb-2">Mission Control</h1>
+    <p class="text-muted mb-8">CRRE Labs operations at a glance</p>
+
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-3 md:gap-4 mb-10" id="stats-grid">
+      <div class="bg-bg-card rounded-xl p-4 md:p-5 border border-edge">
+        <p class="text-xs text-muted uppercase tracking-wider mb-2">Sites</p>
+        <p class="text-2xl md:text-3xl font-bold text-accent" id="stat-total">...</p>
+      </div>
+      <div class="bg-bg-card rounded-xl p-4 md:p-5 border border-edge">
+        <p class="text-xs text-muted uppercase tracking-wider mb-2">Up</p>
+        <p class="text-2xl md:text-3xl font-bold text-ok" id="stat-up">...</p>
+      </div>
+      <div class="bg-bg-card rounded-xl p-4 md:p-5 border border-edge">
+        <p class="text-xs text-muted uppercase tracking-wider mb-2">Down</p>
+        <p class="text-2xl md:text-3xl font-bold" id="stat-down">...</p>
+      </div>
+      <div class="bg-bg-card rounded-xl p-4 md:p-5 border border-edge">
+        <p class="text-xs text-muted uppercase tracking-wider mb-2">Projects</p>
+        <p class="text-2xl md:text-3xl font-bold text-accent">4</p>
+      </div>
+      <div class="bg-bg-card rounded-xl p-4 md:p-5 border border-edge col-span-2 md:col-span-1">
+        <p class="text-xs text-muted uppercase tracking-wider mb-2">SSL Warnings</p>
+        <p class="text-2xl md:text-3xl font-bold" id="stat-ssl">...</p>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-bg-card rounded-xl p-6 border border-edge">
+        <h2 class="text-lg font-semibold mb-4">Site Status</h2>
+        <div id="dash-sites" class="space-y-3"><p class="text-muted text-sm">Checking sites...</p></div>
+      </div>
+      <div class="bg-bg-card rounded-xl p-6 border border-edge">
+        <h2 class="text-lg font-semibold mb-4">Active Projects</h2>
+        <div class="space-y-3" id="dash-projects"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MONITOR TAB -->
+  <div id="tab-monitor" class="hidden">
+    <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+      <div>
+        <h1 class="text-2xl md:text-3xl font-bold">Site Monitor</h1>
+        <p class="text-muted text-sm mt-1" id="monitor-time">Checking...</p>
+      </div>
+      <button onclick="checkAllSites()" class="px-4 py-2 bg-accent hover:bg-accent-hover text-white rounded-lg text-sm font-medium transition-colors">
+        Check All
+      </button>
+    </div>
+    <div class="grid md:grid-cols-2 gap-4" id="monitor-grid"></div>
+  </div>
+
+  <!-- PROJECTS TAB -->
+  <div id="tab-projects" class="hidden">
+    <h1 class="text-2xl md:text-3xl font-bold mb-2">Projects</h1>
+    <p class="text-muted text-sm mb-6">Track active work across all clients</p>
+
+    <div class="flex gap-3 mb-8 overflow-x-auto pb-2">
+      <select id="filter-client" onchange="renderProjects()" class="bg-bg-card border border-edge rounded-lg px-3 py-2 text-sm text-white">
+        <option value="all">All Clients</option>
+        <option value="Melo Group">Melo Group</option>
+        <option value="RG Capital Partners">RG Capital Partners</option>
+        <option value="CRRE Labs">CRRE Labs</option>
+      </select>
+      <select id="filter-status" onchange="renderProjects()" class="bg-bg-card border border-edge rounded-lg px-3 py-2 text-sm text-white">
+        <option value="all">All Statuses</option>
+        <option value="active">Active</option>
+        <option value="in review">In Review</option>
+        <option value="completed">Completed</option>
+      </select>
+    </div>
+    <div class="space-y-6" id="projects-list"></div>
+  </div>
+
+  <!-- DNS TAB -->
+  <div id="tab-dns" class="hidden">
+    <h1 class="text-2xl md:text-3xl font-bold mb-2">DNS Manager</h1>
+    <p class="text-muted text-sm mb-6">Look up DNS records, SSL certificates, and GitHub Pages config</p>
+
+    <div class="flex flex-col md:flex-row gap-3 mb-6">
+      <form onsubmit="event.preventDefault();dnsLookup(document.getElementById('dns-input').value)" class="flex gap-2 flex-1">
+        <input id="dns-input" type="text" placeholder="Enter domain (e.g. crrelabs.com)" class="flex-1 bg-bg-card border border-edge rounded-lg px-4 py-2 text-sm text-white placeholder:text-muted focus:outline-none focus:border-accent">
+        <button type="submit" class="px-4 py-2 bg-accent hover:bg-accent-hover text-white rounded-lg text-sm font-medium">Lookup</button>
+      </form>
+      <button onclick="dnsCheckAll()" class="px-4 py-2 bg-bg-card border border-edge hover:border-accent/30 rounded-lg text-sm font-medium">Check All</button>
+    </div>
+
+    <div class="flex flex-wrap gap-2 mb-8" id="dns-presets"></div>
+    <div class="space-y-4" id="dns-results"></div>
+  </div>
+
+</div>
+
+<script>
+// ===== NAVIGATION =====
+const tabs = ['dashboard','monitor','projects','dns'];
+function showTab(name) {
+  tabs.forEach(t => {
+    document.getElementById('tab-'+t).classList.toggle('hidden', t!==name);
+    const nav = document.getElementById('nav-'+t);
+    if(t===name) { nav.className = nav.className.replace(/text-muted/,'text-accent').replace(/hover:bg-bg-card/,'bg-accent/10'); }
+    else { nav.className = nav.className.replace(/text-accent/,'text-muted').replace(/bg-accent\/10/,'hover:bg-bg-card'); }
+  });
+  document.getElementById('sidebar').classList.remove('open');
+  if(name==='monitor') checkAllSites();
+  if(name==='projects') renderProjects();
+}
+
+// ===== SITES CONFIG =====
+const SITES = [
+  { name: "CRRE Labs", url: "https://crrelabs.com" },
+  { name: "RG Capital Partners", url: "https://crrelabs.github.io/rg-capital-partners" },
+  { name: "Escape to GHC", url: "https://crrelabs.github.io/escapetoghc" },
+  { name: "Beach Villa GHC", url: "https://beachvillaghc.com" },
+  { name: "Green Flash GHC", url: "https://greenflashghc.com" },
+  { name: "Downtown 1st", url: "https://downtown1st.com" },
+  { name: "22 Biscayne Bay", url: "https://22biscaynebay.com" },
+  { name: "Melo Group", url: "https://melogroup.com" },
+];
+
+let siteResults = [];
+
+async function checkSite(site) {
+  const start = Date.now();
+  try {
+    const res = await fetch(site.url, { method: 'HEAD', mode: 'no-cors', cache: 'no-store' });
+    // no-cors gives opaque response, status=0 means it loaded (didn't error)
+    return { ...site, up: true, time: Date.now()-start, error: null };
+  } catch(e) {
+    return { ...site, up: false, time: null, error: e.message };
+  }
+}
+
+async function checkAllSites() {
+  document.getElementById('monitor-time').textContent = 'Checking...';
+  const grid = document.getElementById('monitor-grid');
+  grid.innerHTML = SITES.map(() => '<div class="bg-bg-card rounded-xl p-6 border border-edge animate-pulse h-36"></div>').join('');
+
+  siteResults = await Promise.all(SITES.map(checkSite));
+  renderMonitor();
+  renderDashStats();
+}
+
+function renderMonitor() {
+  const grid = document.getElementById('monitor-grid');
+  document.getElementById('monitor-time').textContent = 'Last checked: ' + new Date().toLocaleTimeString();
+  grid.innerHTML = siteResults.map(s => `
+    <div class="bg-bg-card rounded-xl p-5 md:p-6 border border-edge hover:border-accent/30 transition-colors">
+      <div class="flex items-start justify-between mb-4">
+        <div class="flex items-center gap-3">
+          <span class="status-dot ${s.up ? 'bg-ok' : 'bg-bad pulse'}"></span>
+          <div>
+            <h3 class="font-semibold text-sm md:text-base">${s.name}</h3>
+            <a href="${s.url}" target="_blank" class="text-xs text-muted hover:text-accent break-all">${s.url.replace('https://','')}</a>
+          </div>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-4 text-sm">
+        <div>
+          <p class="text-xs text-muted mb-1">Status</p>
+          <p class="${s.up ? 'text-ok' : 'text-bad'} font-medium">${s.up ? 'Online' : 'Down'}</p>
+        </div>
+        <div>
+          <p class="text-xs text-muted mb-1">Response</p>
+          <p>${s.time ? s.time+'ms' : '—'}</p>
+        </div>
+      </div>
+      ${s.error ? '<p class="mt-3 text-xs text-bad bg-bad/10 rounded px-3 py-2">'+s.error+'</p>' : ''}
+    </div>
+  `).join('');
+}
+
+function renderDashStats() {
+  const up = siteResults.filter(s=>s.up).length;
+  const down = siteResults.length - up;
+  document.getElementById('stat-total').textContent = siteResults.length;
+  document.getElementById('stat-up').textContent = up;
+  document.getElementById('stat-down').textContent = down;
+  document.getElementById('stat-down').className = 'text-2xl md:text-3xl font-bold ' + (down > 0 ? 'text-bad' : 'text-ok');
+  document.getElementById('stat-ssl').textContent = '—';
+  document.getElementById('stat-ssl').className = 'text-2xl md:text-3xl font-bold text-muted';
+
+  document.getElementById('dash-sites').innerHTML = siteResults.map(s => `
+    <div class="flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <span class="status-dot ${s.up?'bg-ok':'bg-bad'}"></span>
+        <span class="text-sm">${s.name}</span>
+      </div>
+      <span class="text-xs text-muted">${s.time ? s.time+'ms' : '—'}</span>
+    </div>
+  `).join('');
+}
+
+// ===== PROJECTS =====
+const PROJECTS = [
+  {
+    name: "Melo Group Website Redesign", client: "Melo Group", status: "active",
+    desc: "Redesigning 14 property websites from WordPress to static HTML + GitHub Pages",
+    tasks: [
+      { name: "One Plaza West Brickell", status: "done", who: "Lex" },
+      { name: "22 Biscayne Bay", status: "done", who: "Lex" },
+      { name: "Downtown 1st", status: "done", who: "Lex" },
+      { name: "Melody Tower", status: "to do", who: "Lex" },
+      { name: "25 Biscayne Park", status: "to do", who: "Lex" },
+      { name: "Downtown 5", status: "to do", who: "Lex" },
+      { name: "Melo Group Main Site", status: "to do", who: "Lex" },
+      { name: "Remaining 8 properties", status: "to do", who: "Lex" },
+    ]
+  },
+  {
+    name: "RG Capital Partners Website", client: "RG Capital Partners", status: "in review",
+    desc: "Website redesign from WordPress/Elementor to static HTML + Tailwind. Private equity RE syndication.",
+    tasks: [
+      { name: "Homepage build", status: "done", who: "Lex" },
+      { name: "Property pages (9)", status: "done", who: "Lex" },
+      { name: "Team section", status: "done", who: "Lex" },
+      { name: "v1 delivered to Alfredo", status: "done", who: "Lex" },
+      { name: "Client feedback & revisions", status: "in progress", who: "Lex" },
+    ]
+  },
+  {
+    name: "Escape to GHC Website", client: "CRRE Labs", status: "active",
+    desc: "Island guide & vacation rental marketing site for Great Harbour Cay, Bahamas",
+    tasks: [
+      { name: "Site build & blog migration", status: "done", who: "Lex" },
+      { name: "Property landing pages", status: "done", who: "Lex" },
+      { name: "Restaurant section", status: "done", who: "Lex" },
+      { name: "Real images & polish", status: "in progress", who: "Lex" },
+      { name: "Domain migration", status: "to do", who: "Carlos" },
+    ]
+  },
+  {
+    name: "Mission Control", client: "CRRE Labs", status: "active",
+    desc: "Internal tooling dashboard — Site Monitor, Project Tracker, DNS Manager",
+    tasks: [
+      { name: "Dashboard & layout", status: "done", who: "Lex" },
+      { name: "Site Monitor", status: "done", who: "Lex" },
+      { name: "Project Tracker", status: "done", who: "Lex" },
+      { name: "DNS Manager", status: "done", who: "Lex" },
+      { name: "ClickUp API integration", status: "to do", who: "Lex" },
+    ]
+  }
+];
+
+function renderProjects() {
+  const cf = document.getElementById('filter-client').value;
+  const sf = document.getElementById('filter-status').value;
+  const filtered = PROJECTS.filter(p => (cf==='all'||p.client===cf) && (sf==='all'||p.status===sf));
+
+  const statusBadge = { active: 'bg-ok/10 text-ok', 'in review': 'bg-warn/10 text-warn', completed: 'bg-accent/10 text-accent', paused: 'bg-muted/10 text-muted' };
+  const taskBadge = { 'to do': 'bg-muted/20 text-muted', 'in progress': 'bg-accent/10 text-accent', done: 'bg-ok/10 text-ok' };
+
+  document.getElementById('projects-list').innerHTML = filtered.map(p => {
+    const done = p.tasks.filter(t=>t.status==='done').length;
+    const pct = Math.round(done/p.tasks.length*100);
+    return `
+    <div class="bg-bg-card rounded-xl border border-edge p-5 md:p-6">
+      <div class="flex flex-col md:flex-row md:items-start justify-between mb-3 gap-2">
+        <div>
+          <h3 class="text-base md:text-lg font-semibold">${p.name}</h3>
+          <p class="text-sm text-muted">${p.client}</p>
+        </div>
+        <span class="text-xs px-3 py-1 rounded-full font-medium ${statusBadge[p.status]} self-start">${p.status}</span>
+      </div>
+      <p class="text-sm text-muted mb-4">${p.desc}</p>
+      <div class="mb-4">
+        <div class="flex justify-between text-xs text-muted mb-1">
+          <span>Progress</span><span>${done}/${p.tasks.length} (${pct}%)</span>
+        </div>
+        <div class="w-full bg-bg rounded-full h-2"><div class="bg-accent h-2 rounded-full" style="width:${pct}%"></div></div>
+      </div>
+      <div class="space-y-2">
+        ${p.tasks.map(t => `
+          <div class="flex items-center justify-between py-2 px-3 rounded-lg bg-bg/50">
+            <div class="flex items-center gap-2 md:gap-3">
+              <span class="text-xs px-2 py-0.5 rounded font-medium ${taskBadge[t.status]} whitespace-nowrap">${t.status}</span>
+              <span class="text-xs md:text-sm">${t.name}</span>
+            </div>
+            <span class="text-xs text-muted hidden md:inline">${t.who}</span>
+          </div>
+        `).join('')}
+      </div>
+    </div>`;
+  }).join('');
+
+  // Dashboard projects summary
+  document.getElementById('dash-projects').innerHTML = PROJECTS.map(p => {
+    const statusBadge2 = { active: 'bg-accent/10 text-accent', 'in review': 'bg-warn/10 text-warn', completed: 'bg-ok/10 text-ok', paused: 'bg-muted/10 text-muted' };
+    return `
+    <div class="flex items-center justify-between">
+      <div><p class="text-sm font-medium">${p.name}</p><p class="text-xs text-muted">${p.client}</p></div>
+      <span class="text-xs px-2 py-1 rounded-full ${statusBadge2[p.status]}">${p.status}</span>
+    </div>`;
+  }).join('');
+}
+
+// ===== DNS =====
+const DNS_PRESETS = ["crrelabs.com","downtown1st.com","22biscaynebay.com","melogroup.com","beachvillaghc.com","greenflashghc.com","escapetoghc.com"];
+const GITHUB_IPS = ["185.199.108.153","185.199.109.153","185.199.110.153","185.199.111.153"];
+
+document.getElementById('dns-presets').innerHTML = DNS_PRESETS.map(d =>
+  `<button onclick="document.getElementById('dns-input').value='${d}';dnsLookup('${d}')" class="px-3 py-1.5 bg-bg-card border border-edge rounded-lg text-xs text-muted hover:text-white hover:border-accent/30">${d}</button>`
+).join('');
+
+async function dnsLookup(domain) {
+  if(!domain) return;
+  const container = document.getElementById('dns-results');
+
+  // Add loading card at top
+  const loadId = 'dns-'+domain.replace(/\./g,'-');
+  const existing = document.getElementById(loadId);
+  if(existing) existing.remove();
+
+  const card = document.createElement('div');
+  card.id = loadId;
+  card.className = 'bg-bg-card rounded-xl border border-edge p-6 animate-pulse';
+  card.innerHTML = `<p class="text-muted">Looking up ${domain}...</p>`;
+  container.prepend(card);
+
+  try {
+    // Use Google DNS API
+    const [aRes, mxRes, nsRes, txtRes, cnameRes] = await Promise.all([
+      fetch(`https://dns.google/resolve?name=${domain}&type=A`).then(r=>r.json()).catch(()=>({})),
+      fetch(`https://dns.google/resolve?name=${domain}&type=MX`).then(r=>r.json()).catch(()=>({})),
+      fetch(`https://dns.google/resolve?name=${domain}&type=NS`).then(r=>r.json()).catch(()=>({})),
+      fetch(`https://dns.google/resolve?name=${domain}&type=TXT`).then(r=>r.json()).catch(()=>({})),
+      fetch(`https://dns.google/resolve?name=${domain}&type=CNAME`).then(r=>r.json()).catch(()=>({})),
+    ]);
+
+    const aRecords = (aRes.Answer||[]).filter(r=>r.type===1).map(r=>r.data);
+    const mxRecords = (mxRes.Answer||[]).filter(r=>r.type===15).map(r=>r.data);
+    const nsRecords = (nsRes.Answer||[]).filter(r=>r.type===2).map(r=>r.data);
+    const txtRecords = (txtRes.Answer||[]).filter(r=>r.type===16).map(r=>r.data);
+    const cnameRecords = (cnameRes.Answer||[]).filter(r=>r.type===5).map(r=>r.data);
+
+    const isGH = aRecords.some(ip => GITHUB_IPS.includes(ip)) || cnameRecords.some(c => c.includes('github.io'));
+
+    const recBlock = (label, recs) => {
+      if(!recs.length) return '';
+      return `<div><p class="text-xs text-muted uppercase tracking-wider mb-1">${label}</p>${recs.map(r=>`<code class="block text-xs bg-bg rounded px-2 py-1 mb-1 break-all">${r}</code>`).join('')}</div>`;
+    };
+
+    card.className = 'bg-bg-card rounded-xl border border-edge p-5 md:p-6';
+    card.innerHTML = `
+      <div class="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
+        <div class="flex items-center gap-3 flex-wrap">
+          <h3 class="text-base md:text-lg font-semibold">${domain}</h3>
+          ${isGH ? '<span class="text-xs px-2 py-1 rounded-full bg-accent/10 text-accent">GitHub Pages</span>' : ''}
+        </div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        ${recBlock('A Records', aRecords)}
+        ${recBlock('CNAME', cnameRecords)}
+        ${recBlock('NS', nsRecords)}
+        ${recBlock('MX', mxRecords)}
+        ${recBlock('TXT', txtRecords)}
+      </div>
+    `;
+  } catch(e) {
+    card.className = 'bg-bg-card rounded-xl border border-edge p-6';
+    card.innerHTML = `<p class="text-bad">Failed to look up ${domain}: ${e.message}</p>`;
+  }
+}
+
+async function dnsCheckAll() {
+  for(const d of DNS_PRESETS) {
+    await dnsLookup(d);
+  }
+}
+
+// ===== INIT =====
+renderProjects();
+checkAllSites();
+</script>
+</body>
+</html>
