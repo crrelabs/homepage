@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iris AI — AI Property Management Assistant | CRRE Labs</title>
+<meta name="description" content="Iris AI automates rent collections, delinquency tracking, property onboarding, document generation, and more — so your property management team can focus on growing the portfolio.">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        accent: '#3aa0ff',
+        'accent-cyan': '#00e5ff',
+        dark: '#0a0e1a',
+        'dark-card': '#111827',
+      },
+      fontFamily: {
+        display: ['Space Grotesk', 'sans-serif'],
+        body: ['Inter', 'sans-serif'],
+      }
+    }
+  }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#0a0e1a;color:#e2e8f0;overflow-x:hidden}
+
+.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0a0e1a 0%,#0f1b3d 25%,#0a0e1a 50%,#0d1f3c 75%,#0a0e1a 100%);background-size:400% 400%;animation:gradientShift 12s ease infinite}
+@keyframes gradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+
+.grid-overlay{position:absolute;inset:0;background-image:linear-gradient(rgba(58,160,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(58,160,255,.04) 1px,transparent 1px);background-size:60px 60px}
+
+.orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:.15;animation:orbFloat 8s ease-in-out infinite}
+.orb-1{width:500px;height:500px;background:#3aa0ff;top:-100px;right:-100px}
+.orb-2{width:400px;height:400px;background:#00e5ff;bottom:-50px;left:-100px;animation-delay:4s}
+@keyframes orbFloat{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,-30px)}}
+
+.glow-text{text-shadow:0 0 40px rgba(58,160,255,.3)}
+.glass{background:rgba(17,24,39,.6);backdrop-filter:blur(16px);border:1px solid rgba(58,160,255,.1)}
+.glass:hover{border-color:rgba(58,160,255,.25)}
+.gradient-text{background:linear-gradient(135deg,#3aa0ff,#00e5ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.feature-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(58,160,255,.15),rgba(0,229,255,.1));border:1px solid rgba(58,160,255,.2);color:#3aa0ff;font-size:20px}
+.stat-glow{box-shadow:0 0 30px rgba(58,160,255,.08)}
+.step-line{position:absolute;left:28px;top:56px;bottom:0;width:2px;background:linear-gradient(to bottom,rgba(58,160,255,.3),transparent)}
+</style>
+</head>
+<body class="font-body">
+
+<!-- Nav -->
+<nav class="fixed top-0 w-full z-50 border-b border-white/5" style="background:rgba(10,14,26,.85);backdrop-filter:blur(12px)">
+  <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-3">
+      <img src="/logo.jpg" alt="CRRE Labs" class="w-8 h-8 rounded-lg">
+      <span class="font-display font-semibold text-lg">CRRE Labs</span>
+    </a>
+    <div class="hidden md:flex items-center gap-8 text-sm text-gray-400">
+      <a href="#features" class="hover:text-white transition">Features</a>
+      <a href="#how-it-works" class="hover:text-white transition">How It Works</a>
+      <a href="#contact" class="px-4 py-2 rounded-lg bg-accent/10 text-accent hover:bg-accent/20 transition font-medium">Get Started</a>
+    </div>
+    <button class="md:hidden text-gray-400" onclick="document.getElementById('mobile-nav').classList.toggle('hidden')">
+      <i class="fas fa-bars text-xl"></i>
+    </button>
+  </div>
+  <div id="mobile-nav" class="hidden md:hidden px-6 pb-4 space-y-3 text-sm">
+    <a href="#features" class="block text-gray-400 hover:text-white">Features</a>
+    <a href="#how-it-works" class="block text-gray-400 hover:text-white">How It Works</a>
+    <a href="#contact" class="block text-accent font-medium">Get Started</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+  <div class="hero-bg"></div>
+  <div class="grid-overlay"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <div class="relative z-10 max-w-4xl mx-auto px-6 text-center">
+    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm text-accent mb-8">
+      <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
+      AI-Powered Property Management
+    </div>
+
+    <h1 class="font-display text-5xl md:text-7xl font-bold leading-tight mb-6">
+      Meet <span class="gradient-text">Iris AI</span>
+    </h1>
+    <p class="text-xl md:text-2xl text-gray-400 leading-relaxed max-w-2xl mx-auto mb-8">
+      Your AI assistant property manager. She handles rent collections, delinquency tracking, document generation, and 13 other jobs — so your team can focus on growing the portfolio.
+    </p>
+
+    <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+      <a href="#contact" class="px-8 py-4 rounded-xl font-semibold text-white transition-all" style="background:linear-gradient(135deg,#3aa0ff,#0080e0);box-shadow:0 0 30px rgba(58,160,255,.3)">
+        Get Iris For Your Portfolio
+      </a>
+      <a href="#features" class="px-8 py-4 rounded-xl font-semibold glass text-gray-300 hover:text-white transition-all">
+        See What She Does
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Stats Bar -->
+<section class="relative z-10 -mt-10 mb-20">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="glass rounded-2xl p-6 text-center stat-glow">
+        <p class="font-display text-3xl md:text-4xl font-bold gradient-text">420+</p>
+        <p class="text-sm text-gray-400 mt-1">Units Managed</p>
+      </div>
+      <div class="glass rounded-2xl p-6 text-center stat-glow">
+        <p class="font-display text-3xl md:text-4xl font-bold gradient-text">13</p>
+        <p class="text-sm text-gray-400 mt-1">Automated Jobs</p>
+      </div>
+      <div class="glass rounded-2xl p-6 text-center stat-glow">
+        <p class="font-display text-3xl md:text-4xl font-bold gradient-text">&lt;$90</p>
+        <p class="text-sm text-gray-400 mt-1">Per Month</p>
+      </div>
+      <div class="glass rounded-2xl p-6 text-center stat-glow">
+        <p class="font-display text-3xl md:text-4xl font-bold gradient-text">0 hrs</p>
+        <p class="text-sm text-gray-400 mt-1">On Collections</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features -->
+<section id="features" class="py-20 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-16">
+      <h2 class="font-display text-3xl md:text-5xl font-bold mb-4">What Iris <span class="gradient-text">Handles</span></h2>
+      <p class="text-gray-400 text-lg max-w-2xl mx-auto">Every repetitive task your PM team dreads — automated, tracked, and escalated without human intervention.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <div class="glass rounded-2xl p-6 transition-all hover:-translate-y-1">
+        <div class="feature-icon mb-4"><i class="fas fa-money-bill-wave"></i></div>
+        <h3 class="font-display font-semibold text-lg mb-2">Automated Rent Collections</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">3-tier daily escalation system. Iris sends reminders, follows up on late payments, and escalates to notices — all automatically, every single day.</p>
+      </div>
+
+      <div class="glass rounded-2xl p-6 transition-all hover:-translate-y-1">
+        <div class="feature-icon mb-4"><i class="fas fa-chart-line"></i></div>
+        <h3 class="font-display font-semibold text-lg mb-2">Delinquency Tracking</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">Real-time tracking of who owes what, how long it's been outstanding, and what action has been taken. No tenant slips through the cracks.</p>
+      </div>
+
+      <div class="glass rounded-2xl p-6 transition-all hover:-translate-y-1">
+        <div class="feature-icon mb-4"><i class="fas fa-building"></i></div>
+        <h3 class="font-display font-semibold text-lg mb-2">Property Onboarding</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">New properties get set up in Buildium automatically — units, tenants, lease terms, and payment schedules configured without manual data entry.</p>
+      </div>
+
+      <div class="glass rounded-2xl p-6 transition-all hover:-translate-y-1">
+        <div class="feature-icon mb-4"><i class="fas fa-file-invoice-dollar"></i></div>
+        <h3 class="font-display font-semibold text-lg mb-2">Bill Entry & Processing</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">Bills from Monday.com are processed and entered into your accounting system. No copy-pasting, no missed invoices, no human error.</p>
+      </div>
+
+      <div class="glass rounded-2xl p-6 transition-all hover:-translate-y-1">
+        <div class="feature-icon mb-4"><i class="fas fa-file-contract"></i></div>
+        <h3 class="font-display font-semibold text-lg mb-2">Document Generation</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">Leases, addendums, notices, and renewals generated on demand. Iris pulls the data, fills the templates, and delivers ready-to-sign documents.</p>
+      </div>
+
+      <div class="glass rounded-2xl p-6 transition-all hover:-translate-y-1">
+        <div class="feature-icon mb-4"><i class="fas fa-envelope"></i></div>
+        <h3 class="font-display font-semibold text-lg mb-2">Email Automation</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">Tenant communications, owner reports, vendor coordination — Iris reads, drafts, and sends emails based on triggers and schedules you define.</p>
+      </div>
+
+      <div class="glass rounded-2xl p-6 transition-all hover:-translate-y-1">
+        <div class="feature-icon mb-4"><i class="fas fa-plug"></i></div>
+        <h3 class="font-display font-semibold text-lg mb-2">System Integrations</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">Google Drive, Monday.com, Buildium, email — Iris connects your existing tools so data flows between them without manual transfers.</p>
+      </div>
+
+      <div class="glass rounded-2xl p-6 transition-all hover:-translate-y-1">
+        <div class="feature-icon mb-4"><i class="fas fa-clipboard-check"></i></div>
+        <h3 class="font-display font-semibold text-lg mb-2">Section 8 Inspections</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">Tracks inspection schedules, deadlines, and compliance requirements for Section 8 properties. Never miss a housing authority deadline again.</p>
+      </div>
+
+      <div class="glass rounded-2xl p-6 transition-all hover:-translate-y-1">
+        <div class="feature-icon mb-4"><i class="fas fa-search-dollar"></i></div>
+        <h3 class="font-display font-semibold text-lg mb-2">Deal Due Diligence</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">Evaluating a new acquisition? Iris pulls comps, runs numbers, and organizes due diligence documents so you can make faster, smarter decisions.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- How It Works -->
+<section id="how-it-works" class="py-20 px-6">
+  <div class="max-w-4xl mx-auto">
+    <div class="text-center mb-16">
+      <h2 class="font-display text-3xl md:text-5xl font-bold mb-4">How It <span class="gradient-text">Works</span></h2>
+      <p class="text-gray-400 text-lg">Three steps from introduction to fully automated property management.</p>
+    </div>
+
+    <div class="space-y-12">
+
+      <div class="flex gap-6 items-start relative">
+        <div class="flex-shrink-0 w-14 h-14 rounded-2xl flex items-center justify-center font-display font-bold text-xl" style="background:linear-gradient(135deg,rgba(58,160,255,.2),rgba(0,229,255,.1));border:1px solid rgba(58,160,255,.3);color:#3aa0ff">1</div>
+        <div class="step-line"></div>
+        <div class="pt-1">
+          <h3 class="font-display font-semibold text-xl mb-2">We Learn Your Operations</h3>
+          <p class="text-gray-400 leading-relaxed">We map your current workflows — how you collect rent, process bills, onboard properties, handle delinquencies. Every PM company is different, and Iris is configured to match how you actually work.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-6 items-start relative">
+        <div class="flex-shrink-0 w-14 h-14 rounded-2xl flex items-center justify-center font-display font-bold text-xl" style="background:linear-gradient(135deg,rgba(58,160,255,.2),rgba(0,229,255,.1));border:1px solid rgba(58,160,255,.3);color:#3aa0ff">2</div>
+        <div class="step-line"></div>
+        <div class="pt-1">
+          <h3 class="font-display font-semibold text-xl mb-2">Iris Gets Configured</h3>
+          <p class="text-gray-400 leading-relaxed">We connect Iris to your systems — Buildium, Monday.com, Google Drive, email — and set up your automated jobs. Collections schedules, escalation rules, document templates, reporting cadences. All customized to your portfolio.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-6 items-start">
+        <div class="flex-shrink-0 w-14 h-14 rounded-2xl flex items-center justify-center font-display font-bold text-xl" style="background:linear-gradient(135deg,rgba(58,160,255,.2),rgba(0,229,255,.1));border:1px solid rgba(58,160,255,.3);color:#3aa0ff">3</div>
+        <div class="pt-1">
+          <h3 class="font-display font-semibold text-xl mb-2">Iris Goes to Work</h3>
+          <p class="text-gray-400 leading-relaxed">She runs daily — collecting rent, tracking delinquencies, processing bills, generating documents. You get reports and alerts. Your team gets their time back. Scale your portfolio without scaling your headcount.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Who It's For -->
+<section class="py-20 px-6">
+  <div class="max-w-4xl mx-auto">
+    <div class="glass rounded-3xl p-8 md:p-12">
+      <h2 class="font-display text-2xl md:text-3xl font-bold mb-4">Built for Growing PM Companies</h2>
+      <p class="text-gray-400 leading-relaxed mb-6">Iris is designed for property management companies running 50–500 units who are spending too many hours on repetitive admin work. If your team is buried in rent collection follow-ups, manual bill entry, and document prep — Iris replaces those hours with automation that runs every day without being asked.</p>
+      <div class="grid sm:grid-cols-2 gap-4 text-sm">
+        <div class="flex items-center gap-3 text-gray-300"><i class="fas fa-check text-accent"></i> Currently managing 50–500 units</div>
+        <div class="flex items-center gap-3 text-gray-300"><i class="fas fa-check text-accent"></i> Using Buildium for PM software</div>
+        <div class="flex items-center gap-3 text-gray-300"><i class="fas fa-check text-accent"></i> Spending hours on collections</div>
+        <div class="flex items-center gap-3 text-gray-300"><i class="fas fa-check text-accent"></i> Manual bill entry from Monday.com</div>
+        <div class="flex items-center gap-3 text-gray-300"><i class="fas fa-check text-accent"></i> Generating docs by hand</div>
+        <div class="flex items-center gap-3 text-gray-300"><i class="fas fa-check text-accent"></i> Ready to scale without hiring</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="contact" class="py-20 px-6">
+  <div class="max-w-3xl mx-auto text-center">
+    <h2 class="font-display text-3xl md:text-5xl font-bold mb-6">Ready to Put Iris <span class="gradient-text">to Work</span>?</h2>
+    <p class="text-gray-400 text-lg mb-8 leading-relaxed">Tell us about your portfolio and we'll show you exactly which tasks Iris can take off your plate — and what it'll cost. Spoiler: it's less than one hour of employee time per month.</p>
+    <a href="mailto:carlos@crrelabs.com?subject=Iris%20AI%20—%20Interested" class="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-semibold text-white text-lg transition-all" style="background:linear-gradient(135deg,#3aa0ff,#0080e0);box-shadow:0 0 30px rgba(58,160,255,.3)">
+      <i class="fas fa-envelope"></i>
+      carlos@crrelabs.com
+    </a>
+    <p class="text-gray-500 text-sm mt-4">We typically respond within 24 hours.</p>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="border-t border-white/5 py-12 px-6">
+  <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+    <div class="flex items-center gap-3">
+      <img src="/logo.jpg" alt="CRRE Labs" class="w-6 h-6 rounded">
+      <span class="text-sm text-gray-500">CRRE Labs LLC · Pinecrest, Miami FL</span>
+    </div>
+    <div class="flex items-center gap-6 text-sm text-gray-500">
+      <a href="/" class="hover:text-white transition">Home</a>
+      <a href="/dashboard/" class="hover:text-white transition">Dashboard</a>
+      <a href="mailto:carlos@crrelabs.com" class="hover:text-white transition">Contact</a>
+    </div>
+    <p class="text-xs text-gray-600">&copy; 2026 CRRE Labs LLC</p>
+  </div>
+</footer>
+
+</body>
+</html>
