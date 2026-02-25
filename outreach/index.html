@@ -103,7 +103,7 @@ body { background: #0a0f1a; font-family: 'Inter', sans-serif; }
             <th class="py-2 px-2 cursor-pointer sort-arrow hidden md:table-cell" data-col="phone">Phone</th>
             <th class="py-2 px-2 cursor-pointer sort-arrow hidden lg:table-cell" data-col="address">Address</th>
             <th class="py-2 px-2 cursor-pointer sort-arrow" data-col="status">Status</th>
-            <th class="py-2 px-2 hidden md:table-cell">Demo</th>
+            <th class="py-2 px-2 hidden md:table-cell">Demo Site</th>
             <th class="py-2 px-2 cursor-pointer sort-arrow hidden lg:table-cell" data-col="sent_at">Sent</th>
             <th class="py-2 px-2 cursor-pointer sort-arrow hidden lg:table-cell" data-col="replied_at">Replied</th>
           </tr>
@@ -256,7 +256,7 @@ function renderTable() {
   const page = filteredLeads.slice(start, start + PER_PAGE);
   tbody.innerHTML = page.map(l => {
     const badge = STATUS_COLORS[l.status] || STATUS_COLORS.pending;
-    const demo = l.demo_url ? `<a href="${l.demo_url}" target="_blank" class="text-gold-500 hover:underline">View</a>` : '-';
+    const demo = l.demo_url ? `<a href="${l.demo_url}" target="_blank" class="inline-flex items-center gap-1 text-gold-500 hover:text-gold-400 hover:underline font-medium">View <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a>` : '-';
     const sent = l.sent_at ? new Date(l.sent_at).toLocaleDateString() : '-';
     const replied = l.replied_at ? new Date(l.replied_at).toLocaleDateString() : '-';
     return `<tr class="border-b border-gray-700/30 hover:bg-navy-700/50">
