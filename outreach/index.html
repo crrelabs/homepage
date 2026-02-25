@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CRRE Labs Outreach Dashboard</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        navy: { 900: '#0a0f1a', 800: '#111827', 700: '#1a2332', 600: '#243044' },
+        gold: { 400: '#d4a843', 500: '#c9952c', 600: '#b07f1e', 700: '#956b18' }
+      },
+      fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] }
+    }
+  }
+}
+</script>
+<style>
+body { background: #0a0f1a; font-family: 'Inter', sans-serif; }
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #111827; }
+::-webkit-scrollbar-thumb { background: #374151; border-radius: 3px; }
+.funnel-bar { background: linear-gradient(90deg, #c9952c, #d4a843); transition: width 0.8s ease; }
+.card-glow { box-shadow: 0 0 0 1px rgba(201,149,44,0.1); }
+.card-glow:hover { box-shadow: 0 0 0 1px rgba(201,149,44,0.3), 0 4px 20px rgba(201,149,44,0.1); }
+.donut { border-radius: 50%; position: relative; }
+.sort-arrow::after { content: '↕'; opacity: 0.3; margin-left: 4px; font-size: 10px; }
+.sort-asc::after { content: '↑'; opacity: 1; }
+.sort-desc::after { content: '↓'; opacity: 1; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.fade-in { animation: fadeIn 0.4s ease forwards; }
+</style>
+</head>
+<body class="text-gray-200 min-h-screen">
+<div id="app" class="max-w-7xl mx-auto px-4 py-6 space-y-6">
+  <!-- Header -->
+  <header class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+    <div>
+      <h1 class="text-2xl sm:text-3xl font-bold text-white">CRRE Labs <span class="text-gold-500">Outreach Dashboard</span></h1>
+      <p class="text-sm text-gray-500 mt-1">SMS Campaign Performance</p>
+    </div>
+    <div id="sync-badge" class="text-xs text-gray-500 bg-navy-700 px-3 py-1.5 rounded-full">Loading...</div>
+  </header>
+
+  <!-- Funnel -->
+  <section class="bg-navy-800 rounded-xl p-5 fade-in card-glow">
+    <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">Pipeline Funnel</h2>
+    <div id="funnel" class="space-y-2"></div>
+  </section>
+
+  <!-- Metrics Cards -->
+  <section id="metrics" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3"></section>
+
+  <!-- Charts Row -->
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+    <!-- Daily Chart -->
+    <section class="lg:col-span-2 bg-navy-800 rounded-xl p-5 card-glow">
+      <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">Daily Activity</h2>
+      <div id="daily-chart" class="flex items-end gap-1 h-48 overflow-x-auto"></div>
+      <div class="flex gap-4 mt-3 text-xs text-gray-500">
+        <span><span class="inline-block w-3 h-3 rounded-sm bg-gold-500 mr-1"></span>Sent</span>
+        <span><span class="inline-block w-3 h-3 rounded-sm bg-emerald-500 mr-1"></span>Delivered</span>
+        <span><span class="inline-block w-3 h-3 rounded-sm bg-blue-400 mr-1"></span>Replied</span>
+      </div>
+    </section>
+
+    <!-- Donut -->
+    <section class="bg-navy-800 rounded-xl p-5 card-glow flex flex-col items-center justify-center">
+      <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">Phone Type Split</h2>
+      <div id="donut-wrap" class="relative w-40 h-40 mb-3"></div>
+      <div id="donut-legend" class="flex gap-4 text-xs text-gray-400"></div>
+    </section>
+  </div>
+
+  <!-- Lead Table -->
+  <section class="bg-navy-800 rounded-xl p-5 card-glow">
+    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4">
+      <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wider">Leads</h2>
+      <div class="flex gap-2 w-full sm:w-auto">
+        <input id="search" type="text" placeholder="Search..." class="bg-navy-700 text-sm text-gray-200 placeholder-gray-500 px-3 py-1.5 rounded-lg border border-gray-700 focus:border-gold-500 focus:outline-none flex-1 sm:w-56">
+        <select id="status-filter" class="bg-navy-700 text-sm text-gray-300 px-3 py-1.5 rounded-lg border border-gray-700 focus:border-gold-500 focus:outline-none">
+          <option value="">All Status</option>
+          <option value="pending">Pending</option>
+          <option value="sent">Sent</option>
+          <option value="delivered">Delivered</option>
+          <option value="replied">Replied</option>
+          <option value="opted-out">Opted Out</option>
+          <option value="landline">Landline</option>
+          <option value="converted">Converted</option>
+        </select>
+      </div>
+    </div>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm text-left">
+        <thead>
+          <tr class="text-xs text-gray-500 uppercase border-b border-gray-700/50">
+            <th class="py-2 px-2 cursor-pointer sort-arrow" data-col="business_name">Business</th>
+            <th class="py-2 px-2 cursor-pointer sort-arrow" data-col="category">Category</th>
+            <th class="py-2 px-2 cursor-pointer sort-arrow hidden md:table-cell" data-col="phone">Phone</th>
+            <th class="py-2 px-2 cursor-pointer sort-arrow hidden lg:table-cell" data-col="address">Address</th>
+            <th class="py-2 px-2 cursor-pointer sort-arrow" data-col="status">Status</th>
+            <th class="py-2 px-2 hidden md:table-cell">Demo</th>
+            <th class="py-2 px-2 cursor-pointer sort-arrow hidden lg:table-cell" data-col="sent_at">Sent</th>
+            <th class="py-2 px-2 cursor-pointer sort-arrow hidden lg:table-cell" data-col="replied_at">Replied</th>
+          </tr>
+        </thead>
+        <tbody id="lead-tbody"></tbody>
+      </table>
+    </div>
+    <div id="pagination" class="flex items-center justify-between mt-3 text-xs text-gray-500"></div>
+  </section>
+</div>
+
+<script>
+const STATUS_COLORS = {
+  pending: 'bg-gray-600 text-gray-200',
+  sent: 'bg-blue-600 text-blue-100',
+  delivered: 'bg-green-600 text-green-100',
+  replied: 'bg-yellow-600 text-yellow-100',
+  'opted-out': 'bg-red-600 text-red-100',
+  landline: 'bg-purple-600 text-purple-100',
+  converted: 'bg-emerald-500 text-white',
+};
+const PER_PAGE = 50;
+let data = null, filteredLeads = [], sortCol = '', sortDir = 1, currentPage = 0;
+
+async function init() {
+  try {
+    const r = await fetch('data.json');
+    if (!r.ok) throw new Error('Missing');
+    data = await r.json();
+  } catch {
+    data = { updated_at: '', summary: {}, daily_sends: [], leads: [] };
+  }
+  const s = data.summary || {};
+  // defaults
+  ['total_leads','phone_looked_up','mobile','landline','sms_sent','sms_delivered','sms_failed','replies_received','opted_out','converted'].forEach(k => { if (!s[k]) s[k] = 0; });
+  data.summary = s;
+  renderSync();
+  renderFunnel();
+  renderMetrics();
+  renderDailyChart();
+  renderDonut();
+  filteredLeads = [...(data.leads || [])];
+  renderTable();
+  bindEvents();
+}
+
+function renderSync() {
+  const el = document.getElementById('sync-badge');
+  if (!data.updated_at) { el.textContent = 'No data'; return; }
+  const d = new Date(data.updated_at);
+  const ago = Math.floor((Date.now() - d) / 60000);
+  const txt = ago < 1 ? 'Just now' : ago < 60 ? `${ago}m ago` : ago < 1440 ? `${Math.floor(ago/60)}h ago` : `${Math.floor(ago/1440)}d ago`;
+  el.innerHTML = `<span class="inline-block w-1.5 h-1.5 rounded-full ${ago < 60 ? 'bg-green-400' : ago < 1440 ? 'bg-yellow-400' : 'bg-red-400'} mr-1.5"></span>Last synced: ${txt}`;
+}
+
+function renderFunnel() {
+  const s = data.summary;
+  const steps = [
+    ['Total Leads', s.total_leads],
+    ['Phone Lookup', s.phone_looked_up],
+    ['Mobile', s.mobile],
+    ['SMS Sent', s.sms_sent],
+    ['Delivered', s.sms_delivered],
+    ['Replied', s.replies_received],
+    ['Converted', s.converted],
+  ];
+  const max = Math.max(...steps.map(x => x[1]), 1);
+  const el = document.getElementById('funnel');
+  el.innerHTML = steps.map(([label, val], i) => {
+    const pct = (val / max * 100).toFixed(0);
+    const convPct = i > 0 && steps[i-1][1] > 0 ? ((val / steps[i-1][1]) * 100).toFixed(1) + '%' : '';
+    return `<div class="flex items-center gap-3">
+      <div class="w-24 text-xs text-gray-400 text-right shrink-0">${label}</div>
+      <div class="flex-1 bg-navy-700 rounded-full h-7 overflow-hidden relative">
+        <div class="funnel-bar h-full rounded-full flex items-center px-3" style="width:${Math.max(pct, 2)}%">
+          <span class="text-xs font-semibold text-navy-900 whitespace-nowrap">${val.toLocaleString()}</span>
+        </div>
+      </div>
+      <div class="w-12 text-xs text-gray-500 shrink-0">${convPct}</div>
+    </div>`;
+  }).join('');
+}
+
+function renderMetrics() {
+  const s = data.summary;
+  const delivRate = s.sms_sent > 0 ? ((s.sms_delivered / s.sms_sent) * 100).toFixed(1) : '0';
+  const respRate = s.sms_delivered > 0 ? ((s.replies_received / s.sms_delivered) * 100).toFixed(1) : '0';
+  const optRate = s.sms_sent > 0 ? ((s.opted_out / s.sms_sent) * 100).toFixed(1) : '0';
+  const cards = [
+    ['Total Leads', s.total_leads.toLocaleString(), '📋'],
+    ['SMS Sent', `${s.sms_sent.toLocaleString()} <span class="text-xs text-gray-400">/ ${delivRate}% del.</span>`, '📤'],
+    ['Response Rate', `${respRate}%`, '💬'],
+    ['Opt-out Rate', `${optRate}%`, '🚫'],
+    ['Mobile / Landline', `${s.mobile} / ${s.landline}`, '📱'],
+    ['Conversions', s.converted.toLocaleString(), '🏆'],
+  ];
+  document.getElementById('metrics').innerHTML = cards.map(([label, val, icon]) =>
+    `<div class="bg-navy-800 rounded-xl p-4 card-glow fade-in">
+      <div class="text-lg mb-1">${icon}</div>
+      <div class="text-xl font-bold text-white">${val}</div>
+      <div class="text-xs text-gray-500 mt-1">${label}</div>
+    </div>`
+  ).join('');
+}
+
+function renderDailyChart() {
+  const days = data.daily_sends || [];
+  if (!days.length) { document.getElementById('daily-chart').innerHTML = '<p class="text-gray-500 text-sm m-auto">No data</p>'; return; }
+  const max = Math.max(...days.map(d => d.sent), 1);
+  document.getElementById('daily-chart').innerHTML = days.map(d => {
+    const h = (d.sent / max * 100).toFixed(0);
+    const hd = (d.delivered / max * 100).toFixed(0);
+    const hr = (d.replied / max * 100).toFixed(0);
+    const label = d.date.slice(5);
+    return `<div class="flex flex-col items-center flex-1 min-w-[28px] gap-0.5">
+      <div class="w-full flex flex-col items-center justify-end h-40">
+        <div class="w-full flex gap-px justify-center items-end h-full">
+          <div class="w-1/3 bg-gold-500 rounded-t-sm" style="height:${h}%" title="Sent: ${d.sent}"></div>
+          <div class="w-1/3 bg-emerald-500 rounded-t-sm" style="height:${hd}%" title="Delivered: ${d.delivered}"></div>
+          <div class="w-1/3 bg-blue-400 rounded-t-sm" style="height:${Math.max(hr,2)}%" title="Replied: ${d.replied}"></div>
+        </div>
+      </div>
+      <span class="text-[10px] text-gray-500 mt-1">${label}</span>
+    </div>`;
+  }).join('');
+}
+
+function renderDonut() {
+  const m = data.summary.mobile || 0, l = data.summary.landline || 0;
+  const total = m + l;
+  if (!total) { document.getElementById('donut-wrap').innerHTML = '<p class="text-gray-500 text-sm absolute inset-0 flex items-center justify-center">No data</p>'; return; }
+  const mPct = (m / total * 100).toFixed(1);
+  const lPct = (100 - mPct).toFixed(1);
+  const mDeg = (m / total * 360).toFixed(0);
+  document.getElementById('donut-wrap').innerHTML = `
+    <div class="w-40 h-40 rounded-full" style="background:conic-gradient(#c9952c 0deg ${mDeg}deg, #7c3aed ${mDeg}deg 360deg)"></div>
+    <div class="absolute inset-0 flex items-center justify-center">
+      <div class="w-24 h-24 rounded-full bg-navy-800 flex items-center justify-center">
+        <span class="text-lg font-bold text-white">${total}</span>
+      </div>
+    </div>`;
+  document.getElementById('donut-legend').innerHTML = `
+    <span><span class="inline-block w-3 h-3 rounded-sm bg-gold-500 mr-1"></span>Mobile ${mPct}%</span>
+    <span><span class="inline-block w-3 h-3 rounded-sm bg-purple-600 mr-1"></span>Landline ${lPct}%</span>`;
+}
+
+function renderTable() {
+  const tbody = document.getElementById('lead-tbody');
+  const start = currentPage * PER_PAGE;
+  const page = filteredLeads.slice(start, start + PER_PAGE);
+  tbody.innerHTML = page.map(l => {
+    const badge = STATUS_COLORS[l.status] || STATUS_COLORS.pending;
+    const demo = l.demo_url ? `<a href="${l.demo_url}" target="_blank" class="text-gold-500 hover:underline">View</a>` : '-';
+    const sent = l.sent_at ? new Date(l.sent_at).toLocaleDateString() : '-';
+    const replied = l.replied_at ? new Date(l.replied_at).toLocaleDateString() : '-';
+    return `<tr class="border-b border-gray-700/30 hover:bg-navy-700/50">
+      <td class="py-2 px-2 font-medium text-white">${l.business_name || '-'}</td>
+      <td class="py-2 px-2 text-gray-400">${l.category || '-'}</td>
+      <td class="py-2 px-2 text-gray-400 hidden md:table-cell">${l.phone || '-'}</td>
+      <td class="py-2 px-2 text-gray-400 hidden lg:table-cell text-xs">${l.address || '-'}</td>
+      <td class="py-2 px-2"><span class="px-2 py-0.5 rounded-full text-xs font-medium ${badge}">${l.status}</span></td>
+      <td class="py-2 px-2 hidden md:table-cell">${demo}</td>
+      <td class="py-2 px-2 text-gray-400 hidden lg:table-cell text-xs">${sent}</td>
+      <td class="py-2 px-2 text-gray-400 hidden lg:table-cell text-xs">${replied}</td>
+    </tr>`;
+  }).join('');
+
+  const totalPages = Math.ceil(filteredLeads.length / PER_PAGE);
+  document.getElementById('pagination').innerHTML = `
+    <span>Showing ${filteredLeads.length ? start+1 : 0}-${Math.min(start+PER_PAGE, filteredLeads.length)} of ${filteredLeads.length}</span>
+    <div class="flex gap-1">
+      ${Array.from({length: totalPages}, (_, i) =>
+        `<button onclick="goPage(${i})" class="px-2 py-1 rounded ${i === currentPage ? 'bg-gold-500 text-navy-900 font-bold' : 'bg-navy-700 hover:bg-navy-600'}">${i+1}</button>`
+      ).join('')}
+    </div>`;
+}
+
+function goPage(p) { currentPage = p; renderTable(); }
+
+function applyFilters() {
+  const q = document.getElementById('search').value.toLowerCase();
+  const s = document.getElementById('status-filter').value;
+  filteredLeads = (data.leads || []).filter(l => {
+    if (s && l.status !== s) return false;
+    if (q && !(l.business_name||'').toLowerCase().includes(q) && !(l.category||'').toLowerCase().includes(q) && !(l.phone||'').includes(q) && !(l.address||'').toLowerCase().includes(q)) return false;
+    return true;
+  });
+  if (sortCol) doSort(false);
+  currentPage = 0;
+  renderTable();
+}
+
+function doSort(toggle = true) {
+  if (toggle) sortDir = sortDir === 1 ? -1 : 1;
+  filteredLeads.sort((a, b) => {
+    const av = (a[sortCol] || '').toString().toLowerCase();
+    const bv = (b[sortCol] || '').toString().toLowerCase();
+    return av < bv ? -sortDir : av > bv ? sortDir : 0;
+  });
+}
+
+function bindEvents() {
+  document.getElementById('search').addEventListener('input', applyFilters);
+  document.getElementById('status-filter').addEventListener('change', applyFilters);
+  document.querySelectorAll('th[data-col]').forEach(th => {
+    th.addEventListener('click', () => {
+      document.querySelectorAll('th[data-col]').forEach(t => t.classList.remove('sort-asc', 'sort-desc'));
+      const col = th.dataset.col;
+      if (sortCol === col) { sortDir *= -1; } else { sortCol = col; sortDir = 1; }
+      th.classList.add(sortDir === 1 ? 'sort-asc' : 'sort-desc');
+      doSort(false);
+      currentPage = 0;
+      renderTable();
+    });
+  });
+}
+
+init();
+</script>
+</body>
+</html>
