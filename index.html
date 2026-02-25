@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CRRE Labs — Where Real Estate Meets AI</title>
-<meta name="description" content="CRRE Labs is Miami's AI innovation lab for real estate. We build AI-powered websites and intelligent agents that transform how properties are managed and marketed.">
+<title>CRRE Labs — AI-Driven Web Development & Automation</title>
+<meta name="description" content="CRRE Labs builds fast, secure websites and AI-powered automation for businesses. AI-driven web development, custom AI agents, and workflow automation — based in Miami.">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
 tailwind.config = {
@@ -28,63 +28,29 @@ tailwind.config = {
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
-/* Base */
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Inter',sans-serif;background:#0a0e1a;color:#e2e8f0;overflow-x:hidden}
-
-/* Animated gradient hero bg */
 .hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0a0e1a 0%,#0f1b3d 25%,#0a0e1a 50%,#0d1f3c 75%,#0a0e1a 100%);background-size:400% 400%;animation:gradientShift 12s ease infinite}
 @keyframes gradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-
-/* Grid overlay */
 .grid-overlay{position:absolute;inset:0;background-image:linear-gradient(rgba(58,160,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(58,160,255,.04) 1px,transparent 1px);background-size:60px 60px}
-
-/* Glow orbs */
 .orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:.15;animation:orbFloat 8s ease-in-out infinite}
-.orb-1{width:500px;height:500px;background:#3aa0ff;top:-100px;right:-100px;animation-delay:0s}
+.orb-1{width:500px;height:500px;background:#3aa0ff;top:-100px;right:-100px}
 .orb-2{width:400px;height:400px;background:#00e5ff;bottom:-50px;left:-100px;animation-delay:4s}
 @keyframes orbFloat{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,-30px)}}
-
-/* Glow text */
 .glow-text{text-shadow:0 0 40px rgba(58,160,255,.3)}
-
-/* Glass card */
 .glass{background:rgba(17,24,39,.6);backdrop-filter:blur(16px);border:1px solid rgba(58,160,255,.1)}
 .glass:hover{border-color:rgba(58,160,255,.3);box-shadow:0 0 30px rgba(58,160,255,.08)}
-
-/* Scroll reveal */
 .reveal{opacity:0;transform:translateY(30px);transition:all .7s cubic-bezier(.22,1,.36,1)}
 .reveal.visible{opacity:1;transform:translateY(0)}
-
-/* Accent line */
 .accent-line{height:3px;width:60px;background:linear-gradient(90deg,#3aa0ff,#00e5ff);border-radius:2px}
-
-/* Stat glow */
 .stat-num{background:linear-gradient(135deg,#3aa0ff,#00e5ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-
-/* Pulse dot */
 .pulse-dot{width:8px;height:8px;background:#00e5ff;border-radius:50%;animation:pulse 2s infinite}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(0,229,255,.5)}70%{box-shadow:0 0 0 10px rgba(0,229,255,0)}100%{box-shadow:0 0 0 0 rgba(0,229,255,0)}}
-
-/* Before/After cards */
-.before-card{border-left:3px solid #ef4444}
-.after-card{border-left:3px solid #22c55e}
-
-/* Button glow */
-.btn-glow{position:relative;overflow:hidden}
-.btn-glow::after{content:'';position:absolute;inset:-2px;background:linear-gradient(135deg,#3aa0ff,#00e5ff);border-radius:inherit;z-index:-1;opacity:0;transition:opacity .3s}
-.btn-glow:hover::after{opacity:1}
-
-/* Nav active */
 .nav-link{position:relative}
 .nav-link::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:2px;background:#3aa0ff;transition:width .3s}
 .nav-link:hover::after{width:100%}
-
-/* Mobile menu */
 #mobile-menu{transition:transform .3s ease,opacity .3s ease}
 #mobile-menu.hidden{transform:translateY(-10px);opacity:0;pointer-events:none}
-
-/* Form focus */
 input:focus,textarea:focus{outline:none;border-color:#3aa0ff;box-shadow:0 0 0 3px rgba(58,160,255,.15)}
 </style>
 </head>
@@ -100,19 +66,18 @@ input:focus,textarea:focus{outline:none;border-color:#3aa0ff;box-shadow:0 0 0 3p
   <nav class="hidden md:flex items-center gap-8">
     <a href="#about" class="nav-link text-sm text-gray-300 hover:text-white transition">About</a>
     <a href="#services" class="nav-link text-sm text-gray-300 hover:text-white transition">Services</a>
-    <a href="#innovation" class="nav-link text-sm text-gray-300 hover:text-white transition">Innovation</a>
+    <a href="#process" class="nav-link text-sm text-gray-300 hover:text-white transition">Process</a>
     <a href="#work" class="nav-link text-sm text-gray-300 hover:text-white transition">Work</a>
-    <a href="#contact" class="px-5 py-2 bg-accent/10 text-accent border border-accent/30 rounded-full text-sm font-medium hover:bg-accent/20 transition">Contact</a>
+    <a href="#contact" class="px-5 py-2 bg-accent/10 text-accent border border-accent/30 rounded-full text-sm font-medium hover:bg-accent/20 transition">Get a Quote</a>
   </nav>
   <button id="menu-btn" class="md:hidden text-white text-xl"><i class="fa-solid fa-bars"></i></button>
 </div>
-<!-- Mobile Menu -->
 <div id="mobile-menu" class="hidden md:hidden bg-dark-card/95 backdrop-blur-xl border-t border-white/5 px-6 py-6 space-y-4">
   <a href="#about" class="block text-gray-300 hover:text-white">About</a>
   <a href="#services" class="block text-gray-300 hover:text-white">Services</a>
-  <a href="#innovation" class="block text-gray-300 hover:text-white">Innovation</a>
+  <a href="#process" class="block text-gray-300 hover:text-white">Process</a>
   <a href="#work" class="block text-gray-300 hover:text-white">Work</a>
-  <a href="#contact" class="block text-accent">Contact</a>
+  <a href="#contact" class="block text-accent">Get a Quote</a>
 </div>
 </header>
 
@@ -125,17 +90,17 @@ input:focus,textarea:focus{outline:none;border-color:#3aa0ff;box-shadow:0 0 0 3p
 <div class="relative z-10 max-w-5xl mx-auto px-6 text-center">
   <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent/20 bg-accent/5 mb-8">
     <span class="pulse-dot"></span>
-    <span class="text-sm text-accent font-medium">The Innovation Lab for Real Estate</span>
+    <span class="text-sm text-accent font-medium">AI-Driven Web Development & Automation</span>
   </div>
   <h1 class="font-display text-5xl sm:text-6xl lg:text-8xl font-bold text-white leading-tight glow-text mb-6">
-    Where Real Estate<br>Meets <span class="bg-gradient-to-r from-accent to-accent-cyan bg-clip-text text-transparent">AI</span>
+    We Build Websites.<br><span class="bg-gradient-to-r from-accent to-accent-cyan bg-clip-text text-transparent">AI Runs Them.</span>
   </h1>
   <p class="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-    Miami's innovation lab reimagining how real estate companies build, operate, and grow — powered by artificial intelligence.
+    Fast, secure, modern websites built with AI — plus custom automation that handles the work your team shouldn't have to. Based in Miami, serving every industry.
   </p>
   <div class="flex flex-col sm:flex-row gap-4 justify-center">
-    <a href="#services" class="px-8 py-4 bg-accent text-white font-semibold rounded-full hover:bg-blue-500 transition shadow-lg shadow-accent/20">What We Build</a>
-    <a href="#contact" class="px-8 py-4 border border-white/20 text-white font-semibold rounded-full hover:border-white/40 hover:bg-white/5 transition">Get in Touch</a>
+    <a href="#services" class="px-8 py-4 bg-accent text-white font-semibold rounded-full hover:bg-blue-500 transition shadow-lg shadow-accent/20">See Our Services</a>
+    <a href="#contact" class="px-8 py-4 border border-white/20 text-white font-semibold rounded-full hover:border-white/40 hover:bg-white/5 transition">Get a Quote</a>
   </div>
 </div>
 <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
@@ -148,17 +113,17 @@ input:focus,textarea:focus{outline:none;border-color:#3aa0ff;box-shadow:0 0 0 3p
 <div class="max-w-7xl mx-auto px-6">
 <div class="reveal max-w-3xl mx-auto text-center mb-16">
   <div class="accent-line mx-auto mb-6"></div>
-  <h2 class="font-display text-3xl sm:text-5xl font-bold text-white mb-6">Built to Reimagine<br>Real Estate</h2>
-  <p class="text-gray-400 text-lg leading-relaxed">CRRE Labs is an AI-first innovation lab solving problems the real estate industry hasn't thought to solve yet. We combine deep industry knowledge with cutting-edge AI to build tools, websites, and agents that transform how properties are managed and marketed.</p>
+  <h2 class="font-display text-3xl sm:text-5xl font-bold text-white mb-6">Web Development<br>Powered by AI</h2>
+  <p class="text-gray-400 text-lg leading-relaxed">CRRE Labs is a web development and AI automation studio based in Miami. We build websites that are fast, secure, and low-maintenance — then layer on AI-powered tools that automate the repetitive work your business runs on. From restaurants to real estate, e-commerce to professional services — if your website is slow, insecure, or your team is drowning in manual tasks, we fix that.</p>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 reveal">
   <div class="glass rounded-2xl p-8 text-center transition-all duration-300">
-    <div class="stat-num font-display text-5xl font-bold mb-2">14</div>
-    <p class="text-gray-400">Property Sites Rebuilt</p>
+    <div class="stat-num font-display text-5xl font-bold mb-2">20+</div>
+    <p class="text-gray-400">Sites Delivered</p>
   </div>
   <div class="glass rounded-2xl p-8 text-center transition-all duration-300">
     <div class="stat-num font-display text-5xl font-bold mb-2">24/7</div>
-    <p class="text-gray-400">AI Agents Deployed</p>
+    <p class="text-gray-400">AI Monitoring & Automation</p>
   </div>
   <div class="glass rounded-2xl p-8 text-center transition-all duration-300">
     <div class="stat-num font-display text-5xl font-bold mb-2">MIA</div>
@@ -174,124 +139,178 @@ input:focus,textarea:focus{outline:none;border-color:#3aa0ff;box-shadow:0 0 0 3p
 <div class="max-w-7xl mx-auto px-6 relative z-10">
 <div class="reveal text-center mb-16">
   <div class="accent-line mx-auto mb-6"></div>
-  <h2 class="font-display text-3xl sm:text-5xl font-bold text-white mb-4">What We Build</h2>
-  <p class="text-gray-400 text-lg max-w-2xl mx-auto">Two core pillars powering the future of real estate technology.</p>
+  <h2 class="font-display text-3xl sm:text-5xl font-bold text-white mb-4">What We Do</h2>
+  <p class="text-gray-400 text-lg max-w-2xl mx-auto">Three services. One goal: make your business faster, more secure, and less dependent on manual work.</p>
 </div>
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-  <!-- Pillar 1 -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+  <!-- Service 1: Web Dev -->
   <div class="reveal glass rounded-2xl p-8 lg:p-10 transition-all duration-300">
     <div class="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center mb-6">
       <i class="fa-solid fa-code text-accent text-2xl"></i>
     </div>
-    <h3 class="font-display text-2xl font-bold text-white mb-4">AI-Powered Web Development</h3>
-    <p class="text-gray-400 leading-relaxed mb-6">We rebuild property websites from the ground up — replacing vulnerable WordPress sites with static, secure, lightning-fast pages built and monitored by AI.</p>
+    <h3 class="font-display text-2xl font-bold text-white mb-4">AI-Driven Web Development</h3>
+    <p class="text-gray-400 leading-relaxed mb-6">We build modern, lightning-fast websites using AI-assisted development. No bloated WordPress installs, no plugin vulnerabilities, no slow load times. Just clean, secure, high-performance sites that work on every device.</p>
     <ul class="space-y-3">
-      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Secure static sites with SSL &amp; GitHub Pages hosting</span></li>
-      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">AI monitoring for 24/7 uptime and security</span></li>
-      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Zero vulnerabilities, zero maintenance overhead</span></li>
-      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Proven with Miami's top property developers</span></li>
+      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Static sites with SSL — zero attack surface</span></li>
+      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Mobile-first, responsive design</span></li>
+      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">SEO-optimized from day one</span></li>
+      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Fast delivery — most sites live in days, not months</span></li>
     </ul>
   </div>
-  <!-- Pillar 2 -->
+
+  <!-- Service 2: AI Agents -->
   <div class="reveal glass rounded-2xl p-8 lg:p-10 transition-all duration-300">
     <div class="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center mb-6">
       <i class="fa-solid fa-robot text-accent text-2xl"></i>
     </div>
-    <h3 class="font-display text-2xl font-bold text-white mb-4">AI Agents for Real Estate</h3>
-    <p class="text-gray-400 leading-relaxed mb-6">Custom AI agents that handle repetitive property management tasks — think of them as digital team members that work around the clock and never miss a detail.</p>
+    <h3 class="font-display text-2xl font-bold text-white mb-4">Custom AI Agents</h3>
+    <p class="text-gray-400 leading-relaxed mb-6">AI-powered assistants built for your specific business. They handle customer communication, data entry, scheduling, follow-ups, and operations — running 24/7 without human intervention.</p>
     <ul class="space-y-3">
-      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Leasing assistance &amp; prospect qualification</span></li>
-      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Maintenance coordination &amp; ticket routing</span></li>
-      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Tenant communication &amp; response automation</span></li>
-      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Seamless integration with existing systems</span></li>
+      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Custom-trained on your business workflows</span></li>
+      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Email, chat, and task automation</span></li>
+      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Integrates with your existing tools</span></li>
+      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Scales without adding headcount</span></li>
     </ul>
+  </div>
+
+  <!-- Service 3: Automation -->
+  <div class="reveal glass rounded-2xl p-8 lg:p-10 transition-all duration-300">
+    <div class="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center mb-6">
+      <i class="fa-solid fa-gears text-accent text-2xl"></i>
+    </div>
+    <h3 class="font-display text-2xl font-bold text-white mb-4">Workflow Automation</h3>
+    <p class="text-gray-400 leading-relaxed mb-6">We map your manual processes and automate them — billing, reporting, document generation, data syncing between platforms. If your team is doing it repeatedly, we can automate it.</p>
+    <ul class="space-y-3">
+      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Connect tools: Google Workspace, Monday.com, CRMs, & more</span></li>
+      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Automated billing, invoicing, & collections</span></li>
+      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Document generation & email workflows</span></li>
+      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Real-time reporting & monitoring</span></li>
+    </ul>
+  </div>
+
+</div>
+</div>
+</section>
+
+<!-- Industries -->
+<section class="py-24 lg:py-32">
+<div class="max-w-7xl mx-auto px-6">
+<div class="reveal text-center mb-16">
+  <div class="accent-line mx-auto mb-6"></div>
+  <h2 class="font-display text-3xl sm:text-5xl font-bold text-white mb-4">Industries We Serve</h2>
+  <p class="text-gray-400 text-lg max-w-2xl mx-auto">Every business needs a great website and less manual work. We've built solutions across these industries and more.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+  <div class="reveal glass rounded-2xl p-5 text-center transition-all duration-300 group">
+    <div class="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center mx-auto mb-3 group-hover:bg-accent/20 transition">
+      <i class="fa-solid fa-building text-accent"></i>
+    </div>
+    <p class="text-sm text-gray-300 font-medium">Real Estate</p>
+  </div>
+  <div class="reveal glass rounded-2xl p-5 text-center transition-all duration-300 group">
+    <div class="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center mx-auto mb-3 group-hover:bg-accent/20 transition">
+      <i class="fa-solid fa-utensils text-accent"></i>
+    </div>
+    <p class="text-sm text-gray-300 font-medium">Restaurants</p>
+  </div>
+  <div class="reveal glass rounded-2xl p-5 text-center transition-all duration-300 group">
+    <div class="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center mx-auto mb-3 group-hover:bg-accent/20 transition">
+      <i class="fa-solid fa-cart-shopping text-accent"></i>
+    </div>
+    <p class="text-sm text-gray-300 font-medium">E-Commerce</p>
+  </div>
+  <div class="reveal glass rounded-2xl p-5 text-center transition-all duration-300 group">
+    <div class="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center mx-auto mb-3 group-hover:bg-accent/20 transition">
+      <i class="fa-solid fa-briefcase text-accent"></i>
+    </div>
+    <p class="text-sm text-gray-300 font-medium">Professional Services</p>
+  </div>
+  <div class="reveal glass rounded-2xl p-5 text-center transition-all duration-300 group">
+    <div class="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center mx-auto mb-3 group-hover:bg-accent/20 transition">
+      <i class="fa-solid fa-heart-pulse text-accent"></i>
+    </div>
+    <p class="text-sm text-gray-300 font-medium">Healthcare</p>
+  </div>
+  <div class="reveal glass rounded-2xl p-5 text-center transition-all duration-300 group">
+    <div class="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center mx-auto mb-3 group-hover:bg-accent/20 transition">
+      <i class="fa-solid fa-hotel text-accent"></i>
+    </div>
+    <p class="text-sm text-gray-300 font-medium">Hospitality</p>
   </div>
 </div>
 </div>
 </section>
 
-<!-- Innovation Lab -->
-<section id="innovation" class="py-24 lg:py-32">
-<div class="max-w-7xl mx-auto px-6">
+<!-- Process -->
+<section id="process" class="py-24 lg:py-32 relative">
+<div class="absolute inset-0 bg-gradient-to-b from-transparent via-accent/[.02] to-transparent"></div>
+<div class="max-w-5xl mx-auto px-6 relative z-10">
 <div class="reveal text-center mb-16">
   <div class="accent-line mx-auto mb-6"></div>
-  <h2 class="font-display text-3xl sm:text-5xl font-bold text-white mb-4">The Innovation Lab</h2>
-  <p class="text-gray-400 text-lg max-w-2xl mx-auto">We don't just build websites — we reimagine how real estate companies operate. Always exploring what's next.</p>
+  <h2 class="font-display text-3xl sm:text-5xl font-bold text-white mb-4">How We Work</h2>
+  <p class="text-gray-400 text-lg">Simple, fast, transparent. No long contracts or mystery timelines.</p>
 </div>
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-  <div class="reveal glass rounded-2xl p-6 text-center transition-all duration-300 group">
-    <div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-accent/20 transition">
-      <i class="fa-solid fa-microchip text-accent text-xl"></i>
-    </div>
-    <h4 class="font-display font-semibold text-white mb-2">AI Agents</h4>
-    <p class="text-gray-500 text-sm">Autonomous digital workers for every property task</p>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+  <div class="reveal glass rounded-2xl p-8 text-center transition-all duration-300">
+    <div class="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 font-display font-bold text-2xl" style="background:linear-gradient(135deg,rgba(58,160,255,.15),rgba(0,229,255,.1));border:1px solid rgba(58,160,255,.3);color:#3aa0ff">1</div>
+    <h3 class="font-display font-semibold text-xl text-white mb-2">Discovery Call</h3>
+    <p class="text-gray-400 text-sm leading-relaxed">Tell us what you need — a new website, a redesign, automation, or all three. We'll scope it and give you a clear quote, usually within 24 hours.</p>
   </div>
-  <div class="reveal glass rounded-2xl p-6 text-center transition-all duration-300 group">
-    <div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-accent/20 transition">
-      <i class="fa-solid fa-chart-line text-accent text-xl"></i>
-    </div>
-    <h4 class="font-display font-semibold text-white mb-2">Predictive Analytics</h4>
-    <p class="text-gray-500 text-sm">Data-driven insights for smarter property decisions</p>
+  <div class="reveal glass rounded-2xl p-8 text-center transition-all duration-300">
+    <div class="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 font-display font-bold text-2xl" style="background:linear-gradient(135deg,rgba(58,160,255,.15),rgba(0,229,255,.1));border:1px solid rgba(58,160,255,.3);color:#3aa0ff">2</div>
+    <h3 class="font-display font-semibold text-xl text-white mb-2">Build & Launch</h3>
+    <p class="text-gray-400 text-sm leading-relaxed">We design, develop, and deploy — fast. Most websites go live in 1–2 weeks. AI agents and automation get configured and tested alongside your team.</p>
   </div>
-  <div class="reveal glass rounded-2xl p-6 text-center transition-all duration-300 group">
-    <div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-accent/20 transition">
-      <i class="fa-solid fa-building text-accent text-xl"></i>
-    </div>
-    <h4 class="font-display font-semibold text-white mb-2">Smart Property Mgmt</h4>
-    <p class="text-gray-500 text-sm">AI-orchestrated operations from leasing to maintenance</p>
-  </div>
-  <div class="reveal glass rounded-2xl p-6 text-center transition-all duration-300 group">
-    <div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-accent/20 transition">
-      <i class="fa-solid fa-cubes text-accent text-xl"></i>
-    </div>
-    <h4 class="font-display font-semibold text-white mb-2">PropTech R&amp;D</h4>
-    <p class="text-gray-500 text-sm">Exploring the bleeding edge of real estate technology</p>
+  <div class="reveal glass rounded-2xl p-8 text-center transition-all duration-300">
+    <div class="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 font-display font-bold text-2xl" style="background:linear-gradient(135deg,rgba(58,160,255,.15),rgba(0,229,255,.1));border:1px solid rgba(58,160,255,.3);color:#3aa0ff">3</div>
+    <h3 class="font-display font-semibold text-xl text-white mb-2">Monitor & Grow</h3>
+    <p class="text-gray-400 text-sm leading-relaxed">After launch, our AI monitors your site 24/7 for uptime and security. Need changes, new pages, or more automation? We're a message away.</p>
   </div>
 </div>
 </div>
 </section>
 
 <!-- Featured Work -->
-<section id="work" class="py-24 lg:py-32 relative">
-<div class="absolute inset-0 bg-gradient-to-b from-transparent via-accent/[.02] to-transparent"></div>
-<div class="max-w-7xl mx-auto px-6 relative z-10">
+<section id="work" class="py-24 lg:py-32">
+<div class="max-w-7xl mx-auto px-6">
 <div class="reveal text-center mb-16">
   <div class="accent-line mx-auto mb-6"></div>
   <h2 class="font-display text-3xl sm:text-5xl font-bold text-white mb-4">Featured Work</h2>
-  <p class="text-gray-400 text-lg max-w-2xl mx-auto">Real solutions deployed for real estate companies in Miami.</p>
+  <p class="text-gray-400 text-lg max-w-2xl mx-auto">Real solutions, deployed and running.</p>
 </div>
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
-  <!-- Rovira PM -->
-  <div class="reveal glass rounded-2xl p-8 lg:p-10 transition-all duration-300">
-    <div class="flex items-center gap-3 mb-6">
+  <!-- Iris AI -->
+  <div class="reveal glass rounded-2xl p-8 transition-all duration-300">
+    <div class="flex items-center gap-3 mb-5">
       <span class="px-3 py-1 bg-accent/10 text-accent text-xs font-semibold rounded-full uppercase tracking-wider">AI Agent</span>
       <span class="text-gray-500 text-sm">Live</span>
     </div>
-    <h3 class="font-display text-2xl font-bold text-white mb-2">Rovira Property Management</h3>
-    <p class="text-gray-400 leading-relaxed mb-6">Deployed <span class="text-accent font-semibold">Iris Brown</span> — an AI-powered Assistant Property Manager that works 24/7. Iris handles tenant communication, maintenance coordination, lease inquiries, and daily operations, freeing up the team to focus on high-value work.</p>
-    <ul class="space-y-3">
-      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">24/7 tenant communication &amp; response</span></li>
-      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Maintenance ticket routing &amp; follow-up</span></li>
-      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Lease inquiry qualification &amp; scheduling</span></li>
-      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Integrated with existing property management systems</span></li>
-    </ul>
+    <h3 class="font-display text-xl font-bold text-white mb-2">Iris AI — Property Management</h3>
+    <p class="text-gray-400 text-sm leading-relaxed mb-4">AI assistant managing 420+ rental units. Automates rent collections, delinquency tracking, document generation, and 13 other daily tasks — for under $90/month.</p>
+    <a href="/iris/" class="text-accent text-sm font-medium hover:underline">Learn More →</a>
   </div>
 
   <!-- Melo Group -->
-  <div class="reveal glass rounded-2xl p-8 lg:p-10 transition-all duration-300">
-    <div class="flex items-center gap-3 mb-6">
+  <div class="reveal glass rounded-2xl p-8 transition-all duration-300">
+    <div class="flex items-center gap-3 mb-5">
       <span class="px-3 py-1 bg-accent/10 text-accent text-xs font-semibold rounded-full uppercase tracking-wider">Web Development</span>
       <span class="text-gray-500 text-sm">In Progress</span>
     </div>
-    <h3 class="font-display text-2xl font-bold text-white mb-2">The Melo Group</h3>
-    <p class="text-gray-400 leading-relaxed mb-6">Rebuilding 14 luxury property websites for Miami's premier developer. Migrating from vulnerable WordPress installations to secure, AI-monitored static sites with zero attack surface.</p>
-    <ul class="space-y-3">
-      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">14 property websites redesigned &amp; secured</span></li>
-      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Eliminated WordPress security vulnerabilities</span></li>
-      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">AI-monitored 24/7 uptime &amp; integrity checks</span></li>
-      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Lightning-fast static hosting with free SSL</span></li>
-    </ul>
+    <h3 class="font-display text-xl font-bold text-white mb-2">The Melo Group — 14 Property Sites</h3>
+    <p class="text-gray-400 text-sm leading-relaxed mb-4">Redesigning 14 luxury property websites for Miami's premier developer. Migrating from vulnerable WordPress to secure, AI-monitored static sites with zero attack surface.</p>
+  </div>
+
+  <!-- RG Capital -->
+  <div class="reveal glass rounded-2xl p-8 transition-all duration-300">
+    <div class="flex items-center gap-3 mb-5">
+      <span class="px-3 py-1 bg-accent/10 text-accent text-xs font-semibold rounded-full uppercase tracking-wider">Web Development</span>
+      <span class="text-gray-500 text-sm">Delivered</span>
+    </div>
+    <h3 class="font-display text-xl font-bold text-white mb-2">RG Capital Partners</h3>
+    <p class="text-gray-400 text-sm leading-relaxed mb-4">Full website redesign for a private equity real estate syndication firm. Clean, modern site built with Tailwind — delivered in under a week.</p>
+    <a href="https://crrelabs.github.io/rg-capital-partners/" target="_blank" class="text-accent text-sm font-medium hover:underline">View Site →</a>
   </div>
 
 </div>
@@ -299,25 +318,33 @@ input:focus,textarea:focus{outline:none;border-color:#3aa0ff;box-shadow:0 0 0 3p
 </section>
 
 <!-- Contact -->
-<section id="contact" class="py-24 lg:py-32">
-<div class="max-w-7xl mx-auto px-6">
+<section id="contact" class="py-24 lg:py-32 relative">
+<div class="absolute inset-0 bg-gradient-to-b from-transparent via-accent/[.02] to-transparent"></div>
+<div class="max-w-7xl mx-auto px-6 relative z-10">
 <div class="reveal max-w-2xl mx-auto">
   <div class="text-center mb-12">
     <div class="accent-line mx-auto mb-6"></div>
     <h2 class="font-display text-3xl sm:text-5xl font-bold text-white mb-4">Let's Build Something</h2>
-    <p class="text-gray-400 text-lg">Have a real estate challenge that needs an AI-first solution? Let's talk.</p>
+    <p class="text-gray-400 text-lg">Need a website, an AI agent, or workflow automation? Tell us what you're working on.</p>
   </div>
   <form id="contact-form" class="space-y-5" action="https://formspree.io/f/FORMSPREE_ID" method="POST">
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
       <input type="text" name="name" placeholder="Name" required class="w-full px-5 py-4 bg-dark-card border border-white/10 rounded-xl text-white placeholder-gray-500 transition">
       <input type="email" name="email" placeholder="Email" required class="w-full px-5 py-4 bg-dark-card border border-white/10 rounded-xl text-white placeholder-gray-500 transition">
     </div>
+    <select name="service" class="w-full px-5 py-4 bg-dark-card border border-white/10 rounded-xl text-gray-500 transition">
+      <option value="">What are you interested in?</option>
+      <option value="website">Website Design & Development</option>
+      <option value="ai-agent">Custom AI Agent</option>
+      <option value="automation">Workflow Automation</option>
+      <option value="all">All of the Above</option>
+    </select>
     <textarea name="message" placeholder="Tell us about your project..." rows="5" required class="w-full px-5 py-4 bg-dark-card border border-white/10 rounded-xl text-white placeholder-gray-500 transition resize-none"></textarea>
     <button type="submit" class="w-full py-4 bg-accent text-white font-semibold rounded-xl hover:bg-blue-500 transition shadow-lg shadow-accent/20">Send Message</button>
   </form>
   <div class="mt-12 flex flex-col sm:flex-row items-center justify-center gap-8 text-gray-500 text-sm">
     <a href="mailto:carlos@crrelabs.com" class="flex items-center gap-2 hover:text-accent transition"><i class="fa-solid fa-envelope"></i> carlos@crrelabs.com</a>
-    <span class="flex items-center gap-2"><i class="fa-solid fa-location-dot"></i> Pinecrest, Miami FL</span>
+    <span class="flex items-center gap-2"><i class="fa-solid fa-location-dot"></i> Miami, FL</span>
   </div>
 </div>
 </div>
@@ -330,8 +357,7 @@ input:focus,textarea:focus{outline:none;border-color:#3aa0ff;box-shadow:0 0 0 3p
     <img src="logo.jpg" alt="CRRE Labs" class="h-8 w-8 rounded-lg object-cover">
     <span class="font-display font-semibold text-white">CRRE Labs</span>
   </div>
-  <p class="text-gray-600 text-sm">© 2026 CRRE Labs. 12394 SW 82 Ave, Pinecrest FL 33156</p>
-  <p class="text-gray-600 text-sm mt-2"><a href="/privacy.html" class="hover:text-accent transition">Privacy Policy</a> · <a href="/eula.html" class="hover:text-accent transition">EULA</a></p>
+  <p class="text-gray-600 text-sm">© 2026 CRRE Labs LLC · Miami, FL</p>
   <div class="flex gap-4">
     <a href="#" class="text-gray-600 hover:text-accent transition"><i class="fa-brands fa-linkedin-in"></i></a>
     <a href="#" class="text-gray-600 hover:text-accent transition"><i class="fa-brands fa-x-twitter"></i></a>
@@ -341,42 +367,31 @@ input:focus,textarea:focus{outline:none;border-color:#3aa0ff;box-shadow:0 0 0 3p
 </footer>
 
 <script>
-// Header scroll effect
 const header = document.getElementById('header');
 window.addEventListener('scroll', () => {
   header.classList.toggle('bg-dark/90', window.scrollY > 50);
   header.classList.toggle('backdrop-blur-xl', window.scrollY > 50);
   header.classList.toggle('border-b', window.scrollY > 50);
   header.classList.toggle('border-white/5', window.scrollY > 50);
-  header.classList.toggle('py-2', window.scrollY > 50);
 });
-
-// Mobile menu
 const menuBtn = document.getElementById('menu-btn');
 const mobileMenu = document.getElementById('mobile-menu');
-menuBtn.addEventListener('click', () => {
-  mobileMenu.classList.toggle('hidden');
-});
+menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
 mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.add('hidden')));
-
-// Scroll reveal
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }});
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-// Form — uses Formspree. Replace FORMSPREE_ID in the form action with your ID from formspree.io
 const contactForm = document.getElementById('contact-form');
 contactForm.addEventListener('submit', async function(e) {
   e.preventDefault();
   const btn = this.querySelector('button');
-  btn.textContent = 'Sending...';
-  btn.disabled = true;
+  btn.textContent = 'Sending...'; btn.disabled = true;
   try {
-    const res = await fetch(this.action, { method: 'POST', body: new FormData(this), headers: { 'Accept': 'application/json' } });
-    if (res.ok) { btn.textContent = 'Message Sent ✓'; btn.classList.remove('bg-accent'); btn.classList.add('bg-green-600'); this.reset(); }
-    else { btn.textContent = 'Error — Try Again'; btn.disabled = false; }
-  } catch { btn.textContent = 'Error — Try Again'; btn.disabled = false; }
+    const res = await fetch(this.action, { method:'POST', body:new FormData(this), headers:{'Accept':'application/json'} });
+    if (res.ok) { btn.textContent='Message Sent ✓'; btn.classList.remove('bg-accent'); btn.classList.add('bg-green-600'); this.reset(); }
+    else { btn.textContent='Error — Try Again'; btn.disabled=false; }
+  } catch { btn.textContent='Error — Try Again'; btn.disabled=false; }
 });
 </script>
 </body>
