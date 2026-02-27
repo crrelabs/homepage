@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — CRRE Labs | Web Development & AI Automation</title>
+<meta name="description" content="See our work. CRRE Labs builds fast, modern websites for real estate, hospitality, and business clients. Based in Miami.">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        accent: '#3aa0ff',
+        'accent-cyan': '#00e5ff',
+        dark: '#0a0e1a',
+        'dark-card': '#111827',
+      },
+      fontFamily: {
+        display: ['Space Grotesk', 'sans-serif'],
+        body: ['Inter', 'sans-serif'],
+      }
+    }
+  }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#0a0e1a;color:#e2e8f0;overflow-x:hidden}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0a0e1a 0%,#0f1b3d 25%,#0a0e1a 50%,#0d1f3c 75%,#0a0e1a 100%);background-size:400% 400%;animation:gradientShift 12s ease infinite}
+@keyframes gradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.grid-overlay{position:absolute;inset:0;background-image:linear-gradient(rgba(58,160,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(58,160,255,.04) 1px,transparent 1px);background-size:60px 60px}
+.orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:.15;animation:orbFloat 8s ease-in-out infinite}
+.orb-1{width:500px;height:500px;background:#3aa0ff;top:-100px;right:-100px}
+.orb-2{width:400px;height:400px;background:#00e5ff;bottom:-50px;left:-100px;animation-delay:4s}
+@keyframes orbFloat{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,-30px)}}
+.glass{background:rgba(17,24,39,.6);backdrop-filter:blur(16px);border:1px solid rgba(58,160,255,.1)}
+.glass:hover{border-color:rgba(58,160,255,.3);box-shadow:0 0 30px rgba(58,160,255,.08)}
+.accent-line{height:3px;width:60px;background:linear-gradient(90deg,#3aa0ff,#00e5ff);border-radius:2px}
+.glow-text{text-shadow:0 0 40px rgba(58,160,255,.3)}
+.reveal{opacity:0;transform:translateY(30px);transition:all .7s cubic-bezier(.22,1,.36,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.nav-link{position:relative}
+.nav-link::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:2px;background:#3aa0ff;transition:width .3s}
+.nav-link:hover::after{width:100%}
+.project-card{transition:transform .4s ease,box-shadow .4s ease}
+.project-card:hover{transform:translateY(-8px);box-shadow:0 20px 60px rgba(58,160,255,.15)}
+.project-card img{transition:transform .6s ease}
+.project-card:hover img{transform:scale(1.03)}
+.tag{background:rgba(58,160,255,.1);color:#3aa0ff;border:1px solid rgba(58,160,255,.2);font-size:.75rem;padding:2px 10px;border-radius:9999px}
+</style>
+</head>
+<body class="font-body">
+
+<!-- Header -->
+<header class="fixed top-0 w-full z-50 bg-dark/80 backdrop-blur-lg border-b border-white/5">
+<div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+  <a href="/" class="flex items-center gap-3">
+    <img src="../logo.jpg" alt="CRRE Labs" class="h-10 w-10 rounded-lg object-cover">
+    <span class="font-display font-bold text-xl text-white">CRRE Labs</span>
+  </a>
+  <nav class="hidden md:flex items-center gap-8">
+    <a href="/" class="nav-link text-sm text-gray-300 hover:text-white transition">Home</a>
+    <a href="/#services" class="nav-link text-sm text-gray-300 hover:text-white transition">Services</a>
+    <a href="/portfolio" class="nav-link text-sm text-white font-semibold transition">Portfolio</a>
+    <a href="/#contact" class="nav-link text-sm text-gray-300 hover:text-white transition">Contact</a>
+  </nav>
+  <a href="/#contact" class="hidden md:inline-flex items-center gap-2 bg-accent/10 border border-accent/30 text-accent px-4 py-2 rounded-full text-sm font-medium hover:bg-accent/20 transition">
+    Get a Quote <i class="fas fa-arrow-right text-xs"></i>
+  </a>
+</div>
+</header>
+
+<!-- Hero -->
+<section class="relative pt-32 pb-20 px-6 overflow-hidden">
+  <div class="hero-bg"></div>
+  <div class="grid-overlay"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="relative max-w-7xl mx-auto text-center">
+    <div class="inline-flex items-center gap-2 bg-accent/10 border border-accent/20 rounded-full px-4 py-1.5 text-sm text-accent mb-6">
+      <i class="fas fa-briefcase"></i> Our Work
+    </div>
+    <h1 class="font-display text-4xl md:text-6xl font-bold text-white glow-text mb-4">Portfolio</h1>
+    <p class="text-gray-400 text-lg max-w-2xl mx-auto">Clean, fast, hand-coded websites built for businesses that want results. No templates. No bloat. Just performance.</p>
+  </div>
+</section>
+
+<!-- Projects -->
+<section class="px-6 pb-24">
+  <div class="max-w-7xl mx-auto space-y-16">
+
+    <!-- Rovira Property Management -->
+    <div class="project-card glass rounded-2xl overflow-hidden reveal">
+      <div class="grid md:grid-cols-2">
+        <div class="overflow-hidden">
+          <img src="screenshots/rovira-pm.png" alt="Rovira Property Management website" class="w-full h-full object-cover object-top">
+        </div>
+        <div class="p-8 md:p-12 flex flex-col justify-center">
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="tag">Property Management</span>
+            <span class="tag">HTML</span>
+            <span class="tag">Tailwind CSS</span>
+          </div>
+          <h2 class="font-display text-2xl md:text-3xl font-bold text-white mb-3">Rovira Property Management</h2>
+          <p class="text-gray-400 mb-6">A clean, modern website for a Miami-based property management company. Features a minimalist design with warm earth tones, dedicated portals for owners, tenants, and agents, and clear calls-to-action for property owners looking for stress-free management.</p>
+          <div class="flex items-center gap-4">
+            <a href="https://rovirapropertymanagement.com" target="_blank" class="inline-flex items-center gap-2 bg-accent text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-blue-500 transition">
+              Visit Site <i class="fas fa-external-link-alt text-xs"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RG Capital Partners -->
+    <div class="project-card glass rounded-2xl overflow-hidden reveal">
+      <div class="grid md:grid-cols-2">
+        <div class="p-8 md:p-12 flex flex-col justify-center order-2 md:order-1">
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="tag">Private Equity</span>
+            <span class="tag">Real Estate</span>
+            <span class="tag">HTML</span>
+            <span class="tag">Tailwind CSS</span>
+          </div>
+          <h2 class="font-display text-2xl md:text-3xl font-bold text-white mb-3">RG Capital Partners</h2>
+          <p class="text-gray-400 mb-6">A sleek, dark-themed website for a private equity real estate syndication firm operating in Kansas City and Miami. Features bold typography, gold accents, key performance stats, property portfolio showcase, and investor contact forms. Designed to convey institutional credibility.</p>
+          <div class="flex items-center gap-4">
+            <a href="https://rgcappartners.com" target="_blank" class="inline-flex items-center gap-2 bg-accent text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-blue-500 transition">
+              Visit Site <i class="fas fa-external-link-alt text-xs"></i>
+            </a>
+          </div>
+        </div>
+        <div class="overflow-hidden order-1 md:order-2">
+          <img src="screenshots/rg-capital.png" alt="RG Capital Partners website" class="w-full h-full object-cover object-top">
+        </div>
+      </div>
+    </div>
+
+    <!-- Escape to Great Harbour Cay -->
+    <div class="project-card glass rounded-2xl overflow-hidden reveal">
+      <div class="grid md:grid-cols-2">
+        <div class="overflow-hidden">
+          <img src="screenshots/escape-ghc.png" alt="Escape to Great Harbour Cay website" class="w-full h-full object-cover object-top">
+        </div>
+        <div class="p-8 md:p-12 flex flex-col justify-center">
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="tag">Tourism</span>
+            <span class="tag">Hospitality</span>
+            <span class="tag">HTML</span>
+            <span class="tag">Tailwind CSS</span>
+          </div>
+          <h2 class="font-display text-2xl md:text-3xl font-bold text-white mb-3">Escape to Great Harbour Cay</h2>
+          <p class="text-gray-400 mb-6">A travel and tourism website for Great Harbour Cay in the Bahamas. Features a warm teal and cream palette with an island-inspired design, interactive island map, accommodations and dining sections, and e-commerce integration for local shopping. Built to inspire visitors and drive bookings.</p>
+          <div class="flex items-center gap-4">
+            <a href="https://escapetoghc.com" target="_blank" class="inline-flex items-center gap-2 bg-accent text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-blue-500 transition">
+              Visit Site <i class="fas fa-external-link-alt text-xs"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CRRE Labs -->
+    <div class="project-card glass rounded-2xl overflow-hidden reveal">
+      <div class="grid md:grid-cols-2">
+        <div class="p-8 md:p-12 flex flex-col justify-center order-2 md:order-1">
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="tag">Tech / Agency</span>
+            <span class="tag">AI</span>
+            <span class="tag">HTML</span>
+            <span class="tag">Tailwind CSS</span>
+          </div>
+          <h2 class="font-display text-2xl md:text-3xl font-bold text-white mb-3">CRRE Labs</h2>
+          <p class="text-gray-400 mb-6">Our own website — a bold, tech-forward design for an AI-powered web development agency. Features animated gradient backgrounds, glowing neon accents, and a dark-mode aesthetic that positions CRRE Labs at the intersection of modern web design and AI automation.</p>
+          <div class="flex items-center gap-4">
+            <a href="https://crrelabs.com" target="_blank" class="inline-flex items-center gap-2 bg-accent text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-blue-500 transition">
+              Visit Site <i class="fas fa-external-link-alt text-xs"></i>
+            </a>
+          </div>
+        </div>
+        <div class="overflow-hidden order-1 md:order-2">
+          <img src="screenshots/crrelabs.png" alt="CRRE Labs website" class="w-full h-full object-cover object-top">
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="px-6 pb-24">
+  <div class="max-w-4xl mx-auto glass rounded-2xl p-12 text-center">
+    <h2 class="font-display text-3xl md:text-4xl font-bold text-white mb-4">Ready to Build Yours?</h2>
+    <p class="text-gray-400 mb-8 max-w-xl mx-auto">We build fast, modern websites that convert. No WordPress. No bloat. Just clean code and results.</p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="/#contact" class="bg-accent text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-500 transition">
+        Get a Free Quote
+      </a>
+      <a href="mailto:hello@crrelabs.com" class="border border-white/20 text-white px-8 py-3 rounded-lg font-semibold hover:bg-white/5 transition">
+        hello@crrelabs.com
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="border-t border-white/5 py-8 px-6">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
+    <p>&copy; 2025 CRRE Labs LLC. All rights reserved.</p>
+    <div class="flex gap-6">
+      <a href="/" class="hover:text-white transition">Home</a>
+      <a href="/portfolio" class="hover:text-white transition">Portfolio</a>
+      <a href="/#contact" class="hover:text-white transition">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Reveal Animation -->
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }});
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
