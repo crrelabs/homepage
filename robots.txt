@@ -1,3 +1,7 @@
 User-agent: *
+Allow: /
+Disallow: /dashboard/
 Disallow: /usage/
-Disallow: /team/
+Disallow: /outreach/
+
+Sitemap: https://crrelabs.com/sitemap.xml
