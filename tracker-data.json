@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-03-10T17:46:40.736550+00:00",
+  "updated_at": "2026-03-10T17:47:38.395071+00:00",
   "agents": {
     "main": {
       "label": "Iris",
@@ -474,71 +474,7 @@
         "activeHours": "8AM-10PM ET",
         "status": "ok"
       },
-      "jobs": [
-        {
-          "id": "0487b371-be81-4e68-9310-d395a4e3aae1",
-          "name": "Check downtown1st.com SSL cert",
-          "enabled": false,
-          "schedule": "once at 2026-02-17T21:05:00.000Z",
-          "timezone": "UTC",
-          "lastRun": "2026-02-17T21:05:00.008000+00:00",
-          "nextRun": null,
-          "lastStatus": "error",
-          "lastError": "cron delivery target is missing",
-          "lastDuration": 46551,
-          "consecutiveErrors": 1,
-          "recentRuns": [
-            {
-              "ts": 1771362346566,
-              "status": "error",
-              "error": "cron delivery target is missing",
-              "duration": 46551
-            }
-          ]
-        },
-        {
-          "id": "56236ae3-6e5a-46dc-be44-7bcd43264a26",
-          "name": "Re-add downtown1st.com custom domain",
-          "enabled": false,
-          "schedule": "once at 2026-02-21T13:00:00.000Z",
-          "timezone": "UTC",
-          "lastRun": "2026-02-21T13:00:00.015000+00:00",
-          "nextRun": null,
-          "lastStatus": "error",
-          "lastError": "cron delivery target is missing",
-          "lastDuration": 55697,
-          "consecutiveErrors": 1,
-          "recentRuns": [
-            {
-              "ts": 1771678855721,
-              "status": "error",
-              "error": "cron delivery target is missing",
-              "duration": 55697
-            }
-          ]
-        },
-        {
-          "id": "b77a628c-f8c6-4c79-bdea-ffaceb0beb4e",
-          "name": "Enable HTTPS for downtown1st.com",
-          "enabled": false,
-          "schedule": "once at 2026-02-21T13:30:00.000Z",
-          "timezone": "UTC",
-          "lastRun": "2026-02-21T13:30:00.017000+00:00",
-          "nextRun": null,
-          "lastStatus": "skipped",
-          "lastError": "disabled",
-          "lastDuration": 14,
-          "consecutiveErrors": 0,
-          "recentRuns": [
-            {
-              "ts": 1771680600042,
-              "status": "skipped",
-              "error": "disabled",
-              "duration": 14
-            }
-          ]
-        }
-      ]
+      "jobs": []
     },
     "ellie": {
       "label": "Ellie",
