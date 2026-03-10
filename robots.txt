@@ -5,3 +5,5 @@ Disallow: /usage/
 Disallow: /outreach/
 
 Sitemap: https://crrelabs.com/sitemap.xml
+-e 
+Disallow: /tracker.html
