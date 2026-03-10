@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-03-10T17:24:36.187280+00:00",
+  "updated_at": "2026-03-10T17:42:22.207336+00:00",
   "agents": {
     "main": {
       "label": "Iris",
@@ -436,6 +436,62 @@
           "lastDuration": null,
           "consecutiveErrors": 0,
           "recentRuns": []
+        },
+        {
+          "id": "2fb72c9d-458c-4901-9b08-9142355d6d27",
+          "name": "HireAnyPro FL County Scrape",
+          "enabled": true,
+          "schedule": "0 7 * * *",
+          "timezone": "America/New_York",
+          "lastRun": null,
+          "nextRun": "2026-03-11T11:00:00+00:00",
+          "lastStatus": "idle",
+          "lastError": null,
+          "lastDuration": null,
+          "consecutiveErrors": 0,
+          "recentRuns": []
+        },
+        {
+          "id": "e666e6d8-63ad-447d-a0c9-234e6260921e",
+          "name": "HireAnyPro Blog Post - Morning",
+          "enabled": true,
+          "schedule": "0 10 * * *",
+          "timezone": "America/New_York",
+          "lastRun": null,
+          "nextRun": "2026-03-11T14:00:00+00:00",
+          "lastStatus": "idle",
+          "lastError": null,
+          "lastDuration": null,
+          "consecutiveErrors": 0,
+          "recentRuns": []
+        },
+        {
+          "id": "6a379daa-93e0-412c-973b-1b7e688db80c",
+          "name": "HireAnyPro Blog Post - Afternoon",
+          "enabled": true,
+          "schedule": "0 14 * * *",
+          "timezone": "America/New_York",
+          "lastRun": null,
+          "nextRun": "2026-03-10T18:00:00+00:00",
+          "lastStatus": "idle",
+          "lastError": null,
+          "lastDuration": null,
+          "consecutiveErrors": 0,
+          "recentRuns": []
+        },
+        {
+          "id": "26a8592b-c7c0-4e7f-89c3-3fa99bbe53b2",
+          "name": "HireAnyPro Blog Post - Evening",
+          "enabled": true,
+          "schedule": "0 18 * * *",
+          "timezone": "America/New_York",
+          "lastRun": null,
+          "nextRun": "2026-03-10T22:00:00+00:00",
+          "lastStatus": "idle",
+          "lastError": null,
+          "lastDuration": null,
+          "consecutiveErrors": 0,
+          "recentRuns": []
         }
       ]
     },
@@ -623,11 +679,11 @@
         {
           "id": "e4457e6c-be96-4095-b9d3-76dab052d95e",
           "name": "Weekly Banesco Reconciliation",
-          "enabled": true,
+          "enabled": false,
           "schedule": "0 9 * * 1",
           "timezone": "America/New_York",
           "lastRun": "2026-03-09T13:08:04.042000+00:00",
-          "nextRun": "2026-03-16T13:00:00+00:00",
+          "nextRun": null,
           "lastStatus": "ok",
           "lastError": null,
           "lastDuration": 122856,
