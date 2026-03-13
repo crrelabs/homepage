@@ -3,7 +3,7 @@ Allow: /
 Disallow: /dashboard/
 Disallow: /usage/
 Disallow: /outreach/
+Disallow: /team/
+Disallow: /tracker.html
 
 Sitemap: https://crrelabs.com/sitemap.xml
--e 
-Disallow: /tracker.html
