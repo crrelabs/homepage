@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Great Harbour Cay — Plat Map Overlay</title>
+<style>
+  :root { --panel: #12161c; --panel2: #1b2129; --line: #2b333d; --text: #e7edf3; --muted: #9aa7b4; --accent: #4f9dff; }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; color: var(--text); background: #0b0e12; }
+  #map { position: absolute; inset: 0; }
+
+  #panel {
+    position: absolute; top: 12px; left: 12px; z-index: 5; width: 320px; max-height: calc(100% - 24px);
+    overflow: auto; background: rgba(18,22,28,0.95); border: 1px solid var(--line); border-radius: 12px;
+    backdrop-filter: blur(6px); box-shadow: 0 8px 30px rgba(0,0,0,0.45);
+  }
+  #panel header { padding: 12px 14px; border-bottom: 1px solid var(--line); display:flex; align-items:center; gap:8px; }
+  #panel header h1 { font-size: 14px; margin: 0; letter-spacing: .2px; }
+  #panel header .dot { width:8px;height:8px;border-radius:50%;background:var(--accent); }
+  .section { padding: 12px 14px; border-bottom: 1px solid var(--line); }
+  .section h2 { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: 0 0 10px; }
+  label.row { display:flex; align-items:center; justify-content:space-between; gap:8px; font-size:12px; margin:8px 0; color:var(--muted); }
+  label.row input[type="range"] { flex: 1; }
+  label.row input[type="number"] { width: 96px; background: var(--panel2); border:1px solid var(--line); color: var(--text); border-radius:6px; padding:4px 6px; font-size:12px; }
+  .val { color: var(--text); font-variant-numeric: tabular-nums; min-width: 42px; text-align:right; }
+  button { cursor: pointer; border:1px solid var(--line); background: var(--panel2); color: var(--text); border-radius: 8px; padding: 8px 10px; font-size:12px; }
+  button:hover { border-color: var(--accent); }
+  button.primary { background: var(--accent); border-color: var(--accent); color: #08121f; font-weight: 600; }
+  button.active { background: var(--accent); border-color: var(--accent); color: #08121f; font-weight:600; }
+  .btnrow { display:flex; gap:8px; flex-wrap: wrap; }
+  .hint { font-size: 11px; color: var(--muted); line-height: 1.5; margin-top: 8px; }
+  #status { position:absolute; bottom:12px; left:12px; z-index:5; background: rgba(18,22,28,0.95); border:1px solid var(--line); border-radius:8px; padding:6px 10px; font-size:12px; color:var(--muted); max-width: 60ch; }
+  .banner { background:#3a1d1d; border:1px solid #7a3b3b; color:#ffd9d9; padding:10px 14px; font-size:12px; line-height:1.5; }
+  .banner code { background: rgba(0,0,0,.35); padding:1px 5px; border-radius:4px; }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+<div id="map"></div>
+
+<div id="panel">
+  <header><span class="dot"></span><h1>GHC Plat Map Overlay</h1></header>
+
+  <div id="keybanner" class="banner" style="display:none">
+    Add a Google Maps API key in <code>CONFIG.apiKey</code> (top of this file) to load the map.
+  </div>
+
+  <div class="section">
+    <h2>Plat overlay</h2>
+    <label class="row">Show<input type="checkbox" id="showOverlay" checked style="margin-left:auto"></label>
+    <label class="row">Opacity <input type="range" id="opacity" min="0" max="100" value="65"><span class="val" id="opacityVal">65%</span></label>
+    <div class="hint" id="overlayHint">No plat image loaded yet — set <code>CONFIG.overlayUrl</code>.</div>
+  </div>
+
+  <div class="section" id="calib">
+    <h2>Align (georeference)</h2>
+    <label class="row">Rotation <input type="range" id="rot" min="-180" max="180" step="0.1" value="0"><span class="val" id="rotVal">0°</span></label>
+    <label class="row">Scale (m wide) <input type="number" id="widthM" step="1" value="4000"></label>
+    <label class="row">Center lat <input type="number" id="clat" step="0.00001" value="25.75000"></label>
+    <label class="row">Center lng <input type="number" id="clng" step="0.00001" value="-77.87000"></label>
+    <div class="btnrow" style="margin-top:8px">
+      <button id="dragToggle">Drag to move</button>
+      <button id="saveTransform">Save alignment</button>
+      <button id="copyTransform">Copy JSON</button>
+    </div>
+    <div class="hint">Tweak until the plat lines up with the satellite image, then <b>Save alignment</b> (persists locally) and <b>Copy JSON</b> to send me so I can bake it in.</div>
+  </div>
+
+  <div class="section" id="lotsSection">
+    <h2>Lots</h2>
+    <label class="row">Show lot shapes<input type="checkbox" id="showLots" checked style="margin-left:auto"></label>
+    <div class="btnrow" style="margin-top:8px">
+      <button id="digToggle">Digitize lot</button>
+      <button id="undoPt" style="display:none">Undo point</button>
+      <button id="finishLot" class="primary" style="display:none">Finish lot</button>
+    </div>
+    <div class="btnrow" style="margin-top:8px">
+      <button id="exportLots">Export lots.geojson</button>
+    </div>
+    <div class="hint" id="lotsHint">Click a lot to see its number & zoning. In <b>Digitize</b> mode, click the corners of a lot on the map, then <b>Finish lot</b> and enter its number + zoning.</div>
+  </div>
+</div>
+
+<div id="status">Loading…</div>
+
+<script>
+/* ------------------------------------------------------------------ *
+ *  CONFIG — fill these in
+ * ------------------------------------------------------------------ */
+const CONFIG = {
+  // Google Maps JavaScript API key, restricted to crrelabs.com/* (HTTP referrer)
+  apiKey: "",
+  // Stitched plat map image (put the file next to this page, e.g. "plat.png")
+  overlayUrl: "",
+  // Great Harbour Cay, Bahamas
+  center: { lat: 25.7500, lng: -77.8700 },
+  zoom: 14,
+};
+
+/* Saved alignment (baked in once we lock it). Falls back to the controls. */
+let TRANSFORM = JSON.parse(localStorage.getItem("ghc_transform") || "null") || {
+  centerLat: CONFIG.center.lat, centerLng: CONFIG.center.lng, widthM: 4000, rotation: 0, opacity: 65, visible: true
+};
+
+const $ = (id) => document.getElementById(id);
+function setStatus(t) { $("status").textContent = t; }
+
+/* ------------------------------------------------------------------ *
+ *  Rotatable image overlay (Google GroundOverlay can't rotate, so we
+ *  use a custom OverlayView positioned + CSS-rotated over the map).
+ * ------------------------------------------------------------------ */
+let RotOverlay, overlay, map, geocoderReady = false;
+
+function defineOverlayClass() {
+  RotOverlay = class extends google.maps.OverlayView {
+    constructor(url) { super(); this.url = url; this.div = null; }
+    onAdd() {
+      const div = document.createElement("div");
+      div.style.position = "absolute";
+      div.style.transformOrigin = "center center";
+      div.style.pointerEvents = "none";
+      const img = document.createElement("img");
+      img.src = this.url; img.style.width = "100%"; img.style.height = "auto"; img.style.display = "block";
+      img.onload = () => { this._ar = img.naturalHeight / img.naturalWidth || 1; this.draw(); };
+      div.appendChild(img);
+      this.div = div; this.img = img;
+      this.getPanes().overlayLayer.appendChild(div);
+    }
+    draw() {
+      if (!this.div) return;
+      const proj = this.getProjection();
+      if (!proj) return;
+      const t = TRANSFORM;
+      const center = new google.maps.LatLng(t.centerLat, t.centerLng);
+      // meters -> pixels at this latitude/zoom
+      const mpp = metersPerPixel(t.centerLat);
+      const wpx = t.widthM / mpp;
+      const ar = this._ar || 0.6;
+      const hpx = wpx * ar;
+      const cp = proj.fromLatLngToDivPixel(center);
+      this.div.style.width = wpx + "px";
+      this.div.style.left = (cp.x - wpx / 2) + "px";
+      this.div.style.top = (cp.y - hpx / 2) + "px";
+      this.div.style.transform = "rotate(" + t.rotation + "deg)";
+      this.div.style.opacity = (t.opacity / 100);
+      this.div.style.display = t.visible ? "block" : "none";
+    }
+    onRemove() { if (this.div) { this.div.remove(); this.div = null; } }
+  };
+}
+
+function metersPerPixel(lat) {
+  return 156543.03392 * Math.cos(lat * Math.PI / 180) / Math.pow(2, map.getZoom());
+}
+
+/* ------------------------------------------------------------------ *
+ *  Lots (clickable polygons with lot # + zoning)
+ * ------------------------------------------------------------------ */
+let infoWindow;
+function styleLots() {
+  map.data.setStyle((f) => ({
+    fillColor: "#4f9dff", fillOpacity: $("showLots").checked ? 0.12 : 0,
+    strokeColor: "#4f9dff", strokeWeight: $("showLots").checked ? 1.5 : 0,
+    clickable: true,
+  }));
+}
+async function loadLots() {
+  try {
+    const res = await fetch("lots.geojson", { cache: "no-store" });
+    if (!res.ok) return;
+    const gj = await res.json();
+    map.data.addGeoJson(gj);
+    styleLots();
+  } catch (e) { /* no lots yet */ }
+}
+
+/* ---- Digitizing ---- */
+let digitizing = false, digPts = [], digMarkers = [], digPoly = null;
+function setDigitizeUI(on) {
+  digitizing = on;
+  $("digToggle").classList.toggle("active", on);
+  $("undoPt").style.display = on ? "" : "none";
+  $("finishLot").style.display = on ? "" : "none";
+  setStatus(on ? "Digitize mode: click the corners of a lot on the map." : "Ready.");
+  if (!on) clearDig();
+}
+function clearDig() {
+  digPts = [];
+  digMarkers.forEach(m => m.setMap(null)); digMarkers = [];
+  if (digPoly) { digPoly.setMap(null); digPoly = null; }
+}
+function redrawDig() {
+  if (digPoly) digPoly.setMap(null);
+  digPoly = new google.maps.Polygon({
+    paths: digPts, map, fillColor: "#ffc234", fillOpacity: 0.2, strokeColor: "#ffc234", strokeWeight: 2,
+  });
+}
+function finishLot() {
+  if (digPts.length < 3) { alert("Add at least 3 points."); return; }
+  const lot = prompt("Lot number?"); if (lot === null) return;
+  const zoning = prompt("Zoning?") || "";
+  const feature = {
+    type: "Feature",
+    properties: { lot: lot.trim(), zoning: zoning.trim() },
+    geometry: { type: "Polygon", coordinates: [ digPts.map(p => [p.lng, p.lat]).concat([[digPts[0].lng, digPts[0].lat]]) ] }
+  };
+  map.data.addGeoJson({ type: "FeatureCollection", features: [feature] });
+  styleLots();
+  clearDig();
+  setStatus("Lot " + feature.properties.lot + " added. Keep digitizing or Export lots.geojson.");
+}
+function exportLots() {
+  const feats = [];
+  map.data.forEach(f => {
+    f.toGeoJson(g => feats.push(g));
+  });
+  const gj = JSON.stringify({ type: "FeatureCollection", features: feats }, null, 2);
+  const blob = new Blob([gj], { type: "application/json" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob); a.download = "lots.geojson"; a.click();
+}
+
+/* ------------------------------------------------------------------ *
+ *  Init
+ * ------------------------------------------------------------------ */
+function initMap() {
+  defineOverlayClass();
+  map = new google.maps.Map($("map"), {
+    center: CONFIG.center, zoom: CONFIG.zoom, mapTypeId: "hybrid", tilt: 0,
+    streetViewControl: false, fullscreenControl: true,
+  });
+  infoWindow = new google.maps.InfoWindow();
+
+  // sync controls from saved transform
+  $("opacity").value = TRANSFORM.opacity; $("opacityVal").textContent = TRANSFORM.opacity + "%";
+  $("rot").value = TRANSFORM.rotation; $("rotVal").textContent = TRANSFORM.rotation + "°";
+  $("widthM").value = TRANSFORM.widthM;
+  $("clat").value = TRANSFORM.centerLat; $("clng").value = TRANSFORM.centerLng;
+  $("showOverlay").checked = TRANSFORM.visible;
+
+  if (CONFIG.overlayUrl) {
+    overlay = new RotOverlay(CONFIG.overlayUrl);
+    overlay.setMap(map);
+    $("overlayHint").style.display = "none";
+    map.addListener("zoom_changed", () => overlay && overlay.draw());
+  }
+
+  loadLots();
+
+  // lot click -> info
+  map.data.addListener("click", (e) => {
+    if (digitizing) return;
+    const lot = e.feature.getProperty("lot") || "?";
+    const zoning = e.feature.getProperty("zoning") || "—";
+    infoWindow.setContent(
+      '<div style="font-family:system-ui;min-width:140px"><b>Lot ' + lot + '</b><br>Zoning: ' + zoning + "</div>"
+    );
+    infoWindow.setPosition(e.latLng);
+    infoWindow.open(map);
+  });
+
+  // map click -> digitize
+  map.addListener("click", (e) => {
+    if (!digitizing) return;
+    digPts.push({ lat: e.latLng.lat(), lng: e.latLng.lng() });
+    digMarkers.push(new google.maps.Marker({ position: e.latLng, map, label: String(digPts.length),
+      icon: { path: google.maps.SymbolPath.CIRCLE, scale: 5, fillColor: "#ffc234", fillOpacity: 1, strokeWeight: 1 } }));
+    redrawDig();
+  });
+
+  wireControls();
+  setStatus("Ready.");
+}
+
+function wireControls() {
+  $("opacity").oninput = (e) => { TRANSFORM.opacity = +e.target.value; $("opacityVal").textContent = e.target.value + "%"; overlay && overlay.draw(); };
+  $("showOverlay").onchange = (e) => { TRANSFORM.visible = e.target.checked; overlay && overlay.draw(); };
+  $("rot").oninput = (e) => { TRANSFORM.rotation = +e.target.value; $("rotVal").textContent = (+e.target.value).toFixed(1) + "°"; overlay && overlay.draw(); };
+  $("widthM").oninput = (e) => { TRANSFORM.widthM = +e.target.value; overlay && overlay.draw(); };
+  $("clat").oninput = (e) => { TRANSFORM.centerLat = +e.target.value; overlay && overlay.draw(); };
+  $("clng").oninput = (e) => { TRANSFORM.centerLng = +e.target.value; overlay && overlay.draw(); };
+
+  let dragMode = false;
+  $("dragToggle").onclick = () => {
+    dragMode = !dragMode;
+    $("dragToggle").classList.toggle("active", dragMode);
+    setStatus(dragMode ? "Drag mode: click the map to move the plat's center there." : "Ready.");
+  };
+  map && map.addListener && map.addListener("click", (e) => {
+    if (!dragMode) return;
+    TRANSFORM.centerLat = e.latLng.lat(); TRANSFORM.centerLng = e.latLng.lng();
+    $("clat").value = TRANSFORM.centerLat.toFixed(5); $("clng").value = TRANSFORM.centerLng.toFixed(5);
+    overlay && overlay.draw();
+  });
+
+  $("saveTransform").onclick = () => { localStorage.setItem("ghc_transform", JSON.stringify(TRANSFORM)); setStatus("Alignment saved locally."); };
+  $("copyTransform").onclick = async () => {
+    const json = JSON.stringify(TRANSFORM, null, 2);
+    try { await navigator.clipboard.writeText(json); setStatus("Alignment JSON copied to clipboard."); }
+    catch { prompt("Copy this alignment JSON:", json); }
+  };
+
+  $("showLots").onchange = styleLots;
+  $("digToggle").onclick = () => setDigitizeUI(!digitizing);
+  $("undoPt").onclick = () => { digPts.pop(); const m = digMarkers.pop(); if (m) m.setMap(null); redrawDig(); };
+  $("finishLot").onclick = finishLot;
+  $("exportLots").onclick = exportLots;
+}
+
+/* ------------------------------------------------------------------ *
+ *  Loader
+ * ------------------------------------------------------------------ */
+function boot() {
+  if (!CONFIG.apiKey) { $("keybanner").style.display = "block"; setStatus("Waiting for Google Maps API key."); return; }
+  const s = document.createElement("script");
+  s.src = "https://maps.googleapis.com/maps/api/js?key=" + CONFIG.apiKey + "&callback=initMap&v=weekly";
+  s.async = true;
+  s.onerror = () => setStatus("Failed to load Google Maps — check the API key and referrer restriction.");
+  window.initMap = initMap;
+  document.head.appendChild(s);
+}
+boot();
+</script>
+</body>
+</html>
