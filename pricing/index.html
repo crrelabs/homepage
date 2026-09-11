@@ -198,7 +198,7 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:#3aa0ff;box-sh
       <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Domain + SSL + hosting</span></li>
       <li class="flex items-start gap-3"><i class="fa-solid fa-rotate text-gray-500 mt-1 text-sm"></i><span class="text-gray-400 text-sm">Reactivation (within 90 days): $49</span></li>
     </ul>
-    <a href="#contact" data-plan="website-starter" class="plan-cta block text-center px-6 py-3 border border-white/20 text-white font-semibold rounded-full hover:border-white/40 hover:bg-white/5 transition">Get Started</a>
+    <a href="https://buy.stripe.com/14A7sL0wGbiv0ER1dqdwc04" data-plan="website-starter" target="_blank" rel="noopener noreferrer" class="plan-cta block text-center px-6 py-3 border border-white/20 text-white font-semibold rounded-full hover:border-white/40 hover:bg-white/5 transition">Get Started</a>
   </article>
 
   <!-- Business -->
@@ -220,7 +220,7 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:#3aa0ff;box-sh
       <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Domain + SSL + hosting</span></li>
       <li class="flex items-start gap-3"><i class="fa-solid fa-rotate text-gray-500 mt-1 text-sm"></i><span class="text-gray-400 text-sm">Reactivation (within 90 days): $99</span></li>
     </ul>
-    <a href="#contact" data-plan="website-business" class="plan-cta block text-center px-6 py-3 bg-accent text-white font-semibold rounded-full hover:bg-blue-500 transition shadow-lg shadow-accent/20">Get Started</a>
+    <a href="https://buy.stripe.com/eVq28r1AKbivcnz3lydwc05" data-plan="website-business" target="_blank" rel="noopener noreferrer" class="plan-cta block text-center px-6 py-3 bg-accent text-white font-semibold rounded-full hover:bg-blue-500 transition shadow-lg shadow-accent/20">Get Started</a>
   </article>
 
   <!-- Pro -->
@@ -241,7 +241,7 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:#3aa0ff;box-sh
       <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Domain + SSL + hosting</span></li>
       <li class="flex items-start gap-3"><i class="fa-solid fa-rotate text-gray-500 mt-1 text-sm"></i><span class="text-gray-400 text-sm">Reactivation (within 90 days): $175</span></li>
     </ul>
-    <a href="#contact" data-plan="website-pro" class="plan-cta block text-center px-6 py-3 border border-white/20 text-white font-semibold rounded-full hover:border-white/40 hover:bg-white/5 transition">Get a Quote</a>
+    <a href="https://buy.stripe.com/fZu4gzcfoeuH73f9JWdwc06" data-plan="website-pro" target="_blank" rel="noopener noreferrer" class="plan-cta block text-center px-6 py-3 border border-white/20 text-white font-semibold rounded-full hover:border-white/40 hover:bg-white/5 transition">Get Started</a>
   </article>
 
 </div>
@@ -353,11 +353,10 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:#3aa0ff;box-sh
   <div class="text-center mb-12">
     <div class="accent-line mx-auto mb-6"></div>
     <h2 class="font-display text-3xl sm:text-5xl font-bold text-white mb-4">Get Started</h2>
-    <p class="text-gray-400 text-lg">Tell us which package fits. We’ll follow up with a quote — no payment on this page.</p>
+    <p class="text-gray-400 text-lg">Questions or need a custom quote? Tell us about your business and we’ll follow up.</p>
   </div>
-  <form id="contact-form" class="space-y-5" action="https://formsubmit.co/ajax/carlos@crrelabs.com" method="POST">
-    <input type="hidden" name="_subject" value="CRRE Labs website inquiry — Local Business Website">
-    <input type="hidden" name="_captcha" value="false">
+  <form id="contact-form" class="space-y-5" action="https://crre-sms-hubspot-4207-prod.twil.io/form/contact" method="POST">
+    <input type="hidden" name="_page" value="pricing">
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
       <input type="text" name="name" placeholder="Name" required class="w-full px-5 py-4 bg-dark-card border border-white/10 rounded-xl text-white placeholder-gray-500 transition">
       <input type="email" name="email" placeholder="Email" required class="w-full px-5 py-4 bg-dark-card border border-white/10 rounded-xl text-white placeholder-gray-500 transition">
@@ -424,7 +423,8 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 const serviceSelect = document.getElementById('service-select');
 document.querySelectorAll('.plan-cta').forEach(a => {
   a.addEventListener('click', () => {
-    if (serviceSelect && a.dataset.plan) serviceSelect.value = a.dataset.plan;
+    if (!a.getAttribute('href')?.startsWith('#') || !serviceSelect || !a.dataset.plan) return;
+    serviceSelect.value = a.dataset.plan;
   });
 });
 const params = new URLSearchParams(window.location.search);
@@ -449,7 +449,7 @@ contactForm.addEventListener('submit', async function(e) {
   const btn = this.querySelector('button[type="submit"]');
   btn.textContent = 'Sending...'; btn.disabled = true;
   try {
-    const res = await fetch(this.action, { method:'POST', body:new FormData(this), headers:{'Accept':'application/json'} });
+    const res = await fetch(this.action, { method:'POST', body:new URLSearchParams(new FormData(this)), headers:{'Accept':'application/json'} });
     if (res.ok) { btn.textContent='Message Sent ✓'; btn.classList.remove('bg-accent'); btn.classList.add('bg-green-600'); this.reset(); }
     else { btn.textContent='Error — Try Again'; btn.disabled=false; }
   } catch { btn.textContent='Error — Try Again'; btn.disabled=false; }
