@@ -120,14 +120,14 @@ body{font-family:'Inter',sans-serif;background:#0a0e1a;color:#e2e8f0;overflow-x:
     </h1>
     <div class="accent-line mx-auto mb-5"></div>
     <p class="text-lg sm:text-xl text-gray-300 max-w-xl mx-auto mb-3 leading-relaxed">
-      We received your payment. A member of the CRRE Labs team will reach out shortly to get you started.
+      We received your payment. Send your logo and domain details next so we can start building.
     </p>
     <p class="text-gray-400 max-w-xl mx-auto mb-8 leading-relaxed">
-      Keep an eye on your inbox — we’ll confirm next steps and collect anything we need to kick off your project.
+      It only takes a few minutes. We’ll follow up if we need anything else.
     </p>
     <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-8">
-      <a href="/" class="px-8 py-3.5 sm:py-4 bg-accent text-white font-semibold rounded-full hover:bg-blue-500 transition shadow-lg shadow-accent/20">Back to Home</a>
-      <a href="/pricing/" class="px-8 py-3.5 sm:py-4 border border-white/20 text-white font-semibold rounded-full hover:border-white/40 hover:bg-white/5 transition">View Pricing</a>
+      <a id="onboarding-cta" href="/onboarding/" class="px-8 py-3.5 sm:py-4 bg-accent text-white font-semibold rounded-full hover:bg-blue-500 transition shadow-lg shadow-accent/20 text-center leading-snug">Next step: send your logo &amp; domain details</a>
+      <a href="/" class="px-8 py-3.5 sm:py-4 border border-white/20 text-white font-semibold rounded-full hover:border-white/40 hover:bg-white/5 transition">Back to Home</a>
     </div>
     <p class="text-sm text-gray-500 mb-4">Questions before we reach out? Contact us anytime.</p>
     <div class="flex flex-col sm:flex-row items-center justify-center gap-5 text-sm">
@@ -168,6 +168,11 @@ const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }});
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+const onboardCta = document.getElementById('onboarding-cta');
+const inbound = new URLSearchParams(window.location.search);
+if (onboardCta && inbound.toString()) {
+  onboardCta.href = '/onboarding/?' + inbound.toString();
+}
 </script>
 </body>
 </html>
