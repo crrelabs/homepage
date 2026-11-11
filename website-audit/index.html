@@ -42,6 +42,62 @@
   }
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What do you need from me?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your website address to start the audit. For the optimization pass we also need login access to your website platform or hosting (for example WordPress, Wix, Squarespace or your host’s control panel), plus access to your Google Business Profile and Google Search Console if you want us to work on those."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What platforms do you work with?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most common website platforms, including WordPress, Wix, Squarespace, Shopify, and hand-coded or static sites. Some platforms limit what can be changed, such as speed settings or code. If that’s the case, the report says so and we fix what the platform allows."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if my site needs a full rebuild?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sometimes the audit shows a site isn’t worth patching. If so, we’ll tell you, and our Starter, Business, and Pro website packages on the pricing page are the better fit. You can also look at those first if you already know you want a new site."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is it a one-time payment?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The Website Audit & Optimization package is $300, paid once. There is no subscription and no monthly fee."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will you rewrite my content?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We rewrite page titles and meta descriptions, and we may adjust headings and calls to action where it helps. We don’t rewrite your page copy as part of this package. If your copy needs work, the report will point that out."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you guarantee rankings or more leads?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Nobody can honestly guarantee search rankings. The audit finds real problems, and the optimization pass fixes them so your site is faster, works on phones, and gets inquiries to you."
+      }
+    }
+  ]
+}
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Website Audit &amp; Optimization for Local Businesses | CRRE Labs</title>
@@ -80,6 +136,7 @@ tailwind.config = {
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
+details summary::-webkit-details-marker{display:none}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Inter',sans-serif;background:#0a0e1a;color:#e2e8f0;overflow-x:hidden}
 .hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0a0e1a 0%,#0f1b3d 25%,#0a0e1a 50%,#0d1f3c 75%,#0a0e1a 100%);background-size:400% 400%;animation:gradientShift 12s ease infinite}
@@ -139,7 +196,7 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:#3aa0ff;box-sh
 </header>
 
 <!-- Hero -->
-<section class="relative pt-32 pb-16 overflow-hidden">
+<section class="relative pt-32 pb-20 overflow-hidden">
 <div class="hero-bg"></div>
 <div class="grid-overlay"></div>
 <div class="orb orb-1"></div>
@@ -153,11 +210,16 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:#3aa0ff;box-sh
     Already have a website?<br><span class="bg-gradient-to-r from-accent to-accent-cyan bg-clip-text text-transparent">Let’s make it work harder.</span>
   </h1>
   <p class="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto mb-8 leading-relaxed">
-    We audit your existing business website for speed, mobile, security, SEO, broken links, and contact forms that don’t deliver — then we fix what we find.
+    We audit your existing business website for speed, mobile, security, SEO, broken links, and contact forms that don’t deliver. Then we fix what we find.
   </p>
+  <div class="mb-8">
+    <span class="stat-num font-display text-6xl font-bold">$300</span>
+    <span class="text-gray-400">one-time</span>
+  </div>
   <div class="flex flex-col sm:flex-row gap-4 justify-center">
-    <a href="#package" class="px-8 py-4 bg-accent text-white font-semibold rounded-full hover:bg-blue-500 transition shadow-lg shadow-accent/20">See the Package</a>
-    <a href="/pricing/?plan=website-audit#contact" class="px-8 py-4 border border-white/20 text-white font-semibold rounded-full hover:border-white/40 hover:bg-white/5 transition">Questions? Contact us</a>
+    <!-- Live Stripe Payment Link: Website Audit & Optimization ($300 one-time), plink_1Uae21FLKMTWNENl1JYHUXLD; redirects to /thank-you/?package=website-audit after payment -->
+    <a href="https://buy.stripe.com/28E9AT5R09anfzLf4gdwc0a" target="_blank" rel="noopener noreferrer" data-plan="website-audit" class="px-8 py-4 bg-accent text-white font-semibold rounded-full hover:bg-blue-500 transition shadow-lg shadow-accent/20 text-center">Get Started — $300</a>
+    <a href="/pricing/?plan=website-audit#contact" class="px-8 py-4 border border-white/20 text-white font-semibold rounded-full hover:border-white/40 hover:bg-white/5 transition text-center">Questions? Contact us</a>
   </div>
 </div>
 </section>
@@ -166,63 +228,88 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:#3aa0ff;box-sh
 <section id="audit" class="py-16 lg:py-24 relative">
 <div class="absolute inset-0 bg-gradient-to-b from-transparent via-accent/[.02] to-transparent"></div>
 <div class="max-w-7xl mx-auto px-6 relative z-10">
-<div class="reveal text-center mb-14">
+<div class="reveal text-center mb-12">
   <div class="accent-line mx-auto mb-6"></div>
   <h2 class="font-display text-3xl sm:text-5xl font-bold text-white mb-4">What We Audit</h2>
-  <p class="text-gray-400 text-lg max-w-2xl mx-auto">Eight areas that decide whether visitors find you, trust you, and actually get in touch.</p>
+  <p class="text-gray-400 text-lg max-w-2xl mx-auto">Eight areas that decide whether people find you, trust you, and actually get in touch.</p>
 </div>
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
   <div class="reveal glass rounded-2xl p-6 transition-all duration-300">
-    <div class="w-11 h-11 rounded-xl bg-accent/10 flex items-center justify-center mb-4"><i class="fa-solid fa-gauge-high text-accent"></i></div>
-    <h3 class="font-display text-lg font-semibold text-white mb-2">Speed &amp; performance</h3>
-    <p class="text-gray-400 text-sm leading-relaxed">Page load times, image sizes, render-blocking scripts, caching, and Core Web Vitals checks on key pages.</p>
+    <div class="w-11 h-11 rounded-xl bg-accent/10 flex items-center justify-center mb-4"><i class="fa-solid fa-gauge-high text-accent" aria-hidden="true"></i></div>
+    <h3 class="font-display text-lg font-semibold text-white mb-2">Speed</h3>
+    <p class="text-gray-400 text-sm leading-relaxed">We measure how fast your key pages load on desktop and mobile and find what slows them down: oversized images, render-blocking scripts, heavy plugins, missing caching, and Core Web Vitals issues.</p>
   </div>
   <div class="reveal glass rounded-2xl p-6 transition-all duration-300">
-    <div class="w-11 h-11 rounded-xl bg-accent/10 flex items-center justify-center mb-4"><i class="fa-solid fa-mobile-screen text-accent"></i></div>
-    <h3 class="font-display text-lg font-semibold text-white mb-2">Mobile responsiveness</h3>
-    <p class="text-gray-400 text-sm leading-relaxed">How every key page looks and works on phones and tablets: layout, tap targets, readable text, and menus.</p>
+    <div class="w-11 h-11 rounded-xl bg-accent/10 flex items-center justify-center mb-4"><i class="fa-solid fa-mobile-screen text-accent" aria-hidden="true"></i></div>
+    <h3 class="font-display text-lg font-semibold text-white mb-2">Mobile</h3>
+    <p class="text-gray-400 text-sm leading-relaxed">We check every key page on phone and tablet sizes for layouts that break, text that’s too small, buttons that are hard to tap, and menus that don’t work.</p>
   </div>
   <div class="reveal glass rounded-2xl p-6 transition-all duration-300">
-    <div class="w-11 h-11 rounded-xl bg-accent/10 flex items-center justify-center mb-4"><i class="fa-solid fa-lock text-accent"></i></div>
-    <h3 class="font-display text-lg font-semibold text-white mb-2">SSL/HTTPS &amp; security basics</h3>
-    <p class="text-gray-400 text-sm leading-relaxed">Certificate status, HTTPS redirects, mixed content, outdated plugins or scripts, and basic security headers.</p>
+    <div class="w-11 h-11 rounded-xl bg-accent/10 flex items-center justify-center mb-4"><i class="fa-solid fa-lock text-accent" aria-hidden="true"></i></div>
+    <h3 class="font-display text-lg font-semibold text-white mb-2">SSL &amp; security</h3>
+    <p class="text-gray-400 text-sm leading-relaxed">We confirm your SSL certificate is valid, every page redirects to HTTPS, there’s no mixed content, and we flag outdated software, exposed admin pages, and missing security headers.</p>
   </div>
   <div class="reveal glass rounded-2xl p-6 transition-all duration-300">
-    <div class="w-11 h-11 rounded-xl bg-accent/10 flex items-center justify-center mb-4"><i class="fa-solid fa-magnifying-glass text-accent"></i></div>
-    <h3 class="font-display text-lg font-semibold text-white mb-2">SEO basics</h3>
-    <p class="text-gray-400 text-sm leading-relaxed">Page titles, meta descriptions, headings, image alt text, indexing, sitemap, and Google Search Console setup.</p>
+    <div class="w-11 h-11 rounded-xl bg-accent/10 flex items-center justify-center mb-4"><i class="fa-solid fa-magnifying-glass text-accent" aria-hidden="true"></i></div>
+    <h3 class="font-display text-lg font-semibold text-white mb-2">SEO</h3>
+    <p class="text-gray-400 text-sm leading-relaxed">We review page titles, meta descriptions, headings, image alt text, indexing settings, your sitemap and robots.txt, and whether Google Search Console is set up.</p>
   </div>
   <div class="reveal glass rounded-2xl p-6 transition-all duration-300">
-    <div class="w-11 h-11 rounded-xl bg-accent/10 flex items-center justify-center mb-4"><i class="fa-solid fa-location-dot text-accent"></i></div>
-    <h3 class="font-display text-lg font-semibold text-white mb-2">Local SEO basics</h3>
-    <p class="text-gray-400 text-sm leading-relaxed">Google Business Profile consistency, matching business name, address and phone everywhere, and LocalBusiness schema.</p>
+    <div class="w-11 h-11 rounded-xl bg-accent/10 flex items-center justify-center mb-4"><i class="fa-solid fa-location-dot text-accent" aria-hidden="true"></i></div>
+    <h3 class="font-display text-lg font-semibold text-white mb-2">Local SEO</h3>
+    <p class="text-gray-400 text-sm leading-relaxed">We compare your Google Business Profile with your site, check that your business name, address and phone number match everywhere, and look for LocalBusiness schema.</p>
   </div>
   <div class="reveal glass rounded-2xl p-6 transition-all duration-300">
-    <div class="w-11 h-11 rounded-xl bg-accent/10 flex items-center justify-center mb-4"><i class="fa-solid fa-link-slash text-accent"></i></div>
+    <div class="w-11 h-11 rounded-xl bg-accent/10 flex items-center justify-center mb-4"><i class="fa-solid fa-link-slash text-accent" aria-hidden="true"></i></div>
     <h3 class="font-display text-lg font-semibold text-white mb-2">Broken links</h3>
-    <p class="text-gray-400 text-sm leading-relaxed">Dead internal and outbound links, missing pages, and broken images or downloads.</p>
+    <p class="text-gray-400 text-sm leading-relaxed">We crawl your site for dead internal and outbound links, missing pages, and broken images or downloads.</p>
   </div>
   <div class="reveal glass rounded-2xl p-6 transition-all duration-300">
-    <div class="w-11 h-11 rounded-xl bg-accent/10 flex items-center justify-center mb-4"><i class="fa-solid fa-envelope-circle-check text-accent"></i></div>
-    <h3 class="font-display text-lg font-semibold text-white mb-2">CTAs &amp; contact forms</h3>
-    <p class="text-gray-400 text-sm leading-relaxed">Clear calls to action, click-to-call, and test submissions to confirm your forms actually deliver to your inbox.</p>
+    <div class="w-11 h-11 rounded-xl bg-accent/10 flex items-center justify-center mb-4"><i class="fa-solid fa-envelope-circle-check text-accent" aria-hidden="true"></i></div>
+    <h3 class="font-display text-lg font-semibold text-white mb-2">CTAs &amp; forms</h3>
+    <p class="text-gray-400 text-sm leading-relaxed">We check that every page has a clear next step, that click-to-call works, and we send test submissions to confirm your contact forms actually reach your inbox.</p>
   </div>
   <div class="reveal glass rounded-2xl p-6 transition-all duration-300">
-    <div class="w-11 h-11 rounded-xl bg-accent/10 flex items-center justify-center mb-4"><i class="fa-solid fa-palette text-accent"></i></div>
-    <h3 class="font-display text-lg font-semibold text-white mb-2">Design refresh</h3>
-    <p class="text-gray-400 text-sm leading-relaxed">An outdated look, cluttered layouts, inconsistent branding, and anything that makes visitors trust you less.</p>
+    <div class="w-11 h-11 rounded-xl bg-accent/10 flex items-center justify-center mb-4"><i class="fa-solid fa-palette text-accent" aria-hidden="true"></i></div>
+    <h3 class="font-display text-lg font-semibold text-white mb-2">Design</h3>
+    <p class="text-gray-400 text-sm leading-relaxed">We look for an outdated look, cluttered layouts, inconsistent branding, and anything that makes a first-time visitor trust you less.</p>
   </div>
 </div>
 </div>
 </section>
 
+<!-- Optimization pass -->
+<section id="optimization" class="pb-16 lg:pb-24">
+<div class="max-w-4xl mx-auto px-6">
+<div class="reveal text-center mb-12">
+  <div class="accent-line mx-auto mb-6"></div>
+  <h2 class="font-display text-3xl sm:text-5xl font-bold text-white mb-4">The Optimization Pass</h2>
+  <p class="text-gray-400 text-lg max-w-2xl mx-auto">After the audit, we fix the issues it finds, within the scope of the package. Depending on what we find, that can include:</p>
+</div>
+<div class="reveal glass rounded-2xl p-8">
+  <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3">
+      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Compress and resize images, and lazy-load ones below the fold</span></li>
+      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Remove or defer unused scripts and plugins where your platform allows</span></li>
+      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Fix mobile layout, tap-target, and text-size problems on key pages</span></li>
+      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Fix HTTPS redirects and mixed content, and update what can be safely updated</span></li>
+      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Write or rewrite page titles and meta descriptions, and fix heading structure</span></li>
+      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Add or correct LocalBusiness schema and make your name, address and phone consistent on the site</span></li>
+      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Submit or fix your sitemap and connect Google Search Console</span></li>
+      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Repair or redirect broken links</span></li>
+      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Fix contact forms and click-to-call so inquiries reach you</span></li>
+      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Design touch-ups to key pages: spacing, typography, buttons, and calls to action</span></li>
+  </ul>
+  <p class="text-gray-500 text-sm mt-6 leading-relaxed">The package covers fixing what the audit finds on your existing site. It doesn’t include a full redesign, new pages, writing new page copy, or ongoing maintenance. If a fix is bigger than the package, we’ll list it in the report so you can decide what to do next.</p>
+</div>
+</div>
+</section>
+
 <!-- Deliverables -->
-<section class="pb-16 lg:pb-24">
+<section id="deliverables" class="pb-16 lg:pb-24">
 <div class="max-w-6xl mx-auto px-6">
 <div class="reveal text-center mb-12">
   <div class="accent-line mx-auto mb-6"></div>
   <h2 class="font-display text-3xl sm:text-5xl font-bold text-white mb-4">What You Get</h2>
-  <p class="text-gray-400 text-lg max-w-2xl mx-auto">Two parts: a clear picture of what’s wrong, then the work to fix it.</p>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
   <div class="reveal glass rounded-2xl p-8 transition-all duration-300">
@@ -230,59 +317,128 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:#3aa0ff;box-sh
     <h3 class="font-display text-2xl font-semibold text-white mb-4">Written audit report</h3>
     <ul class="space-y-3">
       <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Findings across all eight audit areas</span></li>
-      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Every issue prioritized — what to fix first and why</span></li>
+      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Every issue prioritized by impact: what to fix first and why</span></li>
       <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Plain-English explanations, no jargon</span></li>
-      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Screenshots and page links so you can see each issue</span></li>
+      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Page links and screenshots so you can see each issue</span></li>
     </ul>
   </div>
   <div class="reveal glass rounded-2xl p-8 transition-all duration-300">
     <p class="text-xs font-semibold uppercase tracking-wider text-accent mb-3">Part 2</p>
-    <h3 class="font-display text-2xl font-semibold text-white mb-4">Optimization pass</h3>
+    <h3 class="font-display text-2xl font-semibold text-white mb-4">Fixes &amp; summary</h3>
     <ul class="space-y-3">
-      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">We fix what the audit finds, starting with the highest priority</span></li>
-      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Faster pages, mobile fixes, and HTTPS cleanup</span></li>
-      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Titles, meta descriptions, schema, and sitemap set up right</span></li>
-      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Broken links repaired and contact forms tested end to end</span></li>
-      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Design refresh where it helps visitors trust you</span></li>
+      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">The optimization pass applied to your live site</span></li>
+      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">A summary of everything we changed</span></li>
+      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Recommendations for anything outside the package scope</span></li>
     </ul>
   </div>
+</div>
+<div class="reveal glass rounded-2xl p-6 mt-6 flex flex-col sm:flex-row items-center justify-center gap-3 text-center">
+  <i class="fa-regular fa-clock text-accent" aria-hidden="true"></i>
+  <p class="text-gray-300"><span class="font-semibold text-white">Turnaround:</span> <!-- TURNAROUND PLACEHOLDER: Carlos to set --><span class="text-accent-cyan">[X] business days</span> from when we receive your site access.</p>
+</div>
+</div>
+</section>
+
+<!-- Who it's for -->
+<section id="who" class="pb-16 lg:pb-24">
+<div class="max-w-6xl mx-auto px-6">
+<div class="reveal text-center mb-12">
+  <div class="accent-line mx-auto mb-6"></div>
+  <h2 class="font-display text-3xl sm:text-5xl font-bold text-white mb-4">Who It’s For</h2>
+  <p class="text-gray-400 text-lg max-w-2xl mx-auto">Small businesses that already have a website and want it to work better, without starting over.</p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+  <div class="reveal glass rounded-2xl p-6 flex items-center gap-4 transition-all duration-300"><i class="fa-solid fa-screwdriver-wrench text-accent text-xl" aria-hidden="true"></i><span class="text-white font-medium">Contractors &amp; trades</span></div>
+  <div class="reveal glass rounded-2xl p-6 flex items-center gap-4 transition-all duration-300"><i class="fa-solid fa-building text-accent text-xl" aria-hidden="true"></i><span class="text-white font-medium">Property managers</span></div>
+  <div class="reveal glass rounded-2xl p-6 flex items-center gap-4 transition-all duration-300"><i class="fa-solid fa-store text-accent text-xl" aria-hidden="true"></i><span class="text-white font-medium">Local service businesses</span></div>
+  <div class="reveal glass rounded-2xl p-6 flex items-center gap-4 transition-all duration-300"><i class="fa-solid fa-briefcase text-accent text-xl" aria-hidden="true"></i><span class="text-white font-medium">Professional offices &amp; small businesses</span></div>
 </div>
 </div>
 </section>
 
 <!-- How it works -->
-<section class="pb-16 lg:pb-24">
+<section id="how" class="pb-16 lg:pb-24">
 <div class="max-w-7xl mx-auto px-6">
 <div class="reveal text-center mb-12">
   <div class="accent-line mx-auto mb-6"></div>
   <h2 class="font-display text-3xl sm:text-5xl font-bold text-white mb-4">How It Works</h2>
 </div>
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
   <div class="reveal glass rounded-2xl p-6 transition-all duration-300">
     <div class="stat-num font-display text-3xl font-bold mb-3">01</div>
-    <h3 class="font-display text-lg font-semibold text-white mb-2">Tell us about your site</h3>
-    <p class="text-gray-400 text-sm leading-relaxed">Send your website address and what matters most to your business through our contact form or the checkout.</p>
+    <h3 class="font-display text-lg font-semibold text-white mb-2">Buy the package</h3>
+    <p class="text-gray-400 text-sm leading-relaxed">Check out securely with the button on this page. Have a question first? Contact us instead.</p>
   </div>
   <div class="reveal glass rounded-2xl p-6 transition-all duration-300">
     <div class="stat-num font-display text-3xl font-bold mb-3">02</div>
-    <h3 class="font-display text-lg font-semibold text-white mb-2">We audit</h3>
-    <p class="text-gray-400 text-sm leading-relaxed">We review your site across all eight areas above and test it on desktop and mobile.</p>
+    <h3 class="font-display text-lg font-semibold text-white mb-2">Send us access</h3>
+    <p class="text-gray-400 text-sm leading-relaxed">We email you to get your site URL and, for the optimization pass, login or hosting access.</p>
   </div>
   <div class="reveal glass rounded-2xl p-6 transition-all duration-300">
     <div class="stat-num font-display text-3xl font-bold mb-3">03</div>
-    <h3 class="font-display text-lg font-semibold text-white mb-2">You get the report</h3>
-    <p class="text-gray-400 text-sm leading-relaxed">A written audit report with prioritized findings: what to fix first, and why it matters.</p>
+    <h3 class="font-display text-lg font-semibold text-white mb-2">We audit</h3>
+    <p class="text-gray-400 text-sm leading-relaxed">We review your site across all eight areas and test it on desktop and mobile.</p>
   </div>
   <div class="reveal glass rounded-2xl p-6 transition-all duration-300">
     <div class="stat-num font-display text-3xl font-bold mb-3">04</div>
+    <h3 class="font-display text-lg font-semibold text-white mb-2">You get the report</h3>
+    <p class="text-gray-400 text-sm leading-relaxed">A written report with every finding, prioritized by impact.</p>
+  </div>
+  <div class="reveal glass rounded-2xl p-6 transition-all duration-300">
+    <div class="stat-num font-display text-3xl font-bold mb-3">05</div>
     <h3 class="font-display text-lg font-semibold text-white mb-2">We optimize</h3>
-    <p class="text-gray-400 text-sm leading-relaxed">We fix what the audit finds, then walk you through what changed.</p>
+    <p class="text-gray-400 text-sm leading-relaxed">We fix the issues the audit finds, within the scope of the package.</p>
+  </div>
+  <div class="reveal glass rounded-2xl p-6 transition-all duration-300">
+    <div class="stat-num font-display text-3xl font-bold mb-3">06</div>
+    <h3 class="font-display text-lg font-semibold text-white mb-2">We walk you through it</h3>
+    <p class="text-gray-400 text-sm leading-relaxed">We send a summary of what we changed and anything we recommend next.</p>
   </div>
 </div>
 </div>
 </section>
 
-<!-- Package -->
+<!-- FAQ -->
+<section id="faq" class="pb-16 lg:pb-24">
+<div class="max-w-3xl mx-auto px-6">
+<div class="reveal text-center mb-12">
+  <div class="accent-line mx-auto mb-6"></div>
+  <h2 class="font-display text-3xl sm:text-5xl font-bold text-white mb-4">Questions</h2>
+</div>
+<div class="space-y-4">
+  <details class="reveal glass rounded-2xl p-6 group">
+    <summary class="flex items-center justify-between gap-4 cursor-pointer list-none font-display text-lg font-semibold text-white">What do you need from me?<i class="fa-solid fa-plus text-accent text-sm transition group-open:rotate-45" aria-hidden="true"></i></summary>
+    <p class="text-gray-400 text-sm leading-relaxed mt-4">Your website address to start the audit. For the optimization pass we also need login access to your website platform or hosting (for example WordPress, Wix, Squarespace or your host’s control panel), plus access to your Google Business Profile and Google Search Console if you want us to work on those.</p>
+  </details>
+  <details class="reveal glass rounded-2xl p-6 group">
+    <summary class="flex items-center justify-between gap-4 cursor-pointer list-none font-display text-lg font-semibold text-white">What platforms do you work with?<i class="fa-solid fa-plus text-accent text-sm transition group-open:rotate-45" aria-hidden="true"></i></summary>
+    <p class="text-gray-400 text-sm leading-relaxed mt-4">Most common website platforms, including WordPress, Wix, Squarespace, Shopify, and hand-coded or static sites. Some platforms limit what can be changed, such as speed settings or code. If that’s the case, the report says so and we fix what the platform allows.</p>
+  </details>
+  <details class="reveal glass rounded-2xl p-6 group">
+    <summary class="flex items-center justify-between gap-4 cursor-pointer list-none font-display text-lg font-semibold text-white">What if my site needs a full rebuild?<i class="fa-solid fa-plus text-accent text-sm transition group-open:rotate-45" aria-hidden="true"></i></summary>
+    <p class="text-gray-400 text-sm leading-relaxed mt-4">Sometimes the audit shows a site isn’t worth patching. If so, we’ll tell you, and our Starter, Business, and Pro website packages on the <a href="/pricing/#packages" class="text-accent hover:underline">pricing page</a> are the better fit. You can also look at those first if you already know you want a new site.</p>
+  </details>
+  <details class="reveal glass rounded-2xl p-6 group">
+    <summary class="flex items-center justify-between gap-4 cursor-pointer list-none font-display text-lg font-semibold text-white">Is it a one-time payment?<i class="fa-solid fa-plus text-accent text-sm transition group-open:rotate-45" aria-hidden="true"></i></summary>
+    <p class="text-gray-400 text-sm leading-relaxed mt-4">Yes. The Website Audit &amp; Optimization package is $300, paid once. There is no subscription and no monthly fee.</p>
+  </details>
+  <details class="reveal glass rounded-2xl p-6 group">
+    <summary class="flex items-center justify-between gap-4 cursor-pointer list-none font-display text-lg font-semibold text-white">Will you rewrite my content?<i class="fa-solid fa-plus text-accent text-sm transition group-open:rotate-45" aria-hidden="true"></i></summary>
+    <p class="text-gray-400 text-sm leading-relaxed mt-4">We rewrite page titles and meta descriptions, and we may adjust headings and calls to action where it helps. We don’t rewrite your page copy as part of this package. If your copy needs work, the report will point that out.</p>
+  </details>
+  <details class="reveal glass rounded-2xl p-6 group">
+    <summary class="flex items-center justify-between gap-4 cursor-pointer list-none font-display text-lg font-semibold text-white">Do you guarantee rankings or more leads?<i class="fa-solid fa-plus text-accent text-sm transition group-open:rotate-45" aria-hidden="true"></i></summary>
+    <p class="text-gray-400 text-sm leading-relaxed mt-4">No. Nobody can honestly guarantee search rankings. The audit finds real problems, and the optimization pass fixes them so your site is faster, works on phones, and gets inquiries to you.</p>
+  </details>
+  <details class="reveal glass rounded-2xl p-6 group">
+    <summary class="flex items-center justify-between gap-4 cursor-pointer list-none font-display text-lg font-semibold text-white">How long does it take?<i class="fa-solid fa-plus text-accent text-sm transition group-open:rotate-45" aria-hidden="true"></i></summary>
+    <p class="text-gray-400 text-sm leading-relaxed mt-4"><!-- TURNAROUND PLACEHOLDER: Carlos to set -->Typically [X] business days from when we receive your site access.</p>
+  </details>
+</div>
+</div>
+</section>
+
+<!-- Final CTA -->
 <section id="package" class="pb-24 lg:pb-32">
 <div class="max-w-xl mx-auto px-6">
   <article class="reveal glass-featured rounded-2xl p-8 sm:p-10 flex flex-col text-center">
@@ -295,10 +451,10 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:#3aa0ff;box-sh
     <ul class="space-y-3 mb-8 text-left">
       <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Full audit of your existing website</span></li>
       <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Written report with prioritized findings</span></li>
-      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Optimization pass that fixes what we find</span></li>
+      <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Optimization pass that fixes what the audit finds</span></li>
       <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Works with the site you already have</span></li>
     </ul>
-    <!-- Live Stripe Payment Link: Website Audit & Optimization ($300 one-time), plink_1Uae21FLKMTWNENl1JYHUXLD; redirects to /thank-you/ after payment -->
+    <!-- Live Stripe Payment Link: Website Audit & Optimization ($300 one-time), plink_1Uae21FLKMTWNENl1JYHUXLD; redirects to /thank-you/?package=website-audit after payment -->
     <a href="https://buy.stripe.com/28E9AT5R09anfzLf4gdwc0a" target="_blank" rel="noopener noreferrer" data-plan="website-audit" class="block text-center px-6 py-3 bg-accent text-white font-semibold rounded-full hover:bg-blue-500 transition shadow-lg shadow-accent/20">Get Started — $300</a>
     <a href="/pricing/?plan=website-audit#contact" class="mt-4 text-sm text-accent hover:underline">Questions? Contact us</a>
   </article>
@@ -320,6 +476,7 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:#3aa0ff;box-sh
   <div class="flex gap-4 text-sm text-gray-600">
     <a href="/" class="hover:text-accent transition">Home</a>
     <a href="/pricing" class="hover:text-accent transition">Pricing</a>
+    <a href="/website-audit/" class="hover:text-accent transition">Website Audit</a>
     <a href="/#contact" class="hover:text-accent transition">Contact</a>
   </div>
 </div>
