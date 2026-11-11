@@ -117,6 +117,8 @@ body{font-family:'Inter',sans-serif;background:#0a0e1a;color:#e2e8f0;overflow-x:
       <span class="pulse-dot"></span>
       <span class="text-sm text-accent font-medium">Payment received</span>
     </div>
+    <!-- Default (website packages, PR #12 onboarding step). Shown unless ?package=website-audit -->
+    <div id="ty-default">
     <h1 class="font-display text-3xl sm:text-5xl font-bold text-white leading-tight glow-text mb-4">
       Thank you.<br><span class="bg-gradient-to-r from-accent to-accent-cyan bg-clip-text text-transparent">You’re all set.</span>
     </h1>
@@ -130,6 +132,29 @@ body{font-family:'Inter',sans-serif;background:#0a0e1a;color:#e2e8f0;overflow-x:
     <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-8">
       <a id="onboarding-cta" href="/onboarding/" class="px-8 py-3.5 sm:py-4 bg-accent text-white font-semibold rounded-full hover:bg-blue-500 transition shadow-lg shadow-accent/20 text-center leading-snug">Next step: send your logo &amp; domain details</a>
       <a href="/" class="px-8 py-3.5 sm:py-4 border border-white/20 text-white font-semibold rounded-full hover:border-white/40 hover:bg-white/5 transition">Back to Home</a>
+    </div>
+    </div>
+    <!-- Website Audit & Optimization buyers: the Stripe Payment Link redirects to /thank-you/?package=website-audit -->
+    <div id="ty-audit" hidden>
+    <h1 class="font-display text-3xl sm:text-5xl font-bold text-white leading-tight glow-text mb-4">
+      Thank you.<br><span class="bg-gradient-to-r from-accent to-accent-cyan bg-clip-text text-transparent">Your audit is booked.</span>
+    </h1>
+    <div class="accent-line mx-auto mb-5"></div>
+    <p class="text-lg sm:text-xl text-gray-300 max-w-xl mx-auto mb-6 leading-relaxed">
+      Thanks! We’ll email you within <!-- AUDIT FOLLOW-UP TIME: change "1 business day" here if needed -->1 business day to start your audit.
+    </p>
+    <div class="text-left max-w-md mx-auto mb-8">
+      <p class="text-sm font-semibold uppercase tracking-wider text-gray-500 mb-3">What to have ready</p>
+      <ul class="space-y-3">
+        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm" aria-hidden="true"></i><span class="text-gray-300">Your website address (URL)</span></li>
+        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm" aria-hidden="true"></i><span class="text-gray-300">Login access to your website platform or CMS (for example WordPress, Wix, or Squarespace)</span></li>
+        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm" aria-hidden="true"></i><span class="text-gray-300">Hosting or domain account access, if you have it</span></li>
+      </ul>
+    </div>
+    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-8">
+      <a href="/website-audit/" class="px-8 py-3.5 sm:py-4 bg-accent text-white font-semibold rounded-full hover:bg-blue-500 transition shadow-lg shadow-accent/20 text-center leading-snug">What the audit covers</a>
+      <a href="/" class="px-8 py-3.5 sm:py-4 border border-white/20 text-white font-semibold rounded-full hover:border-white/40 hover:bg-white/5 transition">Back to Home</a>
+    </div>
     </div>
     <p class="text-sm text-gray-500 mb-4">Questions before we reach out? Contact us anytime.</p>
     <div class="flex flex-col sm:flex-row items-center justify-center gap-5 text-sm">
@@ -172,6 +197,11 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 const onboardCta = document.getElementById('onboarding-cta');
 const inbound = new URLSearchParams(window.location.search);
+if (inbound.get('package') === 'website-audit') {
+  document.getElementById('ty-default').hidden = true;
+  document.getElementById('ty-audit').hidden = false;
+  document.title = 'Thank You — Your Website Audit Is Booked | CRRE Labs';
+}
 if (onboardCta && inbound.toString()) {
   onboardCta.href = '/onboarding/?' + inbound.toString();
 }
