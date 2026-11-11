@@ -49,6 +49,15 @@
         {"@type": "UnitPriceSpecification", "price": "349", "priceCurrency": "USD", "name": "One-time setup"},
         {"@type": "UnitPriceSpecification", "price": "49", "priceCurrency": "USD", "billingDuration": "P1M", "name": "Monthly"}
       ]
+    },
+    {
+      "@type": "Offer",
+      "name": "Website Audit & Optimization",
+      "description": "Audit of an existing business website (speed, mobile, SSL, SEO and local SEO, broken links, CTAs and contact forms, design) plus an optimization pass that fixes the findings.",
+      "url": "https://crrelabs.com/website-audit/",
+      "priceSpecification": [
+        {"@type": "UnitPriceSpecification", "price": "300", "priceCurrency": "USD", "name": "One-time"}
+      ]
     }
   ]
 }
@@ -333,6 +342,42 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:#3aa0ff;box-sh
 </div>
 </section>
 
+<!-- Website Audit & Optimization -->
+<section id="website-audit" class="pb-16 lg:pb-24 scroll-mt-24">
+<div class="max-w-5xl mx-auto px-6">
+<div class="reveal text-center mb-10">
+  <div class="accent-line mx-auto mb-6"></div>
+  <h2 class="font-display text-2xl sm:text-3xl font-bold text-white mb-3">Already have a website?</h2>
+  <p class="text-gray-400 text-lg max-w-2xl mx-auto">We’ll audit it and fix what we find.</p>
+</div>
+<article class="reveal glass-featured rounded-2xl p-8 sm:p-10 grid grid-cols-1 md:grid-cols-2 gap-8 items-center transition-all duration-300">
+  <div>
+    <p class="text-xs font-semibold uppercase tracking-wider text-accent mb-3">Website Audit &amp; Optimization</p>
+    <div class="mb-2">
+      <span class="stat-num font-display text-5xl font-bold">$300</span>
+      <span class="text-gray-400 text-sm">one-time</span>
+    </div>
+    <p class="text-gray-400 text-sm mb-6">Written audit report with prioritized findings, then an optimization pass that fixes them.</p>
+    <div class="flex flex-col sm:flex-row gap-3">
+      <!-- Live Stripe Payment Link: Website Audit & Optimization ($300 one-time), plink_1Uae21FLKMTWNENl1JYHUXLD; redirects to /thank-you/?package=website-audit after payment -->
+    <a href="https://buy.stripe.com/28E9AT5R09anfzLf4gdwc0a" target="_blank" rel="noopener noreferrer" data-plan="website-audit" class="block text-center px-6 py-3 bg-accent text-white font-semibold rounded-full hover:bg-blue-500 transition shadow-lg shadow-accent/20">Get Started — $300</a>
+      <a href="/website-audit/" class="block text-center px-6 py-3 border border-white/20 text-white font-semibold rounded-full hover:border-white/40 hover:bg-white/5 transition">See What’s Included</a>
+    </div>
+    <a href="#contact" data-plan="website-audit" class="plan-cta inline-block mt-4 text-sm text-accent hover:underline">Questions? Contact us</a>
+  </div>
+  <ul class="space-y-3">
+    <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Speed &amp; performance</span></li>
+    <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Mobile responsiveness</span></li>
+    <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">SSL/HTTPS &amp; security basics</span></li>
+    <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">SEO &amp; local SEO basics (GBP, name/address/phone, schema)</span></li>
+    <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Broken links</span></li>
+    <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">CTAs &amp; contact forms that actually deliver</span></li>
+    <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent-cyan mt-1 text-sm"></i><span class="text-gray-300 text-sm">Design refresh</span></li>
+  </ul>
+</article>
+</div>
+</section>
+
 <!-- Footnotes -->
 <section class="pb-8">
 <div class="max-w-3xl mx-auto px-6">
@@ -370,6 +415,7 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:#3aa0ff;box-sh
       <option value="website-starter">Local Business Website — Starter</option>
       <option value="website-business">Local Business Website — Business</option>
       <option value="website-pro">Local Business Website — Pro</option>
+      <option value="website-audit">Website Audit &amp; Optimization</option>
       <option value="website">Custom Website Design &amp; Development</option>
       <option value="ai-agent">Custom AI Agent</option>
       <option value="automation">Workflow Automation</option>
@@ -402,6 +448,7 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:#3aa0ff;box-sh
   <div class="flex gap-4 text-sm text-gray-600">
     <a href="/" class="hover:text-accent transition">Home</a>
     <a href="/pricing" class="hover:text-accent transition">Pricing</a>
+    <a href="/website-audit/" class="hover:text-accent transition">Website Audit</a>
     <a href="/#contact" class="hover:text-accent transition">Contact</a>
   </div>
 </div>
