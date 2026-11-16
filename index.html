@@ -528,8 +528,17 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 const contactForm = document.getElementById('contact-form');
+const formReadyAt = Date.now();
 contactForm.addEventListener('submit', async function(e) {
   e.preventDefault();
+  const btn = this.querySelector('button[type="submit"]');
+  const hp = this.querySelector('[name="company_website"]');
+  if (hp && hp.value.trim()) {
+    btn.textContent='Message Sent ✓'; btn.disabled = true;
+    btn.classList.remove('bg-accent'); btn.classList.add('bg-green-600');
+    this.reset();
+    return;
+  }
   const phone = this.querySelector('[name="phone"]');
   const smsConsent = this.querySelector('[name="sms_consent"]');
   if (smsConsent && smsConsent.checked && phone && !phone.value.trim()) {
@@ -539,8 +548,9 @@ contactForm.addEventListener('submit', async function(e) {
     return;
   }
   if (phone) phone.setCustomValidity('');
-  const btn = this.querySelector('button[type="submit"]');
   btn.textContent = 'Sending...'; btn.disabled = true;
+  const wait = 3000 - (Date.now() - formReadyAt);
+  if (wait > 0) await new Promise(r => setTimeout(r, wait));
   try {
     const res = await fetch(this.action, { method:'POST', body:new URLSearchParams(new FormData(this)), headers:{'Accept':'application/json'} });
     if (res.ok) { btn.textContent='Message Sent ✓'; btn.classList.remove('bg-accent'); btn.classList.add('bg-green-600'); this.reset(); }
