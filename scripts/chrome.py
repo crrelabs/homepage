@@ -227,7 +227,7 @@ def nav(current):
       {details("Areas", AREAS)}
       {details("Industries", INDUSTRIES)}
       {item("/blog/", "Blog")}
-      <a href="tel:+{PHONE_TEL}" class="text-sm text-white font-semibold hover:text-accent">{PHONE_DISPLAY}</a>
+      <a href="tel:{PHONE_TEL}" class="text-sm text-white font-semibold hover:text-accent">{PHONE_DISPLAY}</a>
       <a href="{('#contact' if current == '/' else '/#contact')}" class="px-4 py-2 bg-accent-strong text-white rounded-full text-sm font-semibold hover:bg-blue-800 transition">Get a quote</a>
     </nav>'''
     mobile_links = [
@@ -251,7 +251,7 @@ def nav(current):
   </a>
   {desktop}
   <div class="flex items-center gap-3 lg:hidden">
-    <a href="tel:+{PHONE_TEL}" class="text-sm font-semibold text-white">{PHONE_DISPLAY}</a>
+    <a href="tel:{PHONE_TEL}" class="text-sm font-semibold text-white">{PHONE_DISPLAY}</a>
     <button id="menu-btn" class="text-white text-sm font-semibold px-3 py-2 border border-white/20 rounded-lg" aria-expanded="false" aria-controls="mobile-menu">Menu</button>
   </div>
 </div>
@@ -259,7 +259,7 @@ def nav(current):
   {mobile}
   {details("Areas", AREAS, mobile=True)}
   {details("Industries", INDUSTRIES, mobile=True)}
-  <a href="tel:+{PHONE_TEL}" class="block text-accent font-semibold">Call {PHONE_DISPLAY}</a>
+  <a href="tel:{PHONE_TEL}" class="block text-accent font-semibold">Call {PHONE_DISPLAY}</a>
   <a href="/#contact" class="block text-accent">Get a quote</a>
 </div>
 </header>'''
@@ -278,7 +278,7 @@ def footer():
     <div>
       <p class="font-display font-semibold text-white text-lg">CRRE Labs LLC</p>
       <p class="text-sm text-gray-300 mt-3 leading-relaxed">Website design studio<br>{ADDRESS}</p>
-      <p class="text-sm mt-3"><a class="text-white font-semibold hover:text-accent" href="tel:+{PHONE_TEL}">{PHONE_DISPLAY}</a></p>
+      <p class="text-sm mt-3"><a class="text-white font-semibold hover:text-accent" href="tel:{PHONE_TEL}">{PHONE_DISPLAY}</a></p>
       <p class="text-sm mt-1"><a class="text-gray-300 hover:text-white" href="mailto:{EMAIL}">{EMAIL}</a></p>
     </div>
     {col("Areas", AREAS)}
@@ -291,7 +291,7 @@ def footer():
   </div>
 </footer>
 <div class="fixed bottom-0 inset-x-0 z-40 lg:hidden bg-[#0a0e1a]/95 border-t border-white/10 backdrop-blur px-4 py-3 grid grid-cols-2 gap-3">
-  <a href="tel:+{PHONE_TEL}" class="text-center py-3 rounded-full bg-accent-strong text-white font-semibold">Call</a>
+  <a href="tel:{PHONE_TEL}" class="text-center py-3 rounded-full bg-accent-strong text-white font-semibold">Call</a>
   <a href="/#contact" class="text-center py-3 rounded-full border border-white/30 text-white font-semibold">Get a quote</a>
 </div>'''
 
@@ -457,7 +457,7 @@ def contact_form(page_id, intro):
       </label>
       <button type="submit" class="w-full py-3 bg-accent-strong text-white font-semibold rounded-xl hover:bg-blue-800">Send message</button>
     </form>
-    <p class="mt-8 text-sm text-gray-300">Or call <a class="text-white font-semibold" href="tel:+{PHONE_TEL}">{PHONE_DISPLAY}</a>. Studio: {ADDRESS}. Email: <a class="underline" href="mailto:{EMAIL}">{EMAIL}</a>.</p>
+    <p class="mt-8 text-sm text-gray-300">Or call <a class="text-white font-semibold" href="tel:{PHONE_TEL}">{PHONE_DISPLAY}</a>. Studio: {ADDRESS}. Email: <a class="underline" href="mailto:{EMAIL}">{EMAIL}</a>.</p>
   </div>
 </section>'''
 

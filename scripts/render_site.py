@@ -788,7 +788,7 @@ def blog():
     </ul>
     <p class="text-gray-300">We do not have a Miami-wide average beyond the competitor starting range above, and this article does not borrow a statistic from a report we did not run.</p>
     <h2>How to start</h2>
-    <p class="text-gray-300">Call <a href="tel:+{PHONE_TEL}">{PHONE_DISPLAY}</a>, use the form on the <a href="/#contact">homepage</a>, or check out a package on Stripe. If you are pricing a restaurant, a crew, a salon, an office, or a property manager, the industry pages say which parts of the card matter for that business.</p>
+    <p class="text-gray-300">Call <a href="tel:{PHONE_TEL}">{PHONE_DISPLAY}</a>, use the form on the <a href="/#contact">homepage</a>, or check out a package on Stripe. If you are pricing a restaurant, a crew, a salon, an office, or a property manager, the industry pages say which parts of the card matter for that business.</p>
   </div>
 </article>
 {faq_html(cost_faqs)}
@@ -839,7 +839,7 @@ def blog():
     <h2>What it costs if you decide you want the site</h2>
     <p class="text-gray-300">The same card as the <a href="/blog/how-much-does-a-website-cost-in-miami-2026/">Miami cost article</a>: $99 + $15/mo, $199 + $29/mo, or $349 + $49/mo. Local competitors mostly start at $300–$500. Domain, SSL, and hosting are included in our monthly fee. Month-to-month.</p>
     <p class="text-gray-300">If you already like the profile and only want a single page that repeats the phone and the hours, buy Starter and stop. If the profile and the site need to be checked against each other, Business is the package that includes that work.</p>
-    <p class="text-gray-300">Call <a href="tel:+{PHONE_TEL}">{PHONE_DISPLAY}</a> or use the form on the homepage. The studio is at {ADDRESS}.</p>
+    <p class="text-gray-300">Call <a href="tel:{PHONE_TEL}">{PHONE_DISPLAY}</a> or use the form on the homepage. The studio is at {ADDRESS}.</p>
   </div>
 </article>
 {faq_html(gbp_faqs)}
