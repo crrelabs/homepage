@@ -1,0 +1,4 @@
+# GitHub Pages runs Jekyll. This forces the public IndexNow key file
+# into the published site even if a later exclude rule would drop it.
+include:
+  - 855385d2516e45a3be59c8aacd9c5dc4.txt
