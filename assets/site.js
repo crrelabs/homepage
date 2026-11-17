@@ -86,8 +86,13 @@
   });
 
   var cfg = window.CRRE_SITE || {};
-  function realUrl(value) {
-    return typeof value === "string" && value && value.indexOf("TODO") !== 0;
+  function httpsUrl(value) {
+    return typeof value === "string" && /^https:\/\/\S+$/.test(value);
+  }
+  function realQuote(item) {
+    if (!item || typeof item.quote !== "string") return false;
+    var quote = item.quote.trim();
+    return quote.length > 20 && quote.indexOf(" ") !== -1;
   }
 
   document.querySelectorAll("[data-google-rating]").forEach(function (el) {
@@ -102,37 +107,54 @@
   document.querySelectorAll("[data-review-link]").forEach(function (link) {
     var kind = link.getAttribute("data-review-link");
     var url = kind === "profile" ? cfg.googleBusinessProfileUrl : cfg.googleReviewsUrl;
-    if (realUrl(url)) {
+    if (httpsUrl(url)) {
       link.href = url;
       link.target = "_blank";
       link.rel = "noopener noreferrer";
-      link.removeAttribute("aria-disabled");
     }
   });
 
-  var reviewList = document.getElementById("review-list");
-  if (reviewList && Array.isArray(cfg.reviews)) {
-    var ready = cfg.reviews.filter(function (item) {
-      return item && typeof item.quote === "string" && item.quote.indexOf("PLACEHOLDER") !== 0 && item.quote.trim();
-    });
-    if (ready.length) {
-      reviewList.innerHTML = ready.map(function (item) {
-        var quote = escapeHtml(item.quote);
-        var author = escapeHtml(item.author || "");
-        var detail = escapeHtml(item.detail || "");
-        return '<figure class="glass rounded-2xl p-6"><blockquote class="text-gray-200 leading-relaxed">“' + quote + '”</blockquote><figcaption class="mt-4 text-sm text-gray-400">' + author + (detail ? " · " + detail : "") + "</figcaption></figure>";
-      }).join("");
+  if (httpsUrl(cfg.googleBusinessProfileUrl)) {
+    var actions = document.getElementById("review-actions");
+    if (actions && !actions.querySelector("[data-review-link='profile']")) {
+      var profile = document.createElement("a");
+      profile.setAttribute("data-review-link", "profile");
+      profile.href = cfg.googleBusinessProfileUrl;
+      profile.target = "_blank";
+      profile.rel = "noopener noreferrer";
+      profile.className = "inline-flex justify-center px-5 py-3 rounded-full border border-white/30 text-white font-semibold";
+      profile.textContent = "Google Business Profile";
+      actions.appendChild(profile);
     }
   }
 
-  if (realUrl(cfg.googleBusinessProfileUrl)) {
+  var reviewList = document.getElementById("review-list");
+  if (reviewList) {
+    var ready = Array.isArray(cfg.reviews) ? cfg.reviews.filter(realQuote) : [];
+    if (ready.length) {
+      reviewList.innerHTML = ready.map(function (item) {
+        var quote = escapeHtml(item.quote.trim());
+        var author = escapeHtml((item.author || "").trim());
+        var detail = escapeHtml((item.detail || "").trim());
+        return '<figure class="glass rounded-2xl p-6"><blockquote class="text-gray-200 leading-relaxed">“' + quote + '”</blockquote><figcaption class="mt-4 text-sm text-gray-400">' + author + (detail ? " · " + detail : "") + "</figcaption></figure>";
+      }).join("");
+      reviewList.hidden = false;
+    } else {
+      reviewList.innerHTML = "";
+      reviewList.hidden = true;
+    }
+  }
+
+  if (httpsUrl(cfg.googleBusinessProfileUrl)) {
     document.querySelectorAll('script[type="application/ld+json"]').forEach(function (node) {
       try {
         var data = JSON.parse(node.textContent);
         var list = Array.isArray(data) ? data : [data];
         var changed = false;
         list.forEach(function (block) {
-          if (block && Object.prototype.hasOwnProperty.call(block, "sameAs")) {
+          if (!block) return;
+          var type = block["@type"];
+          if (type === "Organization" || type === "ProfessionalService") {
             block.sameAs = [cfg.googleBusinessProfileUrl];
             changed = true;
           }

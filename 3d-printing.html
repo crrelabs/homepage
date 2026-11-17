@@ -301,8 +301,7 @@
     document.getElementById('year').textContent = new Date().getFullYear();
 
     // ====== PRICING CONFIG (EDIT HERE) ======
-    // Replace the XX placeholders below with the exact numbers you and I agreed on.
-    // You can keep them as numbers only (no $ signs).
+    // Edit the numbers below. Use numbers only, without a dollar sign.
     const PRICING = {
       minOrder: "XX",
       fdmRate: "XX",       // per gram
@@ -316,7 +315,7 @@
       assembly: "XX",
     };
 
-    // Populate all price placeholders
+    // Fill the price fields from PRICING.
     for (const [key, val] of Object.entries(PRICING)) {
       document.querySelectorAll(`[data-price="${key}"]`).forEach(el => el.textContent = val);
     }
@@ -331,7 +330,6 @@
       note.classList.remove('text-red-600', 'text-green-700');
       note.textContent = 'Submitting…';
 
-      // TODO: replace with your endpoint, e.g. /api/quote.
       await new Promise(r => setTimeout(r, 600));
 
       note.classList.add('text-green-700');

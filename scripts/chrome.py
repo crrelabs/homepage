@@ -85,7 +85,8 @@ def org_block():
         "email": EMAIL,
         "telephone": "+1-786-733-6744",
         "address": postal(),
-        "sameAs": ["TODO_GBP_URL"],
+        # Profile URL is added by assets/site.js only after googleBusinessProfileUrl
+        # in assets/site-config.js is an https URL. Do not put a stand-in here.
     }
 
 
@@ -105,7 +106,7 @@ def business_block():
         "geo": {"@type": "GeoCoordinates", "latitude": 25.6654, "longitude": -80.3093},
         "areaServed": cities(),
         "serviceType": ["Website design", "Small business websites"],
-        "sameAs": ["TODO_GBP_URL"],
+        # sameAs is omitted until assets/site-config.js has a real profile URL.
     }
 
 
@@ -490,29 +491,11 @@ def reviews_section():
 <section id="reviews" class="py-16" aria-labelledby="reviews-heading">
   <div class="max-w-7xl mx-auto px-4 sm:px-6">
     <h2 id="reviews-heading" class="font-display text-3xl font-bold text-white mb-3">Google reviews</h2>
-    <p class="text-gray-300 max-w-3xl mb-4">Google Business Profile category: Website designer. Rating on that profile: {RATING_HTML}. The quotes themselves are not printed here yet.</p>
-    <div class="flex flex-col sm:flex-row flex-wrap gap-3 mb-4">
+    <p class="text-gray-300 max-w-3xl mb-4">Google Business Profile category: Website designer. Rating on that profile: {RATING_HTML}.</p>
+    <div id="review-actions" class="flex flex-col sm:flex-row flex-wrap gap-3">
       <a id="google-reviews-link" data-review-link="reviews" href="{REVIEW_URL}" target="_blank" rel="noopener noreferrer" class="inline-flex justify-center px-5 py-3 rounded-full bg-accent-strong text-white font-semibold">See our Google reviews</a>
       <a data-review-link="leave" href="{REVIEW_URL}" target="_blank" rel="noopener noreferrer" class="inline-flex justify-center px-5 py-3 rounded-full border border-white/30 text-white font-semibold">Leave us a Google review</a>
-      <a data-review-link="profile" href="#reviews" class="inline-flex justify-center px-5 py-3 rounded-full border border-white/30 text-white font-semibold" aria-disabled="true">Google Business Profile</a>
     </div>
-    <p id="review-link-note" class="text-sm text-amber-200 mb-6">The Google Business Profile URL is still a TODO in <code>assets/site-config.js</code>. The profile button stays on this page until that is replaced. The review cards below are placeholders, not customer testimonials.</p>
-    <div id="review-list" class="grid md:grid-cols-3 gap-4">
-      <article class="glass rounded-2xl p-6" aria-label="Placeholder for a Google review">
-        <p class="text-xs font-semibold uppercase tracking-wide text-amber-200">Placeholder — not a customer review</p>
-        <p class="text-gray-200 mt-3">Replace this card with a real Google review in assets/site-config.js.</p>
-        <p class="text-sm text-gray-400 mt-4">Reviewer: PLACEHOLDER</p>
-      </article>
-      <article class="glass rounded-2xl p-6" aria-label="Placeholder for a Google review">
-        <p class="text-xs font-semibold uppercase tracking-wide text-amber-200">Placeholder — not a customer review</p>
-        <p class="text-gray-200 mt-3">Replace this card with a real Google review in assets/site-config.js.</p>
-        <p class="text-sm text-gray-400 mt-4">Reviewer: PLACEHOLDER</p>
-      </article>
-      <article class="glass rounded-2xl p-6" aria-label="Placeholder for a Google review">
-        <p class="text-xs font-semibold uppercase tracking-wide text-amber-200">Placeholder — not a customer review</p>
-        <p class="text-gray-200 mt-3">Replace this card with a real Google review in assets/site-config.js.</p>
-        <p class="text-sm text-gray-400 mt-4">Reviewer: PLACEHOLDER</p>
-      </article>
-    </div>
+    <div id="review-list" class="grid md:grid-cols-3 gap-4 mt-6" hidden></div>
   </div>
 </section>'''
