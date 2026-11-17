@@ -4,6 +4,8 @@ Disallow: /dashboard/
 Disallow: /usage/
 Disallow: /outreach/
 Disallow: /team/
+Disallow: /onboarding/
+Disallow: /thank-you/
 Disallow: /tracker.html
 
 Sitemap: https://crrelabs.com/sitemap.xml
