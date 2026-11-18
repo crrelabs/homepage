@@ -374,7 +374,7 @@ def packages(heading="Website packages"):
             "1 page",
             "Contact form",
             "Domain, SSL, and hosting",
-            "SEO is not included",
+            "Easy to read on a phone",
             "Reactivation within 90 days: $49",
         ]),
         ("Business", "29", "199", "website-business", STRIPE["business"], True, [
@@ -418,7 +418,7 @@ def packages(heading="Website packages"):
 <section id="packages" class="py-16">
   <div class="max-w-7xl mx-auto px-4 sm:px-6">
     <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mb-3">{heading}</h2>
-    <p class="text-gray-300 max-w-3xl mb-8">Month-to-month. Setup is due up front and is non-refundable once development begins. Monthly billing is recurring. The full table, including what is not included, is on the <a class="text-accent underline" href="/pricing/">pricing page</a>.</p>
+    <p class="text-gray-300 max-w-3xl mb-8">Month to month. Setup is paid up front and stays with us once we start designing. The monthly fee covers the domain, SSL, and hosting. <a class="text-accent underline" href="/pricing/">Compare every feature</a>.</p>
     <div class="grid lg:grid-cols-3 gap-6">{''.join(html_cards)}</div>
   </div>
 </section>'''
@@ -491,7 +491,7 @@ def reviews_section():
 <section id="reviews" class="py-16" aria-labelledby="reviews-heading">
   <div class="max-w-7xl mx-auto px-4 sm:px-6">
     <h2 id="reviews-heading" class="font-display text-3xl font-bold text-white mb-3">Google reviews</h2>
-    <p class="text-gray-300 max-w-3xl mb-4">Google Business Profile category: Website designer. Rating on that profile: {RATING_HTML}.</p>
+    <p class="text-gray-300 max-w-3xl mb-4">Neighbors rate CRRE Labs {RATING_HTML}.</p>
     <div id="review-actions" class="flex flex-col sm:flex-row flex-wrap gap-3">
       <a id="google-reviews-link" data-review-link="reviews" href="{REVIEW_URL}" target="_blank" rel="noopener noreferrer" class="inline-flex justify-center px-5 py-3 rounded-full bg-accent-strong text-white font-semibold">See our Google reviews</a>
       <a data-review-link="leave" href="{REVIEW_URL}" target="_blank" rel="noopener noreferrer" class="inline-flex justify-center px-5 py-3 rounded-full border border-white/30 text-white font-semibold">Leave us a Google review</a>
