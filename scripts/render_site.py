@@ -65,7 +65,7 @@ def home():
     body = hero(
         f'<p class="text-sm text-accent font-semibold mb-4">Website designer in Pinecrest · {RATING_HTML}</p>',
         "Affordable website design for small businesses in Pinecrest and Miami",
-        """<p>CRRE Labs is a web design studio at 12394 SW 82nd Ave, Pinecrest, FL 33156, owned by Carlos Rovira. Call or tap <a class="text-white font-semibold underline" href="tel:+17867336744">(786) 733-6744</a>, send the form, or pay a package setup with Stripe.</p>
+        """<p>CRRE Labs is a web design studio at 12394 SW 82nd Ave, Pinecrest, FL 33156. Call or tap <a class="text-white font-semibold underline" href="tel:+17867336744">(786) 733-6744</a>, send the form, or pay a package setup with Stripe.</p>
         <p>A Starter site is $99 to set up and $15 a month. Business is $199 and $29 a month. Pro is $349 and $49 a month. Domain, SSL, and hosting are included. Local competitors mostly start at $300–$500.</p>""",
         "#packages",
         "See packages and prices",
@@ -139,7 +139,7 @@ def home():
 <section id="about" class="py-12">
   <div class="max-w-3xl mx-auto px-4 sm:px-6">
     <h2 class="font-display text-3xl font-bold text-white mb-4">The studio</h2>
-    <p class="text-gray-300 leading-relaxed mb-4">CRRE Labs LLC is the web design studio at {ADDRESS}. The owner is Carlos Rovira. The public Google Business Profile lists the category Website designer and shows {RATING_HTML}. The phone on this site, {PHONE_DISPLAY}, is the number to use. The email already published on the 3D printing page is {EMAIL}.</p>
+    <p class="text-gray-300 leading-relaxed mb-4">CRRE Labs LLC is the web design studio at {ADDRESS}. The public Google Business Profile lists the category Website designer and shows {RATING_HTML}. The phone on this site, {PHONE_DISPLAY}, is the number to use. The email already published on the 3D printing page is {EMAIL}.</p>
     <p class="text-gray-300 leading-relaxed">If you searched "web design Pinecrest", "small business website Miami", or "affordable website Kendall", the useful fact is the address and the three prices above. The rest of this page points at the neighborhood, the industry, and the projects.</p>
   </div>
 </section>
@@ -193,7 +193,7 @@ def area_pages():
             "h1": "Web design in Pinecrest, from the studio on SW 82nd Ave",
             "city": "Pinecrest",
             "service": "Website design for small businesses in Pinecrest, Florida",
-            "lede": "<p>The studio is in Pinecrest: 12394 SW 82nd Ave, FL 33156. If you want to call a person in the village, the number is (786) 733-6744. Carlos Rovira owns CRRE Labs.</p><p>Pinecrest is a residential village. The businesses that serve it are often on US-1, along the Kendall Drive edge, or in small offices and home-based trades: dental and medical practices, tutors, designers, restaurants people drive to, and home services that park in a driveway. A neighbor usually already heard the name. The site's job is to confirm the phone, the hours, and how to ask a question, using the same name and address as the Google listing.</p>",
+            "lede": "<p>The studio is in Pinecrest: 12394 SW 82nd Ave, FL 33156. If you want to call a person in the village, the number is (786) 733-6744.</p><p>Pinecrest is a residential village. The businesses that serve it are often on US-1, along the Kendall Drive edge, or in small offices and home-based trades: dental and medical practices, tutors, designers, restaurants people drive to, and home services that park in a driveway. A neighbor usually already heard the name. The site's job is to confirm the phone, the hours, and how to ask a question, using the same name and address as the Google listing.</p>",
             "sections": [
                 ("What a Pinecrest page needs to settle", [
                     "Put the phone in the first screen. Business and Pro include click-to-call. Starter includes a contact form and the phone number as text you can still tap if we add the link, which we do on sites we build.",
@@ -219,7 +219,7 @@ def area_pages():
             "h1": "A Kendall business site that says which plaza you are in",
             "city": "Kendall",
             "service": "Website design for small businesses in Kendall, Florida",
-            "lede": "<p>Kendall is not its own city. It is the suburban stretch people mean when they say Kendall Drive, Dadeland, and the medical offices around Baptist Hospital. A search for an affordable website in Kendall is usually a shop, clinic, salon, or crew in a plaza, competing with the suite next door.</p><p>CRRE Labs does not have a Kendall storefront. The studio is in Pinecrest, south of Kendall Drive, at 12394 SW 82nd Ave. Same owner, Carlos Rovira. Same phone, (786) 733-6744. The drive is the point: you are not hiring a desk in another state, and you are also not looking for a Miracle Mile address.</p>",
+            "lede": "<p>Kendall is not its own city. It is the suburban stretch people mean when they say Kendall Drive, Dadeland, and the medical offices around Baptist Hospital. A search for an affordable website in Kendall is usually a shop, clinic, salon, or crew in a plaza, competing with the suite next door.</p><p>CRRE Labs does not have a Kendall storefront. The studio is in Pinecrest, south of Kendall Drive, at 12394 SW 82nd Ave. Same phone, (786) 733-6744. The drive is the point: you are not hiring a desk in another state, and you are also not looking for a Miracle Mile address.</p>",
             "sections": [
                 ("What Kendall visitors need in the first screen", [
                     "The plaza or the cross street, the suite if you have one, today's hours, and the phone. Maps already shows a small pin. The site has to say what the pin is, because Kendall Drive has a lot of pins.",
@@ -272,7 +272,7 @@ def area_pages():
             "h1": "Coral Gables website design, without pretending we are on the Mile",
             "city": "Coral Gables",
             "service": "Website design for small businesses in Coral Gables, Florida",
-            "lede": "<p>Coral Gables businesses on Miracle Mile and the downtown grid sit next to neighbors that already look considered: restaurants, salons, galleries, medical and dental offices, and professional firms. A customer on the Mile compares you with the door they just passed. The site does not have to be loud. It does have to be specific: what you do, when you are open, and how to reach the front desk.</p><p>CRRE Labs is not a Gables storefront. The studio is in Pinecrest, at 12394 SW 82nd Ave, south of the Gables. Owner Carlos Rovira. Phone (786) 733-6744. If you want a firm with a Miracle Mile lobby, say so and this is probably the wrong fit. If you want the published packages and a local phone, this is the page.</p>",
+            "lede": "<p>Coral Gables businesses on Miracle Mile and the downtown grid sit next to neighbors that already look considered: restaurants, salons, galleries, medical and dental offices, and professional firms. A customer on the Mile compares you with the door they just passed. The site does not have to be loud. It does have to be specific: what you do, when you are open, and how to reach the front desk.</p><p>CRRE Labs is not a Gables storefront. The studio is in Pinecrest, at 12394 SW 82nd Ave, south of the Gables. Phone (786) 733-6744. If you want a firm with a Miracle Mile lobby, say so and this is probably the wrong fit. If you want the published packages and a local phone, this is the page.</p>",
             "sections": [
                 ("Which package, without the upsell script", [
                     "Starter, $99 setup and $15 a month, is one page. It is a reasonable fit for a practice or a shop that needs hours, a service list, and a form, and does not need a separate page per procedure.",
@@ -324,7 +324,7 @@ def area_pages():
             "h1": "Small-business websites in Miami, and the building sites we can show",
             "city": "Miami",
             "service": "Website design for small businesses in Miami, Florida",
-            "lede": "<p>People search 'web design Miami' from two different places. One is a shop, office, or crew anywhere in the county that uses Miami as the city name. The other is a business in the City of Miami: Brickell, Downtown, Edgewater, Midtown, Little Havana, Wynwood, and the rest of the city grid. This page covers both, and it separates the $99 program from the custom work.</p><p>CRRE Labs is in Pinecrest, not in Brickell. Address 12394 SW 82nd Ave. Phone (786) 733-6744. Owner Carlos Rovira. The Google Business Profile category is Website designer, " + RATING_HTML + ".</p>",
+            "lede": "<p>People search 'web design Miami' from two different places. One is a shop, office, or crew anywhere in the county that uses Miami as the city name. The other is a business in the City of Miami: Brickell, Downtown, Edgewater, Midtown, Little Havana, Wynwood, and the rest of the city grid. This page covers both, and it separates the $99 program from the custom work.</p><p>CRRE Labs is in Pinecrest, not in Brickell. Address 12394 SW 82nd Ave. Phone (786) 733-6744. The Google Business Profile category is Website designer, " + RATING_HTML + ".</p>",
             "sections": [
                 ("Work in the City of Miami that is already public", [
                     "The portfolio includes leasing sites for Downtown 1st (Arts and Entertainment District), Downtown 5th, 22 Biscayne Bay and Urban 22 Miami (Edgewater), 25 Biscayne Park on Biscayne Boulevard, and Melody Tower at 245 NE 14th Street in Midtown. The homepage also links Flagler on the River, 22 Skyview, and One Plaza West Brickell. Read the case study for what each published description actually says. Those projects are not the Starter package.",
