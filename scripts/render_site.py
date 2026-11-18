@@ -230,8 +230,8 @@ def area_pages():
                     "Lead with the phone. If you have a shop, show the same address customers already use to find you. If you go to them, name Pinecrest and the nearby villages you truly cover, such as Palmetto Bay just to the south.",
                     "Bring photos of your office, your truck, or your food. We will design around what you have.",
                 ]),
-                ("Close enough to visit", [
-                    "Call before you drive over and we will be at the studio on SW 82nd Ave. Most package sites are ready in one to two weeks, and you can cancel the monthly plan whenever it stops being useful.",
+                ("Local, and easy to reach", [
+                    "Call and you'll talk to the studio directly, not a call center. Most package sites are ready in one to two weeks, and you can cancel the monthly plan whenever it stops being useful.",
                 ]),
             ],
             faqs=[
@@ -363,7 +363,7 @@ def area_pages():
             faqs=[
                 ("Are the apartment websites part of the $99 plan?", "The $99, $199, and $349 prices are for a small-business site. A full leasing site is custom. Describe the building on the form and we will quote it."),
                 ("Which parts of Miami do you cover?", "Package work is welcome from businesses across Miami, with the studio in Pinecrest. If you go to the customer, we will list the areas you cover. If you have a counter, we will publish the address your customers already use."),
-                ("Can you share lead or ranking numbers?", "The stories describe each site and link to the live page, so you can see the work yourself."),
+                ("How long does a new site take?", "Most package sites are ready in one to two weeks, so you can start getting calls from your new site fast."),
                 ("How do I begin?", "Call (786) 733-6744, use the form, or check out a package. Stripe takes the setup fee for the plan you choose."),
             ],
         ),
@@ -516,7 +516,7 @@ def work_pages():
          "A leasing site for a 56-story rental tower in the Arts and Entertainment District. Visitors see the residences, the amenities, the floor plans, and a way to ask for a tour. The building is at 30 SW 1st Street."),
         ("Downtown 5th", "https://downtown5.com", "downtown-5th-leasing-website",
          "Downtown 5th leasing site for a downtown Miami rental tower.",
-         "A rental tower in downtown Miami with two addresses to explain. The site leads with amenities, a way to schedule a tour, and leasing contact."),
+         "A rental tower in downtown Miami. The site leads with amenities, a way to schedule a tour, and leasing contact."),
         ("22 Biscayne Bay", "https://22biscaynebay.com", "22-biscayne-bay-leasing-website",
          "22 Biscayne Bay leasing site for waterfront apartments in Edgewater.",
          "Waterfront apartments in Edgewater. The site shows bay views, floor plans, photo galleries, amenities, and tour scheduling."),
