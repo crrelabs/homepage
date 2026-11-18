@@ -1,38 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolio — Web Design in Pinecrest | CRRE Labs</title>
-<meta name="description" content="Web design by CRRE Labs in Pinecrest: Miami apartment leasing sites, RG Capital Partners, and more.">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://crrelabs.com/portfolio/">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://crrelabs.com/portfolio/">
-<meta property="og:title" content="Portfolio — Web Design in Pinecrest | CRRE Labs">
-<meta property="og:description" content="Web design by CRRE Labs in Pinecrest: Miami apartment leasing sites, RG Capital Partners, and more.">
-<meta property="og:site_name" content="CRRE Labs">
-<meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://crrelabs.com/assets/og-image.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="CRRE Labs, website design for small businesses in Pinecrest and Miami">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Portfolio — Web Design in Pinecrest | CRRE Labs">
-<meta name="twitter:description" content="Web design by CRRE Labs in Pinecrest: Miami apartment leasing sites, RG Capital Partners, and more.">
-<meta name="twitter:image" content="https://crrelabs.com/assets/og-image.png">
-<meta name="theme-color" content="#0a0e1a">
-<link rel="icon" href="/favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://*.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https://crrelabs.com https://www.crrelabs.com https://*.google-analytics.com https://*.googletagmanager.com; connect-src 'self' https://crre-sms-hubspot-4207-prod.twil.io https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; form-action 'self' https://crre-sms-hubspot-4207-prod.twil.io; frame-src 'none'; object-src 'none'; base-uri 'self'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://cdn.jsdelivr.net https://*.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https://crrelabs.com https://www.crrelabs.com https://*.google-analytics.com https://*.googletagmanager.com; connect-src 'self' https://crre-sms-hubspot-4207-prod.twil.io https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; form-action 'self' https://crre-sms-hubspot-4207-prod.twil.io; frame-src 'none'; object-src 'none'; base-uri 'self'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-BJ1J3E32GP"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -40,189 +11,392 @@
   gtag('js', new Date());
   gtag('config', 'G-BJ1J3E32GP');
 </script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://crrelabs.com/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Portfolio",
-      "item": "https://crrelabs.com/portfolio/"
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — CRRE Labs | Web Development & AI Projects</title>
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://crrelabs.com/portfolio/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://crrelabs.com/portfolio/">
+<meta property="og:title" content="Portfolio — CRRE Labs | Web Development & AI Projects">
+<meta property="og:description" content="See our work. CRRE Labs builds fast, modern websites for real estate, hospitality, and business clients. View live projects and case studies.">
+<meta property="og:site_name" content="CRRE Labs">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Portfolio — CRRE Labs | Web Development & AI Projects">
+<meta name="twitter:description" content="See our work. CRRE Labs builds fast, modern websites for real estate, hospitality, and business clients. View live projects and case studies.">
+<meta name="description" content="See our work. CRRE Labs builds fast, modern websites for real estate, hospitality, and business clients. View live projects and case studies.">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        accent: '#3aa0ff',
+        'accent-cyan': '#00e5ff',
+        dark: '#0a0e1a',
+        'dark-card': '#111827',
+      },
+      fontFamily: {
+        display: ['Space Grotesk', 'sans-serif'],
+        body: ['Inter', 'sans-serif'],
+      }
     }
-  ]
+  }
 }
 </script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#0a0e1a;color:#e2e8f0;overflow-x:hidden}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0a0e1a 0%,#0f1b3d 25%,#0a0e1a 50%,#0d1f3c 75%,#0a0e1a 100%);background-size:400% 400%;animation:gradientShift 12s ease infinite}
+@keyframes gradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.grid-overlay{position:absolute;inset:0;background-image:linear-gradient(rgba(58,160,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(58,160,255,.04) 1px,transparent 1px);background-size:60px 60px}
+.orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:.15;animation:orbFloat 8s ease-in-out infinite}
+.orb-1{width:500px;height:500px;background:#3aa0ff;top:-100px;right:-100px}
+.orb-2{width:400px;height:400px;background:#00e5ff;bottom:-50px;left:-100px;animation-delay:4s}
+@keyframes orbFloat{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,-30px)}}
+.glass{background:rgba(17,24,39,.6);backdrop-filter:blur(16px);border:1px solid rgba(58,160,255,.1)}
+.glass:hover{border-color:rgba(58,160,255,.3);box-shadow:0 0 30px rgba(58,160,255,.08)}
+.accent-line{height:3px;width:60px;background:linear-gradient(90deg,#3aa0ff,#00e5ff);border-radius:2px}
+.glow-text{text-shadow:0 0 40px rgba(58,160,255,.3)}
+.reveal{opacity:0;transform:translateY(30px);transition:all .7s cubic-bezier(.22,1,.36,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.nav-link{position:relative}
+.nav-link::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:2px;background:#3aa0ff;transition:width .3s}
+.nav-link:hover::after{width:100%}
+.project-card{transition:transform .4s ease,box-shadow .4s ease}
+.project-card:hover{transform:translateY(-8px);box-shadow:0 20px 60px rgba(58,160,255,.15)}
+.project-card img{transition:transform .6s ease}
+.project-card:hover img{transform:scale(1.03)}
+.tag{background:rgba(58,160,255,.1);color:#3aa0ff;border:1px solid rgba(58,160,255,.2);font-size:.75rem;padding:2px 10px;border-radius:9999px}
+</style>
 </head>
-<body class="font-body has-callbar">
-<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
-<a class="skip-link" href="#main">Skip to content</a>
-<header id="header" class="fixed top-0 w-full z-50 transition-all duration-300">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between gap-4">
-  <a href="/" class="flex items-center gap-3 shrink-0">
-    <img src="/logo.jpg" alt="" width="40" height="40" class="h-10 w-10 rounded-lg object-cover">
+<body class="font-body">
+
+<!-- Header -->
+<header class="fixed top-0 w-full z-50 bg-dark/80 backdrop-blur-lg border-b border-white/5">
+<div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+  <a href="/" class="flex items-center gap-3">
+    <img src="../logo.jpg" alt="CRRE Labs" class="h-10 w-10 rounded-lg object-cover">
     <span class="font-display font-bold text-xl text-white">CRRE Labs</span>
   </a>
-  
-    <nav class="hidden lg:flex items-center gap-6" aria-label="Primary">
-      <a href="/" class="nav-link text-sm text-gray-300 hover:text-white transition">Home</a>
-      <a href="/pricing/" class="nav-link text-sm text-gray-300 hover:text-white transition">Pricing</a>
-      <a href="/portfolio/" class="nav-link text-sm text-white hover:text-white transition" aria-current="page">Portfolio</a>
-      <a href="/work/" class="nav-link text-sm text-gray-300 hover:text-white transition">Work</a>
-      <details class="nav-details relative"><summary class="nav-link text-sm text-gray-300 hover:text-white">Areas</summary><div class="absolute left-0 mt-3 w-64 glass rounded-xl py-2 z-50"><a href="/web-design-pinecrest/" class="block px-4 py-2 text-sm text-gray-200 hover:bg-white/5 hover:text-white">Pinecrest</a><a href="/web-design-kendall/" class="block px-4 py-2 text-sm text-gray-200 hover:bg-white/5 hover:text-white">Kendall</a><a href="/web-design-south-miami/" class="block px-4 py-2 text-sm text-gray-200 hover:bg-white/5 hover:text-white">South Miami</a><a href="/web-design-coral-gables/" class="block px-4 py-2 text-sm text-gray-200 hover:bg-white/5 hover:text-white">Coral Gables</a><a href="/web-design-palmetto-bay/" class="block px-4 py-2 text-sm text-gray-200 hover:bg-white/5 hover:text-white">Palmetto Bay</a><a href="/web-design-miami/" class="block px-4 py-2 text-sm text-gray-200 hover:bg-white/5 hover:text-white">Miami</a></div></details>
-      <details class="nav-details relative"><summary class="nav-link text-sm text-gray-300 hover:text-white">Industries</summary><div class="absolute left-0 mt-3 w-64 glass rounded-xl py-2 z-50"><a href="/websites-for-restaurants/" class="block px-4 py-2 text-sm text-gray-200 hover:bg-white/5 hover:text-white">Restaurants</a><a href="/websites-for-contractors/" class="block px-4 py-2 text-sm text-gray-200 hover:bg-white/5 hover:text-white">Contractors and home services</a><a href="/websites-for-salons-and-spas/" class="block px-4 py-2 text-sm text-gray-200 hover:bg-white/5 hover:text-white">Salons and spas</a><a href="/websites-for-medical-and-dental/" class="block px-4 py-2 text-sm text-gray-200 hover:bg-white/5 hover:text-white">Medical and dental offices</a><a href="/websites-for-property-managers/" class="block px-4 py-2 text-sm text-gray-200 hover:bg-white/5 hover:text-white">Property managers and real estate</a></div></details>
-      <a href="/blog/" class="nav-link text-sm text-gray-300 hover:text-white transition">Blog</a>
-      <a href="tel:+17867336744" class="text-sm text-white font-semibold hover:text-accent">(786) 733-6744</a>
-      <a href="/#contact" class="px-4 py-2 bg-accent-strong text-white rounded-full text-sm font-semibold hover:bg-blue-800 transition">Get a quote</a>
-    </nav>
-  <div class="flex items-center gap-3 lg:hidden">
-    <a href="tel:+17867336744" class="text-sm font-semibold text-white">(786) 733-6744</a>
-    <button id="menu-btn" class="text-white text-sm font-semibold px-3 py-2 border border-white/20 rounded-lg" aria-expanded="false" aria-controls="mobile-menu">Menu</button>
-  </div>
-</div>
-<div id="mobile-menu" class="hidden lg:hidden bg-dark-card/95 backdrop-blur-xl border-t border-white/10 px-6 py-6 space-y-4">
-  <a href="/" class="block text-gray-200 hover:text-white">Home</a>
-<a href="/pricing/" class="block text-gray-200 hover:text-white">Pricing</a>
-<a href="/portfolio/" class="block text-gray-200 hover:text-white" aria-current="page">Portfolio</a>
-<a href="/work/" class="block text-gray-200 hover:text-white">Work</a>
-<a href="/blog/" class="block text-gray-200 hover:text-white">Blog</a>
-  <details class="nav-details"><summary class="text-gray-300">Areas</summary><div class="pl-3 pt-2 space-y-1"><a href="/web-design-pinecrest/" class="block py-1 text-gray-300 hover:text-white">Pinecrest</a><a href="/web-design-kendall/" class="block py-1 text-gray-300 hover:text-white">Kendall</a><a href="/web-design-south-miami/" class="block py-1 text-gray-300 hover:text-white">South Miami</a><a href="/web-design-coral-gables/" class="block py-1 text-gray-300 hover:text-white">Coral Gables</a><a href="/web-design-palmetto-bay/" class="block py-1 text-gray-300 hover:text-white">Palmetto Bay</a><a href="/web-design-miami/" class="block py-1 text-gray-300 hover:text-white">Miami</a></div></details>
-  <details class="nav-details"><summary class="text-gray-300">Industries</summary><div class="pl-3 pt-2 space-y-1"><a href="/websites-for-restaurants/" class="block py-1 text-gray-300 hover:text-white">Restaurants</a><a href="/websites-for-contractors/" class="block py-1 text-gray-300 hover:text-white">Contractors and home services</a><a href="/websites-for-salons-and-spas/" class="block py-1 text-gray-300 hover:text-white">Salons and spas</a><a href="/websites-for-medical-and-dental/" class="block py-1 text-gray-300 hover:text-white">Medical and dental offices</a><a href="/websites-for-property-managers/" class="block py-1 text-gray-300 hover:text-white">Property managers and real estate</a></div></details>
-  <a href="tel:+17867336744" class="block text-accent font-semibold">Call (786) 733-6744</a>
-  <a href="/#contact" class="block text-accent">Get a quote</a>
+  <nav class="hidden md:flex items-center gap-8">
+    <a href="/" class="nav-link text-sm text-gray-300 hover:text-white transition">Home</a>
+    <a href="/#services" class="nav-link text-sm text-gray-300 hover:text-white transition">Services</a>
+    <a href="/portfolio" class="nav-link text-sm text-white font-semibold transition">Portfolio</a>
+    <a href="/pricing/" class="nav-link text-sm text-gray-300 hover:text-white transition">Pricing</a>
+    <a href="/#contact" class="nav-link text-sm text-gray-300 hover:text-white transition">Contact</a>
+  </nav>
+  <a href="/#contact" class="hidden md:inline-flex items-center gap-2 bg-accent/10 border border-accent/30 text-accent px-4 py-2 rounded-full text-sm font-medium hover:bg-accent/20 transition">
+    Get a Quote <i class="fas fa-arrow-right text-xs"></i>
+  </a>
 </div>
 </header>
-<main id="main">
-<section class="relative pt-28 pb-16 overflow-hidden">
+
+<!-- Hero -->
+<section class="relative pt-32 pb-20 px-6 overflow-hidden">
   <div class="hero-bg"></div>
   <div class="grid-overlay"></div>
   <div class="orb orb-1"></div>
   <div class="orb orb-2"></div>
-  <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6">
-    <nav aria-label="Breadcrumb" class="text-sm mb-6"><ol class="flex flex-wrap gap-2 text-gray-400"><li><a class="text-accent hover:underline" href="/">Home</a></li><li class="text-gray-200" aria-current="page">Portfolio</li></ol></nav>
-    <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight glow-text mb-6">Portfolio</h1>
-    <div class="text-lg text-gray-300 max-w-3xl leading-relaxed space-y-4"><p>Sites for apartment communities, a real estate firm, and a Florida directory. Open any of them, then tell us what you want customers to do on yours.</p></div>
-    <div class="flex flex-col sm:flex-row gap-3 mt-8">
-      <a href="/work/" class="px-6 py-3 bg-accent-strong text-white font-semibold rounded-full text-center hover:bg-blue-800">Read the stories</a>
-      <a href="/pricing/" class="px-6 py-3 border border-white/30 text-white font-semibold rounded-full text-center hover:bg-white/5">See pricing</a>
+  <div class="relative max-w-7xl mx-auto text-center">
+    <div class="inline-flex items-center gap-2 bg-accent/10 border border-accent/20 rounded-full px-4 py-1.5 text-sm text-accent mb-6">
+      <i class="fas fa-briefcase"></i> Our Work
+    </div>
+    <h1 class="font-display text-4xl md:text-6xl font-bold text-white glow-text mb-4">Portfolio</h1>
+    <p class="text-gray-400 text-lg max-w-2xl mx-auto">Clean, fast, hand-coded websites built for businesses that want results. No templates. No bloat. Just performance.</p>
+  </div>
+</section>
+
+<!-- Projects -->
+<section class="px-6 pb-24">
+  <div class="max-w-7xl mx-auto space-y-16">
+
+    <!-- RG Capital Partners -->
+    <div class="project-card glass rounded-2xl overflow-hidden reveal">
+      <div class="grid md:grid-cols-2">
+        <div class="overflow-hidden">
+          <img src="screenshots/rg-capital.png" alt="RG Capital Partners website" class="w-full h-full object-cover object-top">
+        </div>
+        <div class="p-8 md:p-12 flex flex-col justify-center">
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="tag">Private Equity</span>
+            <span class="tag">Real Estate</span>
+            <span class="tag">HTML</span>
+            <span class="tag">Tailwind CSS</span>
+          </div>
+          <h2 class="font-display text-2xl md:text-3xl font-bold text-white mb-3">RG Capital Partners</h2>
+          <p class="text-gray-400 mb-6">A sleek, dark-themed website for a private equity real estate syndication firm operating in Kansas City and Miami. Features bold typography, gold accents, key performance stats, property portfolio showcase, and investor contact forms.</p>
+          <div class="flex items-center gap-4">
+            <a href="https://rgcappartners.com" target="_blank" class="inline-flex items-center gap-2 bg-accent text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-blue-500 transition">
+              Visit Site <i class="fas fa-external-link-alt text-xs"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HireAnyPro -->
+    <div class="project-card glass rounded-2xl overflow-hidden reveal">
+      <div class="grid md:grid-cols-2">
+        <div class="p-8 md:p-12 flex flex-col justify-center order-2 md:order-1">
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="tag">Directory</span>
+            <span class="tag">SaaS</span>
+            <span class="tag">Next.js</span>
+            <span class="tag">Supabase</span>
+            <span class="tag">Stripe</span>
+          </div>
+          <h2 class="font-display text-2xl md:text-3xl font-bold text-white mb-3">HireAnyPro</h2>
+          <p class="text-gray-400 mb-6">Home service provider directory covering all of Florida. 3,000+ verified listings across 13 categories — plumbers, electricians, HVAC, roofing, and more. Features search with map view, lead capture, Stripe subscriptions, and SEO-optimized city/service pages.</p>
+          <div class="flex items-center gap-4">
+            <a href="https://hireanypro.com" target="_blank" class="inline-flex items-center gap-2 bg-accent text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-blue-500 transition">
+              Visit Site <i class="fas fa-external-link-alt text-xs"></i>
+            </a>
+          </div>
+        </div>
+        <div class="overflow-hidden order-1 md:order-2">
+          <img src="screenshots/hireanypro.png" alt="HireAnyPro website" class="w-full h-full object-cover object-top">
+        </div>
+      </div>
+    </div>
+
+    <!-- HireAnyPM -->
+    <div class="project-card glass rounded-2xl overflow-hidden reveal">
+      <div class="grid md:grid-cols-2">
+        <div class="overflow-hidden">
+          <img src="screenshots/hireanypm.png" alt="HireAnyPM website" class="w-full h-full object-cover object-top">
+        </div>
+        <div class="p-8 md:p-12 flex flex-col justify-center">
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="tag">Directory</span>
+            <span class="tag">SaaS</span>
+            <span class="tag">Next.js</span>
+            <span class="tag">Supabase</span>
+            <span class="tag">Stripe</span>
+          </div>
+          <h2 class="font-display text-2xl md:text-3xl font-bold text-white mb-3">HireAnyPM</h2>
+          <p class="text-gray-400 mb-6">Property manager directory covering Florida and expanding nationwide. 2,300+ listings across 8 categories — residential, commercial, HOA, vacation rental, and more. Zip-code-based featured placement model with Stripe billing.</p>
+          <div class="flex items-center gap-4">
+            <a href="https://hireanypm.com" target="_blank" class="inline-flex items-center gap-2 bg-accent text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-blue-500 transition">
+              Visit Site <i class="fas fa-external-link-alt text-xs"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 22 Biscayne Bay -->
+    <div class="project-card glass rounded-2xl overflow-hidden reveal">
+      <div class="grid md:grid-cols-2">
+        <div class="p-8 md:p-12 flex flex-col justify-center order-2 md:order-1">
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="tag">Luxury Residential</span>
+            <span class="tag">Real Estate</span>
+            <span class="tag">HTML</span>
+            <span class="tag">Tailwind CSS</span>
+          </div>
+          <h2 class="font-display text-2xl md:text-3xl font-bold text-white mb-3">22 Biscayne Bay</h2>
+          <p class="text-gray-400 mb-6">Elegant leasing website for a waterfront apartment community in Miami's Edgewater neighborhood. Features bay views, interactive floor plans, photo galleries, amenity highlights, and tour scheduling.</p>
+          <div class="flex items-center gap-4">
+            <a href="https://22biscaynebay.com" target="_blank" class="inline-flex items-center gap-2 bg-accent text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-blue-500 transition">
+              Visit Site <i class="fas fa-external-link-alt text-xs"></i>
+            </a>
+          </div>
+        </div>
+        <div class="overflow-hidden order-1 md:order-2">
+          <img src="screenshots/melo-22-biscayne-bay.png" alt="22 Biscayne Bay website" class="w-full h-full object-cover object-top">
+        </div>
+      </div>
+    </div>
+
+    <!-- Urban 22 Miami -->
+    <div class="project-card glass rounded-2xl overflow-hidden reveal">
+      <div class="grid md:grid-cols-2">
+        <div class="overflow-hidden">
+          <img src="screenshots/melo-urban-22.png" alt="Urban 22 Miami website" class="w-full h-full object-cover object-top">
+        </div>
+        <div class="p-8 md:p-12 flex flex-col justify-center">
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="tag">Luxury Residential</span>
+            <span class="tag">Real Estate</span>
+            <span class="tag">HTML</span>
+            <span class="tag">Tailwind CSS</span>
+          </div>
+          <h2 class="font-display text-2xl md:text-3xl font-bold text-white mb-3">Urban 22 Miami</h2>
+          <p class="text-gray-400 mb-6">Modern property website for a luxury rental building in Edgewater, Miami. Showcases gallery imagery, floor plan options, and contact information with a bold, contemporary design.</p>
+          <div class="flex items-center gap-4">
+            <a href="https://urban22miami.com" target="_blank" class="inline-flex items-center gap-2 bg-accent text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-blue-500 transition">
+              Visit Site <i class="fas fa-external-link-alt text-xs"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Downtown 1st -->
+    <div class="project-card glass rounded-2xl overflow-hidden reveal">
+      <div class="grid md:grid-cols-2">
+        <div class="p-8 md:p-12 flex flex-col justify-center order-2 md:order-1">
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="tag">Luxury High-Rise</span>
+            <span class="tag">Real Estate</span>
+            <span class="tag">HTML</span>
+            <span class="tag">Tailwind CSS</span>
+          </div>
+          <h2 class="font-display text-2xl md:text-3xl font-bold text-white mb-3">Downtown 1st</h2>
+          <p class="text-gray-400 mb-6">Sophisticated 56-story luxury high-rise leasing site in Downtown Miami. Highlights bay and skyline views, premium amenities, floor plans, and integrated tour scheduling.</p>
+          <div class="flex items-center gap-4">
+            <a href="https://downtown1st.com" target="_blank" class="inline-flex items-center gap-2 bg-accent text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-blue-500 transition">
+              Visit Site <i class="fas fa-external-link-alt text-xs"></i>
+            </a>
+          </div>
+        </div>
+        <div class="overflow-hidden order-1 md:order-2">
+          <img src="screenshots/melo-downtown-1st.png" alt="Downtown 1st website" class="w-full h-full object-cover object-top">
+        </div>
+      </div>
+    </div>
+
+    <!-- Downtown 5th -->
+    <div class="project-card glass rounded-2xl overflow-hidden reveal">
+      <div class="grid md:grid-cols-2">
+        <div class="overflow-hidden">
+          <img src="screenshots/melo-downtown-5.png" alt="Downtown 5th website" class="w-full h-full object-cover object-top">
+        </div>
+        <div class="p-8 md:p-12 flex flex-col justify-center">
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="tag">Luxury High-Rise</span>
+            <span class="tag">Real Estate</span>
+            <span class="tag">HTML</span>
+            <span class="tag">Tailwind CSS</span>
+          </div>
+          <h2 class="font-display text-2xl md:text-3xl font-bold text-white mb-3">Downtown 5th</h2>
+          <p class="text-gray-400 mb-6">Premier rental tower website for a dual-address Downtown Miami property. Features world-class amenities, tour scheduling, and leasing office contact with a sleek urban aesthetic.</p>
+          <div class="flex items-center gap-4">
+            <a href="https://downtown5.com" target="_blank" class="inline-flex items-center gap-2 bg-accent text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-blue-500 transition">
+              Visit Site <i class="fas fa-external-link-alt text-xs"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 25 Biscayne Park -->
+    <div class="project-card glass rounded-2xl overflow-hidden reveal">
+      <div class="grid md:grid-cols-2">
+        <div class="p-8 md:p-12 flex flex-col justify-center order-2 md:order-1">
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="tag">Luxury Residential</span>
+            <span class="tag">Real Estate</span>
+            <span class="tag">HTML</span>
+            <span class="tag">Tailwind CSS</span>
+          </div>
+          <h2 class="font-display text-2xl md:text-3xl font-bold text-white mb-3">25 Biscayne Park</h2>
+          <p class="text-gray-400 mb-6">Luxury rental tower site in Miami's Biscayne Park area. Promotes world-class amenities and premium living with tour booking and leasing contact functionality.</p>
+          <div class="flex items-center gap-4">
+            <a href="https://25biscaynepark.com" target="_blank" class="inline-flex items-center gap-2 bg-accent text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-blue-500 transition">
+              Visit Site <i class="fas fa-external-link-alt text-xs"></i>
+            </a>
+          </div>
+        </div>
+        <div class="overflow-hidden order-1 md:order-2">
+          <img src="screenshots/melo-25-biscayne.png" alt="25 Biscayne Park website" class="w-full h-full object-cover object-top">
+        </div>
+      </div>
+    </div>
+
+    <!-- Melody Tower -->
+    <div class="project-card glass rounded-2xl overflow-hidden reveal">
+      <div class="grid md:grid-cols-2">
+        <div class="overflow-hidden">
+          <img src="screenshots/melo-melody-tower.png" alt="Melody Tower website" class="w-full h-full object-cover object-top">
+        </div>
+        <div class="p-8 md:p-12 flex flex-col justify-center">
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="tag">Luxury High-Rise</span>
+            <span class="tag">Real Estate</span>
+            <span class="tag">HTML</span>
+            <span class="tag">Tailwind CSS</span>
+          </div>
+          <h2 class="font-display text-2xl md:text-3xl font-bold text-white mb-3">Melody Tower</h2>
+          <p class="text-gray-400 mb-6">Stylish leasing website for a high-rise rental tower at 245 NE 14th St in Miami. Features luxury living highlights, world-class amenities, and integrated tour and contact options.</p>
+          <div class="flex items-center gap-4">
+            <a href="https://melodytower.com" target="_blank" class="inline-flex items-center gap-2 bg-accent text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-blue-500 transition">
+              Visit Site <i class="fas fa-external-link-alt text-xs"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CRRE Labs -->
+    <div class="project-card glass rounded-2xl overflow-hidden reveal">
+      <div class="grid md:grid-cols-2">
+        <div class="p-8 md:p-12 flex flex-col justify-center order-2 md:order-1">
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="tag">Tech / Agency</span>
+            <span class="tag">AI</span>
+            <span class="tag">HTML</span>
+            <span class="tag">Tailwind CSS</span>
+          </div>
+          <h2 class="font-display text-2xl md:text-3xl font-bold text-white mb-3">CRRE Labs</h2>
+          <p class="text-gray-400 mb-6">Our own website — a bold, tech-forward design for an AI-powered web development agency. Features animated gradient backgrounds, glowing neon accents, and a dark-mode aesthetic.</p>
+          <div class="flex items-center gap-4">
+            <a href="https://crrelabs.com" target="_blank" class="inline-flex items-center gap-2 bg-accent text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-blue-500 transition">
+              Visit Site <i class="fas fa-external-link-alt text-xs"></i>
+            </a>
+          </div>
+        </div>
+        <div class="overflow-hidden order-1 md:order-2">
+          <img src="screenshots/crrelabs.png" alt="CRRE Labs website" class="w-full h-full object-cover object-top">
+        </div>
+      </div>
+    </div>
+
+</div>
+</section>
+
+<!-- CTA -->
+<section class="px-6 pb-24">
+  <div class="max-w-4xl mx-auto glass rounded-2xl p-12 text-center">
+    <h2 class="font-display text-3xl md:text-4xl font-bold text-white mb-4">Ready to Build Yours?</h2>
+    <p class="text-gray-400 mb-8 max-w-xl mx-auto">We build fast, modern websites that convert. No WordPress. No bloat. Just clean code and results.</p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="/#contact" class="bg-accent text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-500 transition">
+        Get a Free Quote
+      </a>
+      <a href="/#contact" class="border border-white/20 text-white px-8 py-3 rounded-lg font-semibold hover:bg-white/5 transition">
+        Contact us
+      </a>
     </div>
   </div>
-</section><section class="pb-16"><div class="max-w-7xl mx-auto px-4 sm:px-6 space-y-10"><article class="project-card glass rounded-2xl overflow-hidden"><div class="grid md:grid-cols-2"><div class="overflow-hidden"><picture>
-  <source srcset="/portfolio/screenshots/rg-capital-partners-website.webp" type="image/webp">
-  <img src="/portfolio/screenshots/rg-capital-partners-website.jpg" alt="RG Capital Partners homepage, with the headline Private Equity Real Estate and a way to view the portfolio or get in touch." width="1280" height="800" loading="lazy" decoding="async" class="w-full h-full object-cover object-top">
-</picture></div><div class="p-8 flex flex-col justify-center">
-          <p class="tag inline-block mb-3 w-fit">Private equity · Real estate</p>
-          <h2 class="font-display text-2xl text-white font-bold mb-3">RG Capital Partners</h2>
-          <p class="text-gray-300 mb-4">A calm, dark site for a private-equity firm in Kansas City and Miami. Visitors can see the portfolio, meet the team, and get in touch. Delivered in under a week. <a class='text-accent underline' href='/work/rg-capital-partners/'>Read the story</a>.</p>
-          <a href="https://rgcappartners.com" target="_blank" rel="noopener noreferrer" class="text-accent font-semibold">Visit site</a>
-        </div></div></article><article class="project-card glass rounded-2xl overflow-hidden"><div class="grid md:grid-cols-2"><div class="p-8 flex flex-col justify-center">
-          <p class="tag inline-block mb-3 w-fit">Directory</p>
-          <h2 class="font-display text-2xl text-white font-bold mb-3">HireAnyPM</h2>
-          <p class="text-gray-300 mb-4">A directory that helps people find property managers across Florida, with search and a featured spot for managers who want to stand out.</p>
-          <a href="https://hireanypm.com" target="_blank" rel="noopener noreferrer" class="text-accent font-semibold">Visit site</a>
-        </div><div class="overflow-hidden"><picture>
-  <source srcset="/portfolio/screenshots/hireanypm-directory-website.webp" type="image/webp">
-  <img src="/portfolio/screenshots/hireanypm-directory-website.jpg" alt="HireAnyPM homepage, a directory where Florida property managers can be found." width="1280" height="800" loading="lazy" decoding="async" class="w-full h-full object-cover object-top">
-</picture></div></div></article><article class="project-card glass rounded-2xl overflow-hidden"><div class="grid md:grid-cols-2"><div class="overflow-hidden"><picture>
-  <source srcset="/portfolio/screenshots/22-biscayne-bay-leasing-website.webp" type="image/webp">
-  <img src="/portfolio/screenshots/22-biscayne-bay-leasing-website.jpg" alt="22 Biscayne Bay leasing homepage for waterfront apartments in Edgewater." width="1280" height="800" loading="lazy" decoding="async" class="w-full h-full object-cover object-top">
-</picture></div><div class="p-8 flex flex-col justify-center">
-          <p class="tag inline-block mb-3 w-fit">Leasing · Edgewater</p>
-          <h2 class="font-display text-2xl text-white font-bold mb-3">22 Biscayne Bay</h2>
-          <p class="text-gray-300 mb-4">Waterfront apartments in Edgewater, with floor plans, galleries, amenities, and a way to schedule a tour.</p>
-          <a href="https://22biscaynebay.com" target="_blank" rel="noopener noreferrer" class="text-accent font-semibold">Visit site</a>
-        </div></div></article><article class="project-card glass rounded-2xl overflow-hidden"><div class="grid md:grid-cols-2"><div class="p-8 flex flex-col justify-center">
-          <p class="tag inline-block mb-3 w-fit">Leasing · Edgewater</p>
-          <h2 class="font-display text-2xl text-white font-bold mb-3">Urban 22 Miami</h2>
-          <p class="text-gray-300 mb-4">A contemporary look at a luxury rental building in Edgewater, with galleries, floor plans, and contact details.</p>
-          <a href="https://urban22miami.com" target="_blank" rel="noopener noreferrer" class="text-accent font-semibold">Visit site</a>
-        </div><div class="overflow-hidden"><picture>
-  <source srcset="/portfolio/screenshots/urban-22-miami-leasing-website.webp" type="image/webp">
-  <img src="/portfolio/screenshots/urban-22-miami-leasing-website.jpg" alt="Urban 22 Miami leasing homepage for an Edgewater rental building." width="1280" height="800" loading="lazy" decoding="async" class="w-full h-full object-cover object-top">
-</picture></div></div></article><article class="project-card glass rounded-2xl overflow-hidden"><div class="grid md:grid-cols-2"><div class="overflow-hidden"><picture>
-  <source srcset="/portfolio/screenshots/downtown-1st-leasing-website.webp" type="image/webp">
-  <img src="/portfolio/screenshots/downtown-1st-leasing-website.jpg" alt="Downtown 1st leasing homepage for a downtown Miami rental tower." width="1280" height="800" loading="lazy" decoding="async" class="w-full h-full object-cover object-top">
-</picture></div><div class="p-8 flex flex-col justify-center">
-          <p class="tag inline-block mb-3 w-fit">Leasing · Downtown</p>
-          <h2 class="font-display text-2xl text-white font-bold mb-3">Downtown 1st</h2>
-          <p class="text-gray-300 mb-4">A 56-story rental tower in the Arts and Entertainment District, with amenities, floor plans, and tour requests.</p>
-          <a href="https://downtown1st.com" target="_blank" rel="noopener noreferrer" class="text-accent font-semibold">Visit site</a>
-        </div></div></article><article class="project-card glass rounded-2xl overflow-hidden"><div class="grid md:grid-cols-2"><div class="p-8 flex flex-col justify-center">
-          <p class="tag inline-block mb-3 w-fit">Leasing · Downtown</p>
-          <h2 class="font-display text-2xl text-white font-bold mb-3">Downtown 5th</h2>
-          <p class="text-gray-300 mb-4">A downtown rental tower with amenities, tour scheduling, and an easy way to reach leasing.</p>
-          <a href="https://downtown5.com" target="_blank" rel="noopener noreferrer" class="text-accent font-semibold">Visit site</a>
-        </div><div class="overflow-hidden"><picture>
-  <source srcset="/portfolio/screenshots/downtown-5th-leasing-website.webp" type="image/webp">
-  <img src="/portfolio/screenshots/downtown-5th-leasing-website.jpg" alt="Downtown 5th leasing homepage for a downtown Miami rental tower." width="1280" height="800" loading="lazy" decoding="async" class="w-full h-full object-cover object-top">
-</picture></div></div></article><article class="project-card glass rounded-2xl overflow-hidden"><div class="grid md:grid-cols-2"><div class="overflow-hidden"><picture>
-  <source srcset="/portfolio/screenshots/25-biscayne-park-leasing-website.webp" type="image/webp">
-  <img src="/portfolio/screenshots/25-biscayne-park-leasing-website.jpg" alt="25 Biscayne Park leasing homepage for apartments on Biscayne Boulevard." width="1280" height="800" loading="lazy" decoding="async" class="w-full h-full object-cover object-top">
-</picture></div><div class="p-8 flex flex-col justify-center">
-          <p class="tag inline-block mb-3 w-fit">Leasing · Biscayne Boulevard</p>
-          <h2 class="font-display text-2xl text-white font-bold mb-3">25 Biscayne Park</h2>
-          <p class="text-gray-300 mb-4">Apartments on Biscayne Boulevard, with amenities, tour booking, and leasing contact that is easy to find on a phone.</p>
-          <a href="https://25biscaynepark.com" target="_blank" rel="noopener noreferrer" class="text-accent font-semibold">Visit site</a>
-        </div></div></article><article class="project-card glass rounded-2xl overflow-hidden"><div class="grid md:grid-cols-2"><div class="p-8 flex flex-col justify-center">
-          <p class="tag inline-block mb-3 w-fit">Leasing · Midtown</p>
-          <h2 class="font-display text-2xl text-white font-bold mb-3">Melody Tower</h2>
-          <p class="text-gray-300 mb-4">A Midtown tower at 245 NE 14th Street, with amenities and a direct line to the leasing office.</p>
-          <a href="https://melodytower.com" target="_blank" rel="noopener noreferrer" class="text-accent font-semibold">Visit site</a>
-        </div><div class="overflow-hidden"><picture>
-  <source srcset="/portfolio/screenshots/melody-tower-leasing-website.webp" type="image/webp">
-  <img src="/portfolio/screenshots/melody-tower-leasing-website.jpg" alt="Melody Tower leasing homepage for a Midtown Miami rental tower." width="1280" height="800" loading="lazy" decoding="async" class="w-full h-full object-cover object-top">
-</picture></div></div></article><article class="project-card glass rounded-2xl overflow-hidden"><div class="grid md:grid-cols-2"><div class="overflow-hidden"><picture>
-  <source srcset="/portfolio/screenshots/crre-labs-website.webp" type="image/webp">
-  <img src="/portfolio/screenshots/crre-labs-website.jpg" alt="CRRE Labs homepage for a Pinecrest web design studio." width="1280" height="800" loading="lazy" decoding="async" class="w-full h-full object-cover object-top">
-</picture></div><div class="p-8 flex flex-col justify-center">
-          <p class="tag inline-block mb-3 w-fit">Our studio</p>
-          <h2 class="font-display text-2xl text-white font-bold mb-3">CRRE Labs</h2>
-          <p class="text-gray-300 mb-4">The site you are on: Pinecrest and Miami web design, three published prices, and a phone number you can tap.</p>
-          <a href="https://crrelabs.com/" target="_blank" rel="noopener noreferrer" class="text-accent font-semibold">Visit site</a>
-        </div></div></article></div></section></main>
-<footer class="border-t border-white/10 py-12">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 grid gap-10 md:grid-cols-2 lg:grid-cols-4">
-    <div>
-      <p class="font-display font-semibold text-white text-lg">CRRE Labs LLC</p>
-      <p class="text-sm text-gray-300 mt-3 leading-relaxed">Website design studio<br>12394 SW 82nd Ave, Pinecrest, FL 33156</p>
-      <p class="text-sm mt-3"><a class="text-white font-semibold hover:text-accent" href="tel:+17867336744">(786) 733-6744</a></p>
-      <p class="text-sm mt-1"><a class="text-gray-300 hover:text-white" href="mailto:hello@crrelabs.com">hello@crrelabs.com</a></p>
+</section>
+
+<!-- Footer -->
+<footer class="border-t border-white/5 py-8 px-6">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
+    <p>&copy; 2026 CRRE Labs LLC. All rights reserved.</p>
+    <p class="text-gray-500 text-xs mt-2"><a href="/privacy.html" class="hover:text-white/60 transition">Privacy</a> · <a href="/terms.html" class="hover:text-white/60 transition">Terms</a> · <a href="/sms-policy.html" class="hover:text-white/60 transition">SMS Policy</a></p>
+    <div class="flex gap-6">
+      <a href="/" class="hover:text-white transition">Home</a>
+      <a href="/portfolio" class="hover:text-white transition">Portfolio</a>
+      <a href="/pricing/" class="hover:text-white transition">Pricing</a>
+      <a href="/#contact" class="hover:text-white transition">Contact</a>
     </div>
-    <div><h2 class="font-display text-white text-sm font-semibold mb-3">Areas</h2><ul class="space-y-2 text-sm text-gray-400"><li><a class="hover:text-white" href="/web-design-pinecrest/">Pinecrest</a></li>
-<li><a class="hover:text-white" href="/web-design-kendall/">Kendall</a></li>
-<li><a class="hover:text-white" href="/web-design-south-miami/">South Miami</a></li>
-<li><a class="hover:text-white" href="/web-design-coral-gables/">Coral Gables</a></li>
-<li><a class="hover:text-white" href="/web-design-palmetto-bay/">Palmetto Bay</a></li>
-<li><a class="hover:text-white" href="/web-design-miami/">Miami</a></li></ul></div>
-    <div><h2 class="font-display text-white text-sm font-semibold mb-3">Industries</h2><ul class="space-y-2 text-sm text-gray-400"><li><a class="hover:text-white" href="/websites-for-restaurants/">Restaurants</a></li>
-<li><a class="hover:text-white" href="/websites-for-contractors/">Contractors and home services</a></li>
-<li><a class="hover:text-white" href="/websites-for-salons-and-spas/">Salons and spas</a></li>
-<li><a class="hover:text-white" href="/websites-for-medical-and-dental/">Medical and dental offices</a></li>
-<li><a class="hover:text-white" href="/websites-for-property-managers/">Property managers and real estate</a></li></ul></div>
-    <div><h2 class="font-display text-white text-sm font-semibold mb-3">More</h2><ul class="space-y-2 text-sm text-gray-400"><li><a class="hover:text-white" href="/pricing/">Pricing</a></li>
-<li><a class="hover:text-white" href="/portfolio/">Portfolio</a></li>
-<li><a class="hover:text-white" href="/work/">Case studies</a></li>
-<li><a class="hover:text-white" href="/blog/">Blog</a></li>
-<li><a class="hover:text-white" href="/iris/">Iris</a></li>
-<li><a class="hover:text-white" href="/3d-printing.html">3D printing</a></li>
-<li><a class="hover:text-white" href="/#contact">Contact</a></li></ul></div>
-  </div>
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 mt-10 pt-6 border-t border-white/10 flex flex-col md:flex-row gap-3 md:justify-between text-xs text-gray-400">
-    <p>© 2026 CRRE Labs LLC · 12394 SW 82nd Ave, Pinecrest, FL 33156 · (786) 733-6744</p>
-    <p><a class="hover:text-white" href="/privacy/">Privacy Policy</a> · <a class="hover:text-white" href="/terms/">Terms of Service</a> · <a class="hover:text-white" href="/sms-policy/">SMS Policy</a></p>
   </div>
 </footer>
-<div class="fixed bottom-0 inset-x-0 z-40 lg:hidden bg-[#0a0e1a]/95 border-t border-white/10 backdrop-blur px-4 py-3 grid grid-cols-2 gap-3">
-  <a href="tel:+17867336744" class="text-center py-3 rounded-full bg-accent-strong text-white font-semibold">Call</a>
-  <a href="/#contact" class="text-center py-3 rounded-full border border-white/30 text-white font-semibold">Get a quote</a>
-</div><script src="/assets/site-config.js"></script>
-<script src="/assets/site.js"></script>
+
+<!-- Reveal Animation -->
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }});
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
 </body>
 </html>

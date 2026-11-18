@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://*.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https://crrelabs.com https://www.crrelabs.com https://*.google-analytics.com https://*.googletagmanager.com; connect-src 'self' https://crre-sms-hubspot-4207-prod.twil.io https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; form-action 'self' https://crre-sms-hubspot-4207-prod.twil.io; frame-src 'none'; object-src 'none'; base-uri 'self'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://cdn.jsdelivr.net https://*.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https://crrelabs.com https://www.crrelabs.com https://*.google-analytics.com https://*.googletagmanager.com; connect-src 'self' https://crre-sms-hubspot-4207-prod.twil.io https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; form-action 'self' https://crre-sms-hubspot-4207-prod.twil.io; frame-src 'none'; object-src 'none'; base-uri 'self'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-BJ1J3E32GP"></script>
@@ -22,22 +22,31 @@
 <meta property="og:description" content="Professional 3D printing services by CRRE Labs. Custom prototypes, models, and parts for businesses and individuals in Miami.">
 <meta property="og:site_name" content="CRRE Labs">
 <meta property="og:locale" content="en_US">
-<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="3D Printing Services — CRRE Labs | Miami">
 <meta name="twitter:description" content="Professional 3D printing services by CRRE Labs. Custom prototypes, models, and parts for businesses and individuals in Miami.">
   <meta name="description" content="Transparent 3D printing pricing for prototypes and small-batch production." />
 
   <!-- Tailwind via CDN (swap for your build pipeline later) -->
-<link rel="stylesheet" href="/assets/site.css">
-<link rel="icon" href="/favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta property="og:image" content="https://crrelabs.com/assets/og-image.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:image" content="https://crrelabs.com/assets/og-image.png">
-
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: "#071a2b",
+            navy: "#0a2a4a",
+            ocean: "#0b4b82",
+            sky: "#3aa0ff",
+            mist: "#f5f7fb",
+          },
+          boxShadow: {
+            soft: "0 10px 30px rgba(7, 26, 43, 0.12)",
+          },
+        }
+      }
+    }
+  </script>
   <style>
     .focus-ring:focus { outline: none; box-shadow: 0 0 0 4px rgba(58,160,255,0.25); }
   </style>
@@ -286,7 +295,7 @@
       <div class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
         <div>
           <div class="text-sm font-semibold">CRRE Labs</div>
-          <div class="text-xs text-slate-500">© <span id="year"></span> CRRE Labs LLC · 12394 SW 82nd Ave, Pinecrest, FL 33156 · <a href="tel:+17867336744" class="hover:text-slate-700">(786) 733-6744</a> · <a href="/privacy.html" class="hover:text-slate-700">Privacy</a> · <a href="/terms.html" class="hover:text-slate-700">Terms</a> · <a href="/sms-policy.html" class="hover:text-slate-700">SMS Policy</a></div>
+          <div class="text-xs text-slate-500">© <span id="year"></span> CRRE Labs LLC. All rights reserved. · <a href="/privacy.html" class="hover:text-slate-700">Privacy</a> · <a href="/terms.html" class="hover:text-slate-700">Terms</a> · <a href="/sms-policy.html" class="hover:text-slate-700">SMS Policy</a></div>
         </div>
         <div class="text-sm text-slate-600">
           <a class="hover:text-ink" href="/">Home</a>
@@ -301,7 +310,8 @@
     document.getElementById('year').textContent = new Date().getFullYear();
 
     // ====== PRICING CONFIG (EDIT HERE) ======
-    // Edit the numbers below. Use numbers only, without a dollar sign.
+    // Replace the XX placeholders below with the exact numbers you and I agreed on.
+    // You can keep them as numbers only (no $ signs).
     const PRICING = {
       minOrder: "XX",
       fdmRate: "XX",       // per gram
@@ -315,7 +325,7 @@
       assembly: "XX",
     };
 
-    // Fill the price fields from PRICING.
+    // Populate all price placeholders
     for (const [key, val] of Object.entries(PRICING)) {
       document.querySelectorAll(`[data-price="${key}"]`).forEach(el => el.textContent = val);
     }
@@ -330,6 +340,7 @@
       note.classList.remove('text-red-600', 'text-green-700');
       note.textContent = 'Submitting…';
 
+      // TODO: replace with your endpoint, e.g. /api/quote.
       await new Promise(r => setTimeout(r, 600));
 
       note.classList.add('text-green-700');
@@ -337,7 +348,5 @@
       form.reset();
     });
   </script>
-<script src="/assets/site-config.js"></script>
-<script src="/assets/site.js"></script>
 </body>
 </html>

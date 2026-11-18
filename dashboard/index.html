@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://*.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https://crrelabs.com https://www.crrelabs.com https://*.google-analytics.com https://*.googletagmanager.com; connect-src 'self' https: https://crre-sms-hubspot-4207-prod.twil.io https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; form-action 'self' https://crre-sms-hubspot-4207-prod.twil.io; frame-src 'none'; object-src 'none'; base-uri 'self'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://cdn.jsdelivr.net https://*.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https://crrelabs.com https://www.crrelabs.com https://*.google-analytics.com https://*.googletagmanager.com; connect-src 'self' https: https://crre-sms-hubspot-4207-prod.twil.io https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; form-action 'self' https://crre-sms-hubspot-4207-prod.twil.io; frame-src 'none'; object-src 'none'; base-uri 'self'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-BJ1J3E32GP"></script>
@@ -14,16 +14,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mission Control — CRRE Labs</title>
-<link rel="stylesheet" href="/assets/site.css">
-<link rel="icon" href="/favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta property="og:image" content="https://crrelabs.com/assets/og-image.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:image" content="https://crrelabs.com/assets/og-image.png">
-
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        bg: { DEFAULT: '#0f172a', card: '#1e293b', hover: '#334155' },
+        accent: { DEFAULT: '#3b82f6', hover: '#2563eb', dim: 'rgba(59,130,246,0.1)' },
+        ok: '#22c55e', warn: '#f59e0b', bad: '#ef4444', muted: '#64748b', edge: '#334155'
+      }
+    }
+  }
+}
+</script>
 <style>
   body { background: #0f172a; color: #e2e8f0; font-family: system-ui, -apple-system, sans-serif; }
   .tab-active { color: #3b82f6; border-color: #3b82f6; }
@@ -242,7 +246,7 @@ function renderMonitor() {
           <span class="status-dot ${s.up ? 'bg-ok' : 'bg-bad pulse'}"></span>
           <div>
             <h3 class="font-semibold text-sm md:text-base">${s.name}</h3>
-            <a href="${s.url}" target="_blank" class="text-xs text-muted hover:text-accent break-all" rel="noopener noreferrer">${s.url.replace('https://','')}</a>
+            <a href="${s.url}" target="_blank" class="text-xs text-muted hover:text-accent break-all">${s.url.replace('https://','')}</a>
           </div>
         </div>
       </div>
@@ -317,7 +321,7 @@ const PROJECTS = [
       { name: "Property landing pages", status: "done", who: "Lex" },
       { name: "Restaurant section", status: "done", who: "Lex" },
       { name: "Real images & polish", status: "in progress", who: "Lex" },
-      { name: "Domain migration", status: "to do", who: "Owner" },
+      { name: "Domain migration", status: "to do", who: "Carlos" },
     ]
   },
   {
@@ -463,7 +467,5 @@ async function dnsCheckAll() {
 renderProjects();
 checkAllSites();
 </script>
-<script src="/assets/site-config.js"></script>
-<script src="/assets/site.js"></script>
 </body>
 </html>

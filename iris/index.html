@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://*.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https://crrelabs.com https://www.crrelabs.com https://*.google-analytics.com https://*.googletagmanager.com; connect-src 'self' https://crre-sms-hubspot-4207-prod.twil.io https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; form-action 'self' https://crre-sms-hubspot-4207-prod.twil.io; frame-src 'none'; object-src 'none'; base-uri 'self'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://cdn.jsdelivr.net https://*.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https://crrelabs.com https://www.crrelabs.com https://*.google-analytics.com https://*.googletagmanager.com; connect-src 'self' https://crre-sms-hubspot-4207-prod.twil.io https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; form-action 'self' https://crre-sms-hubspot-4207-prod.twil.io; frame-src 'none'; object-src 'none'; base-uri 'self'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-BJ1J3E32GP"></script>
@@ -22,20 +22,29 @@
 <meta property="og:description" content="Meet Iris Brown, the AI-powered executive assistant at CRRE Labs. Business operations, client communications, and automation — all handled intelligently.">
 <meta property="og:site_name" content="CRRE Labs">
 <meta property="og:locale" content="en_US">
-<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Iris Brown — AI Executive Assistant | CRRE Labs">
 <meta name="twitter:description" content="Meet Iris Brown, the AI-powered executive assistant at CRRE Labs. Business operations, client communications, and automation — all handled intelligently.">
 <meta name="description" content="Meet Iris Brown, the AI-powered executive assistant at CRRE Labs. Business operations, client communications, and automation — all handled intelligently.">
-<link rel="stylesheet" href="/assets/site.css">
-<link rel="icon" href="/favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta property="og:image" content="https://crrelabs.com/assets/og-image.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:image" content="https://crrelabs.com/assets/og-image.png">
-
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        accent: '#3aa0ff',
+        'accent-cyan': '#00e5ff',
+        dark: '#0a0e1a',
+        'dark-card': '#111827',
+      },
+      fontFamily: {
+        display: ['Space Grotesk', 'sans-serif'],
+        body: ['Inter', 'sans-serif'],
+      }
+    }
+  }
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -286,7 +295,7 @@ body{font-family:'Inter',sans-serif;background:#0a0e1a;color:#e2e8f0;overflow-x:
   <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
     <div class="flex items-center gap-3">
       <img src="/logo.jpg" alt="CRRE Labs" class="w-6 h-6 rounded">
-      <span class="text-sm text-gray-500">CRRE Labs LLC · 12394 SW 82nd Ave, Pinecrest, FL 33156 · <a href="tel:+17867336744" class="hover:text-white">(786) 733-6744</a></span>
+      <span class="text-sm text-gray-500">CRRE Labs LLC · Pinecrest, Miami FL</span>
     </div>
     <div class="flex items-center gap-6 text-sm text-gray-500">
       <a href="/" class="hover:text-white transition">Home</a>
@@ -297,7 +306,5 @@ body{font-family:'Inter',sans-serif;background:#0a0e1a;color:#e2e8f0;overflow-x:
   </div>
 </footer>
 
-<script src="/assets/site-config.js"></script>
-<script src="/assets/site.js"></script>
 </body>
 </html>
